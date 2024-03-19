@@ -4,18 +4,32 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import objects.Producto;
+
 /**
  *
  * @author Abe
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    
 
+    int cantidadSencilla = 0;
+    Producto sencilla = new Producto("sencilla", 0,60);
+    List<Producto> listaProductos = new ArrayList<>();
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
     }
+    
+   
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,9 +48,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        sumarSencilla = new javax.swing.JButton();
+        restarSencilla = new javax.swing.JButton();
+        cantSencilla = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jButton16 = new javax.swing.JButton();
@@ -90,15 +104,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaOrden = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
+        subtotal = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jButton40 = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
@@ -172,28 +186,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("$60");
 
-        jButton5.setBackground(new java.awt.Color(36, 123, 160));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("+");
-        jButton5.setBorder(null);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        sumarSencilla.setBackground(new java.awt.Color(36, 123, 160));
+        sumarSencilla.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sumarSencilla.setForeground(new java.awt.Color(255, 255, 255));
+        sumarSencilla.setText("+");
+        sumarSencilla.setBorder(null);
+        sumarSencilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                sumarSencillaActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setText("-");
-        jButton6.setBorder(null);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        restarSencilla.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        restarSencilla.setText("-");
+        restarSencilla.setBorder(null);
+        restarSencilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                restarSencillaActionPerformed(evt);
             }
         });
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("0");
+        cantSencilla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantSencilla.setText("0");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel8.setText("Sencilla");
@@ -213,11 +227,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(restarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(cantSencilla, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sumarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -232,9 +246,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                    .addComponent(sumarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(restarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantSencilla)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -810,26 +824,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Continuar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaOrden.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Torta", "Precio"
+                "Cantidad", "Torta", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaOrden);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Orden # 0");
@@ -848,14 +862,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel43.setText("Total");
 
-        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel44.setText("$0");
+        subtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        subtotal.setText("$0");
 
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel45.setText("$0");
 
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel46.setText("$0");
+        total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        total.setText("$0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -886,11 +900,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -906,7 +920,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel44))
+                    .addComponent(subtotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -914,7 +928,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43)
-                    .addComponent(jLabel46))
+                    .addComponent(total))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -1298,13 +1312,68 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void sumarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarSencillaActionPerformed
+        
+//        if(cantidadSencilla == 0) {
+//            
+//            listaProductos.add(sencilla);
+//        }
+//        cantidadSencilla++;
+//        sencilla.setCantidad(cantidadSencilla);
+//        String cSencilla = String.valueOf(cantidadSencilla);
+//        cantSencilla.setText(cSencilla);
+//        System.out.println(listaProductos);
+//        cargarDatosTabla(tablaOrden, listaProductos);
+//        actualizarTotal(listaProductos);
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+if(!listaProductos.contains(sencilla)) {
+        listaProductos.add(sencilla);
+    }
+    
+    cantidadSencilla++;
+    sencilla.setCantidad(cantidadSencilla);
+    String cSencilla = String.valueOf(cantidadSencilla);
+    cantSencilla.setText(cSencilla);
+    cargarDatosTabla(tablaOrden, listaProductos);
+    actualizarTotal(listaProductos);
+    }//GEN-LAST:event_sumarSencillaActionPerformed
+
+    private void restarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarSencillaActionPerformed
+//
+//        if(cantidadSencilla > 1) {
+//            cantidadSencilla--;
+//            sencilla.setCantidad(cantidadSencilla);
+//            String cSencilla = String.valueOf(cantidadSencilla);
+//            cantSencilla.setText(cSencilla);
+//            System.out.println(sencilla.getCantidad());
+//        } else {
+//            listaProductos.remove(sencilla);
+//            System.out.println("se deberia estar eliminando");
+//        }
+//        cargarDatosTabla(tablaOrden, listaProductos);
+//        actualizarTotal(listaProductos);
+
+
+if(listaProductos.contains(sencilla) && cantidadSencilla > 1) {
+        cantidadSencilla--;
+        sencilla.setCantidad(cantidadSencilla);
+        String cSencilla = String.valueOf(cantidadSencilla);
+        cantSencilla.setText(cSencilla);
+        cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarTotal(listaProductos);
+    } else {
+        // Si la cantidad es 1 o el producto no está en la lista, simplemente establecer la cantidad en 0
+        cantidadSencilla = 0;
+        sencilla.setCantidad(cantidadSencilla);
+        cantSencilla.setText("0");
+        // Si el producto está en la lista, eliminarlo
+        if(listaProductos.contains(sencilla)) {
+            listaProductos.remove(sencilla);
+        }
+        cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarTotal(listaProductos);
+    }
+    }//GEN-LAST:event_restarSencillaActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
@@ -1456,7 +1525,52 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    public void mostrarTabla(List<Producto> productos) {
+        DefaultTableModel model = (DefaultTableModel) tablaOrden.getModel();
+
+        model.setRowCount(0);
+
+        for (Producto producto : productos) {
+            Object[] rowData = {producto.getCantidad(), producto.getNombre(), producto.getPrecio()};
+            model.addRow(rowData);
+        }
+    }
+
+    public void cargarDatosTabla(JTable tabla, List<Producto> listaProductos) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        tabla.setModel(modelo);
+
+        modelo.addColumn("cantidad");
+        modelo.addColumn("producto");
+        modelo.addColumn("precio");
+
+        for (Producto pr : listaProductos) {
+            Object[] filas = {
+                pr.getCantidad(),
+                pr.getNombre(),
+                pr.getPrecio()
+            };
+            modelo.addRow(filas);
+        }
+    }
+        
+     public int calcularTotal(List<Producto> listaProductos){
+        int total = 0;
+        for(Producto producto : listaProductos) {
+            total += producto.getPrecio() * producto.getCantidad();
+        }
+        return total;
+     }
+     
+     public void actualizarTotal(List<Producto> listaProductos) {
+         String totalStr = String.valueOf(calcularTotal(listaProductos));
+         total.setText(totalStr);
+         subtotal.setText(totalStr);
+     }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cantSencilla;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1487,8 +1601,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1518,9 +1630,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
@@ -1533,7 +1643,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1553,6 +1662,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton restarSencilla;
+    private javax.swing.JLabel subtotal;
+    private javax.swing.JButton sumarSencilla;
+    private javax.swing.JTable tablaOrden;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
+
