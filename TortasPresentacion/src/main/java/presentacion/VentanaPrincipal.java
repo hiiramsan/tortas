@@ -15,21 +15,17 @@ import objects.Producto;
  * @author Abe
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
 
     int cantidadSencilla = 0;
-    Producto sencilla = new Producto("sencilla", 0,60);
+    Producto sencilla = new Producto("sencilla", 0, 60);
     List<Producto> listaProductos = new ArrayList<>();
-    
+
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
     }
-    
-   
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1313,66 +1309,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void sumarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarSencillaActionPerformed
-        
-//        if(cantidadSencilla == 0) {
-//            
-//            listaProductos.add(sencilla);
-//        }
-//        cantidadSencilla++;
-//        sencilla.setCantidad(cantidadSencilla);
-//        String cSencilla = String.valueOf(cantidadSencilla);
-//        cantSencilla.setText(cSencilla);
-//        System.out.println(listaProductos);
-//        cargarDatosTabla(tablaOrden, listaProductos);
-//        actualizarTotal(listaProductos);
 
-if(!listaProductos.contains(sencilla)) {
-        listaProductos.add(sencilla);
-    }
-    
-    cantidadSencilla++;
-    sencilla.setCantidad(cantidadSencilla);
-    String cSencilla = String.valueOf(cantidadSencilla);
-    cantSencilla.setText(cSencilla);
-    cargarDatosTabla(tablaOrden, listaProductos);
-    actualizarTotal(listaProductos);
-    }//GEN-LAST:event_sumarSencillaActionPerformed
+        if (!listaProductos.contains(sencilla)) {
+            listaProductos.add(sencilla);
+        }
 
-    private void restarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarSencillaActionPerformed
-//
-//        if(cantidadSencilla > 1) {
-//            cantidadSencilla--;
-//            sencilla.setCantidad(cantidadSencilla);
-//            String cSencilla = String.valueOf(cantidadSencilla);
-//            cantSencilla.setText(cSencilla);
-//            System.out.println(sencilla.getCantidad());
-//        } else {
-//            listaProductos.remove(sencilla);
-//            System.out.println("se deberia estar eliminando");
-//        }
-//        cargarDatosTabla(tablaOrden, listaProductos);
-//        actualizarTotal(listaProductos);
-
-
-if(listaProductos.contains(sencilla) && cantidadSencilla > 1) {
-        cantidadSencilla--;
+        cantidadSencilla++;
         sencilla.setCantidad(cantidadSencilla);
         String cSencilla = String.valueOf(cantidadSencilla);
         cantSencilla.setText(cSencilla);
         cargarDatosTabla(tablaOrden, listaProductos);
         actualizarTotal(listaProductos);
-    } else {
-        // Si la cantidad es 1 o el producto no está en la lista, simplemente establecer la cantidad en 0
-        cantidadSencilla = 0;
-        sencilla.setCantidad(cantidadSencilla);
-        cantSencilla.setText("0");
-        // Si el producto está en la lista, eliminarlo
-        if(listaProductos.contains(sencilla)) {
-            listaProductos.remove(sencilla);
+    }//GEN-LAST:event_sumarSencillaActionPerformed
+
+    private void restarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restarSencillaActionPerformed
+
+        if (listaProductos.contains(sencilla) && cantidadSencilla > 1) {
+            cantidadSencilla--;
+            sencilla.setCantidad(cantidadSencilla);
+            String cSencilla = String.valueOf(cantidadSencilla);
+            cantSencilla.setText(cSencilla);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        } else {
+            cantidadSencilla = 0;
+            sencilla.setCantidad(cantidadSencilla);
+            cantSencilla.setText("0");
+            if (listaProductos.contains(sencilla)) {
+                listaProductos.remove(sencilla);
+            }
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
-    }
     }//GEN-LAST:event_restarSencillaActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -1553,22 +1521,22 @@ if(listaProductos.contains(sencilla) && cantidadSencilla > 1) {
             modelo.addRow(filas);
         }
     }
-        
-     public int calcularTotal(List<Producto> listaProductos){
+
+    public int calcularTotal(List<Producto> listaProductos) {
         int total = 0;
-        for(Producto producto : listaProductos) {
+        for (Producto producto : listaProductos) {
             total += producto.getPrecio() * producto.getCantidad();
         }
         return total;
-     }
-     
-     public void actualizarTotal(List<Producto> listaProductos) {
-         String totalStr = String.valueOf(calcularTotal(listaProductos));
-         total.setText(totalStr);
-         subtotal.setText(totalStr);
-     }
-    
-    
+    }
+
+    public void actualizarTotal(List<Producto> listaProductos) {
+        String totalStr = String.valueOf(calcularTotal(listaProductos));
+        total.setText(totalStr);
+        subtotal.setText(totalStr);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cantSencilla;
     private javax.swing.JButton jButton1;
@@ -1669,4 +1637,3 @@ if(listaProductos.contains(sencilla) && cantidadSencilla > 1) {
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
-
