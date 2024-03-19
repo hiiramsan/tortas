@@ -9,10 +9,11 @@ package objects;
  * @author carlo
  */
 public class Producto {
+
     private String nombre;
     private int cantidad;
     private int precio;
-    
+
     public Producto() {
     }
 
@@ -25,8 +26,6 @@ public class Producto {
         this.cantidad = cantidad;
         this.precio = precio;
     }
-    
-    
 
     public Producto(String nombre, int cantidad) {
         this.nombre = nombre;
@@ -56,11 +55,16 @@ public class Producto {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Producto{");
+        sb.append("nombre=").append(nombre);
+        sb.append(", cantidad=").append(cantidad);
+        sb.append(", precio=").append(precio);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
