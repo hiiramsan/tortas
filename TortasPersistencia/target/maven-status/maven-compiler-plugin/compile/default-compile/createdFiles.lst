@@ -1,9 +1,10 @@
-adminProductos\IAdminProductos.class
+com\mycompany\tortasdominio\subsistemas\orden\IAdminOrden.class
 com\mycompany\tortasdominio\entidades\Producto.class
-com\mycompany\tortaspersistencia\TortasPersistencia.class
-adminProductos\FacadeAdminProductos.class
-adminOrden\IAdminOrden.class
+com\mycompany\tortasdominio\subsistemas\productos\ProductoControl.class
+com\mycompany\tortaspersistencia\dtos\NuevaOrdenDTO.class
+com\mycompany\tortasdominio\subsistemas\productos\IAdminProductos.class
+com\mycompany\tortasdominio\subsistemas\productos\FacadeAdminProductos.class
+com\mycompany\tortasdominio\subsistemas\orden\FacadeAdminOrden.class
+com\mycompany\tortaspersistencia\dtos\NuevoProductoDTO.class
 com\mycompany\tortasdominio\entidades\Orden.class
-dtos\OrdenDTO.class
-adminOrden\FacadeAdminOrden.class
-dtos\ProductoDTO.class
+com\mycompany\tortasdominio\subsistemas\orden\OrdenControl.class

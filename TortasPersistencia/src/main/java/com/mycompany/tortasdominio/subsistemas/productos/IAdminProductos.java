@@ -9,6 +9,6 @@ package com.mycompany.tortasdominio.subsistemas.productos;
  * @author carlo
  */
 public interface IAdminProductos {
+
     public void agregarProducto();
-    public void eliminarProducto();
 }

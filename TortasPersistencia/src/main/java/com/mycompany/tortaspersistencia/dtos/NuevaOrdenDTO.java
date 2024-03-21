@@ -9,14 +9,20 @@ import java.util.List;
 public class NuevaOrdenDTO {
 
     private float total;
-    private List<NuevoProductoDTO> productos;
+    private List<NuevoProductoDTO> listaProductos;
     private String nombreCliente;
 
     public NuevaOrdenDTO() {
     }
 
+    public NuevaOrdenDTO(String nombreCliente, List<NuevoProductoDTO> listaProductos, float total) {
+        this.total = total;
+        this.listaProductos = listaProductos;
+        this.nombreCliente = nombreCliente;
+    }
+
     public NuevaOrdenDTO(List<NuevoProductoDTO> productos, String nombreCliente) {
-        this.productos = productos;
+        this.listaProductos = productos;
         this.nombreCliente = nombreCliente;
     }
 
@@ -29,11 +35,11 @@ public class NuevaOrdenDTO {
     }
 
     public List<NuevoProductoDTO> getProductos() {
-        return productos;
+        return listaProductos;
     }
 
     public void setProductos(List<NuevoProductoDTO> productos) {
-        this.productos = productos;
+        this.listaProductos = productos;
     }
 
     public String getNombreCliente() {

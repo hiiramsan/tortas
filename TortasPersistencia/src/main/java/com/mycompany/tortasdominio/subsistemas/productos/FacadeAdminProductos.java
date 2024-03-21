@@ -9,13 +9,10 @@ package com.mycompany.tortasdominio.subsistemas.productos;
  * @author carlo
  */
 public class FacadeAdminProductos implements IAdminProductos {
+
     @Override
     public void agregarProducto() {
         
     }
-    
-    @Override
-    public void eliminarProducto() {
-        
-    }
+
 }

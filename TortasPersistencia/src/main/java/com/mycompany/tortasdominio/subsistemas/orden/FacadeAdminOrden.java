@@ -4,12 +4,19 @@
  */
 package com.mycompany.tortasdominio.subsistemas.orden;
 
+import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
+
 /**
  *
  * @author carlo
  */
-public class FacadeAdminOrden {
+public class FacadeAdminOrden implements IAdminOrden {
 
-    public void generarOrden() {
+    OrdenControl ordenControl = new OrdenControl();
+
+    @Override
+    public void generarOrden(NuevaOrdenDTO nuevaOrden) {
+        ordenControl.generarOrden(nuevaOrden);
     }
+
 }

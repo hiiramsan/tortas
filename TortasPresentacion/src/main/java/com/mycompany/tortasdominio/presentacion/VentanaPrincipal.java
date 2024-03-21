@@ -4,8 +4,11 @@
  */
 package com.mycompany.tortasdominio.presentacion;
 
-import com.mycompany.tortasdominio.entidades.Orden;
 import com.mycompany.tortasdominio.entidades.Producto;
+import com.mycompany.tortasdominio.subsistemas.orden.FacadeAdminOrden;
+import com.mycompany.tortasdominio.subsistemas.orden.IAdminOrden;
+import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
+import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +28,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int cantidadAhogada = 0;
     int cantidadCoca = 0;
     int cantidadPepsi = 0;
-    Producto sencilla = new Producto("sencilla", 0, 60);
-    Producto especial = new Producto("especial", 0, 70);
-    Producto ahogada = new Producto("ahogada", 0, 15);
-    Producto coca = new Producto("coca", 0, 25);
-    Producto pepsi = new Producto("pepsi", 0, 22);
-    List<Producto> listaProductos = new ArrayList<>();
+    NuevoProductoDTO sencilla = new NuevoProductoDTO("sencilla", 0, 60);
+    NuevoProductoDTO especial = new NuevoProductoDTO("especial", 0, 70);
+    NuevoProductoDTO ahogada = new NuevoProductoDTO("ahogada", 0, 15);
+    NuevoProductoDTO coca = new NuevoProductoDTO("coca", 0, 25);
+    NuevoProductoDTO pepsi = new NuevoProductoDTO("pepsi", 0, 22);
+    List<NuevoProductoDTO> listaProductos = new ArrayList<>();
 
     /**
      * Creates new form VentanaPrincipal
@@ -1570,16 +1573,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ordenBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Orden orden = new Orden(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()));
-        System.out.println("*************************************************");
-        System.out.println("Cliente: " + orden.getNombreCliente());
-
-        for (Producto listaProducto : listaProductos) {
-            System.out.println("Cantidad: x" + listaProducto.getCantidad() + " " + listaProducto.getNombre());
-        }
-
-        System.out.println("Total: " + orden.getTotal());
-        System.out.println("*************************************************");
+        NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()));
+        IAdminOrden adminOrden = new FacadeAdminOrden();
+        adminOrden.generarOrden(orden);
+        JOptionPane.showMessageDialog(null, "La orden se a enviado con éxito");
+        listaProductos.clear();
+        ordenPanel.setVisible(false);
+        cargarDatosTabla(tablaOrden, listaProductos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -1632,7 +1632,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void cargarDatosTabla(JTable tabla, List<Producto> listaProductos) {
+    public void cargarDatosTabla(JTable tabla, List<NuevoProductoDTO> listaProductos) {
         DefaultTableModel modelo = new DefaultTableModel();
         tabla.setModel(modelo);
 
@@ -1640,7 +1640,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         modelo.addColumn("producto");
         modelo.addColumn("precio");
 
-        for (Producto pr : listaProductos) {
+        for (NuevoProductoDTO pr : listaProductos) {
             Object[] filas = {
                 pr.getCantidad(),
                 pr.getNombre(),
@@ -1650,15 +1650,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public int calcularTotal(List<Producto> listaProductos) {
+    public int calcularTotal(List<NuevoProductoDTO> listaProductos) {
         int total = 0;
-        for (Producto producto : listaProductos) {
+        for (NuevoProductoDTO producto : listaProductos) {
             total += producto.getPrecio() * producto.getCantidad();
         }
         return total;
     }
 
-    public void actualizarTotal(List<Producto> listaProductos) {
+    public void actualizarTotal(List<NuevoProductoDTO> listaProductos) {
         String totalStr = String.valueOf(calcularTotal(listaProductos));
         total.setText(totalStr);
         subtotal.setText(totalStr);

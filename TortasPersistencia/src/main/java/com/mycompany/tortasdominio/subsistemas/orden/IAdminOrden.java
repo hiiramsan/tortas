@@ -4,10 +4,13 @@
  */
 package com.mycompany.tortasdominio.subsistemas.orden;
 
+import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
+
 /**
  *
  * @author carlo
  */
 public interface IAdminOrden {
-    public void generarOrden();
+
+    public void generarOrden(NuevaOrdenDTO nuevaOrden);
 }

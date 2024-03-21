@@ -8,7 +8,7 @@ public class NuevoProductoDTO {
     private int cantidad;
     private String nombre;
     private String descripcion;
-    private String precio;
+    private int precio;
     private String categoria;
     private List<String> ingredientes;
     private String notas;
@@ -16,7 +16,13 @@ public class NuevoProductoDTO {
     public NuevoProductoDTO() {
     }
 
-    public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, String precio, String categoria, List<String> ingredientes, String notas) {
+    public NuevoProductoDTO(String nombre, int cantidad, int precio) {
+        this.cantidad = cantidad;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, int precio, String categoria, List<String> ingredientes, String notas) {
         this.id = id;
         this.cantidad = cantidad;
         this.nombre = nombre;
@@ -59,11 +65,11 @@ public class NuevoProductoDTO {
         this.descripcion = descripcion;
     }
 
-    public String getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 
