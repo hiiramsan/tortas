@@ -1,0 +1,9 @@
+adminProductos\IAdminProductos.class
+com\mycompany\tortasdominio\entidades\Producto.class
+com\mycompany\tortaspersistencia\TortasPersistencia.class
+adminProductos\FacadeAdminProductos.class
+adminOrden\IAdminOrden.class
+com\mycompany\tortasdominio\entidades\Orden.class
+dtos\OrdenDTO.class
+adminOrden\FacadeAdminOrden.class
+dtos\ProductoDTO.class
