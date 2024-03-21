@@ -8,3 +8,4 @@ com\mycompany\tortasdominio\subsistemas\orden\FacadeAdminOrden.class
 com\mycompany\tortaspersistencia\dtos\NuevoProductoDTO.class
 com\mycompany\tortasdominio\entidades\Orden.class
 com\mycompany\tortasdominio\subsistemas\orden\OrdenControl.class
+com\mycompany\tortaspersistencia\dtos\Estado.class

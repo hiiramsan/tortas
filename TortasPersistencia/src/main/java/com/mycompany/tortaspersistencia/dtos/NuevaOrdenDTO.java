@@ -11,6 +11,8 @@ public class NuevaOrdenDTO {
     private float total;
     private List<NuevoProductoDTO> listaProductos;
     private String nombreCliente;
+    private Estado estado;
+    
 
     public NuevaOrdenDTO() {
     }
@@ -19,7 +21,9 @@ public class NuevaOrdenDTO {
         this.total = total;
         this.listaProductos = listaProductos;
         this.nombreCliente = nombreCliente;
+        this.estado = estado.PENDIENTE;
     }
+
 
     public NuevaOrdenDTO(List<NuevoProductoDTO> productos, String nombreCliente) {
         this.listaProductos = productos;
@@ -49,4 +53,22 @@ public class NuevaOrdenDTO {
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
+
+    public List<NuevoProductoDTO> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<NuevoProductoDTO> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+    
 }
