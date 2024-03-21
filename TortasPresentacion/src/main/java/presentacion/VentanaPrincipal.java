@@ -4,13 +4,13 @@
  */
 package presentacion;
 
+import com.mycompany.tortasdominio.entidades.Orden;
+import com.mycompany.tortasdominio.entidades.Producto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import objects.Orden;
-import objects.Producto;
 
 /**
  *
@@ -149,7 +149,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoComida.png"))); // NOI18N
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/IconoComida.png"))); // NOI18N
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono1.png"))); // NOI18N
 
@@ -946,10 +946,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ordenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ordenPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(ordenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ordenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ordenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1557,7 +1558,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Orden orden = new Orden(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()));
         System.out.println("*************************************************");
-        System.out.println("Cliente: " + orden.getNombre());
+        System.out.println("Cliente: " + orden.getNombreCliente());
 
         for (Producto listaProducto : listaProductos) {
             System.out.println("Cantidad: x" + listaProducto.getCantidad() + " " + listaProducto.getNombre());
