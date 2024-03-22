@@ -19,4 +19,16 @@ public class FacadeAdminOrden implements IAdminOrden {
         ordenControl.generarOrden(nuevaOrden);
     }
 
+    @Override
+    public void cancelarOrden(int index) {
+         ordenControl.cancelarOrden(index);
+    }
+
+    @Override
+    public void completarOrden(int index) {
+ ordenControl.completarOrden(index);
+    }
+
+    
+
 }

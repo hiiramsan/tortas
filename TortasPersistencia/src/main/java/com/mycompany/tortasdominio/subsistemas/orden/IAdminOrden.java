@@ -13,4 +13,8 @@ import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 public interface IAdminOrden {
 
     public void generarOrden(NuevaOrdenDTO nuevaOrden);
+    
+     public void cancelarOrden(int index);
+     
+     public void completarOrden(int index);
 }

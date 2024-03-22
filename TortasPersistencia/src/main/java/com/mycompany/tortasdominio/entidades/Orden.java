@@ -4,6 +4,7 @@
  */
 package com.mycompany.tortasdominio.entidades;
 
+import com.mycompany.tortaspersistencia.dtos.Estado;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,18 +14,24 @@ import java.util.Objects;
  */
 public class Orden {
 
-    private float total;
+private float total;
     private List<Producto> productos;
     private String nombreCliente;
+    private Estado estado;
+private int numeroOrden;
 
     public Orden() {
     }
 
-    public Orden(String nombreCliente, List<Producto> productos, float total) {
+    public Orden(float total, List<Producto> productos, String nombreCliente, Estado estado, int numeroOrden) {
         this.total = total;
         this.productos = productos;
         this.nombreCliente = nombreCliente;
+        this.estado = estado;
+        this.numeroOrden = numeroOrden;
     }
+
+    
 
     public float getTotal() {
         return total;
@@ -50,12 +57,30 @@ public class Orden {
         this.nombreCliente = nombreCliente;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public int getNumeroOrden() {
+        return numeroOrden;
+    }
+
+    public void setNumeroOrden(int numeroOrden) {
+        this.numeroOrden = numeroOrden;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + Float.floatToIntBits(this.total);
-        hash = 19 * hash + Objects.hashCode(this.productos);
-        hash = 19 * hash + Objects.hashCode(this.nombreCliente);
+        hash = 23 * hash + Float.floatToIntBits(this.total);
+        hash = 23 * hash + Objects.hashCode(this.productos);
+        hash = 23 * hash + Objects.hashCode(this.nombreCliente);
+        hash = 23 * hash + Objects.hashCode(this.estado);
+        hash = 23 * hash + this.numeroOrden;
         return hash;
     }
 
@@ -74,21 +99,24 @@ public class Orden {
         if (Float.floatToIntBits(this.total) != Float.floatToIntBits(other.total)) {
             return false;
         }
+        if (this.numeroOrden != other.numeroOrden) {
+            return false;
+        }
         if (!Objects.equals(this.nombreCliente, other.nombreCliente)) {
             return false;
         }
-        return Objects.equals(this.productos, other.productos);
+        if (!Objects.equals(this.productos, other.productos)) {
+            return false;
+        }
+        return this.estado == other.estado;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Orden{");
-        sb.append("total=").append(total);
-        sb.append(", productos=").append(productos);
-        sb.append(", nombreCliente=").append(nombreCliente);
-        sb.append('}');
-        return sb.toString();
+        return "Orden{" + "total=" + total + ", productos=" + productos + ", nombreCliente=" + nombreCliente + ", estado=" + estado + ", numeroOrden=" + numeroOrden + '}';
     }
 
+   
+
+   
 }

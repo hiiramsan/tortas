@@ -8,26 +8,29 @@ import java.util.List;
 
 public class NuevaOrdenDTO {
 
+    private static int proximoNumeroOrden = 1;
+    
+    private int numeroOrden;
     private float total;
     private List<NuevoProductoDTO> listaProductos;
     private String nombreCliente;
     private Estado estado;
-    
 
     public NuevaOrdenDTO() {
+        this.numeroOrden = proximoNumeroOrden++;
+        this.estado = Estado.PENDIENTE;
     }
 
     public NuevaOrdenDTO(String nombreCliente, List<NuevoProductoDTO> listaProductos, float total) {
+        this.numeroOrden = proximoNumeroOrden++;
         this.total = total;
         this.listaProductos = listaProductos;
         this.nombreCliente = nombreCliente;
-        this.estado = estado.PENDIENTE;
+        this.estado = Estado.PENDIENTE;
     }
 
-
-    public NuevaOrdenDTO(List<NuevoProductoDTO> productos, String nombreCliente) {
-        this.listaProductos = productos;
-        this.nombreCliente = nombreCliente;
+    public int getNumeroOrden() {
+        return numeroOrden;
     }
 
     public float getTotal() {
@@ -38,12 +41,12 @@ public class NuevaOrdenDTO {
         this.total = total;
     }
 
-    public List<NuevoProductoDTO> getProductos() {
+    public List<NuevoProductoDTO> getListaProductos() {
         return listaProductos;
     }
 
-    public void setProductos(List<NuevoProductoDTO> productos) {
-        this.listaProductos = productos;
+    public void setListaProductos(List<NuevoProductoDTO> listaProductos) {
+        this.listaProductos = listaProductos;
     }
 
     public String getNombreCliente() {
@@ -54,14 +57,6 @@ public class NuevaOrdenDTO {
         this.nombreCliente = nombreCliente;
     }
 
-    public List<NuevoProductoDTO> getListaProductos() {
-        return listaProductos;
-    }
-
-    public void setListaProductos(List<NuevoProductoDTO> listaProductos) {
-        this.listaProductos = listaProductos;
-    }
-
     public Estado getEstado() {
         return estado;
     }
@@ -69,6 +64,4 @@ public class NuevaOrdenDTO {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-    
-    
 }

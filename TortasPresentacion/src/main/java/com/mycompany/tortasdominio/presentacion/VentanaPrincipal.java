@@ -66,6 +66,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        ordenesBoton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -171,16 +172,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono1.png"))); // NOI18N
 
+        ordenesBoton.setText("ordenes");
+        ordenesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordenesBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ordenesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +202,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(518, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(ordenesBoton)
+                .addContainerGap(478, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(164, 180, 148));
@@ -1573,14 +1588,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ordenBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()));
-        IAdminOrden adminOrden = new FacadeAdminOrden();
-        adminOrden.generarOrden(orden);
-        JOptionPane.showMessageDialog(null, "La orden se a enviado con éxito");
-        listaProductos.clear();
-        ordenPanel.setVisible(false);
-        cargarDatosTabla(tablaOrden, listaProductos);
+       NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()) );
+    IAdminOrden adminOrden = new FacadeAdminOrden();
+    adminOrden.generarOrden(orden);
+    JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
+    listaProductos.clear();
+    ordenPanel.setVisible(false);
+    cargarDatosTabla(tablaOrden, listaProductos);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ordenesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenesBotonActionPerformed
+        // TODO add your handling code here:
+        Ordenes o = new Ordenes();
+        o.setVisible(true);
+    }//GEN-LAST:event_ordenesBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1759,6 +1780,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel nombreCliente;
     private javax.swing.JButton ordenBtn;
     private javax.swing.JPanel ordenPanel;
+    private javax.swing.JButton ordenesBoton;
     private javax.swing.JButton restarSencilla;
     private javax.swing.JLabel subtotal;
     private javax.swing.JButton sumarSencilla;
