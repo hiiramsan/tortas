@@ -592,7 +592,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton30" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel32" pref="32" max="32767" attributes="0"/>
+                              <Component id="cantFanta" pref="32" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton29" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -617,7 +617,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton29" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jButton30" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cantFanta" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -682,7 +682,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton30ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel32">
+            <Component class="javax.swing.JLabel" name="cantFanta">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="0"/>
@@ -1003,7 +1003,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jButton39" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel41" max="32767" attributes="0"/>
+                              <Component id="cantHorchata" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton38" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -1028,7 +1028,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton38" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jButton39" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cantHorchata" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1093,7 +1093,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton39ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel41">
+            <Component class="javax.swing.JLabel" name="cantHorchata">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="0"/>
@@ -1140,7 +1140,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton36" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel38" pref="32" max="32767" attributes="0"/>
+                              <Component id="cantJamaica" pref="32" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton35" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -1165,7 +1165,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton35" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jButton36" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cantJamaica" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1230,7 +1230,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton36ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel38">
+            <Component class="javax.swing.JLabel" name="cantJamaica">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="0"/>
@@ -1485,7 +1485,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton42" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel48" max="32767" attributes="0"/>
+                              <Component id="cantAgua" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton41" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -1510,7 +1510,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton41" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jButton42" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cantAgua" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1575,7 +1575,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton42ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel48">
+            <Component class="javax.swing.JLabel" name="cantAgua">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="0"/>

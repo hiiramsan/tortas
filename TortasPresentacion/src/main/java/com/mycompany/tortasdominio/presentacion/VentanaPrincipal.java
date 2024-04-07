@@ -28,11 +28,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int cantidadAhogada = 0;
     int cantidadCoca = 0;
     int cantidadPepsi = 0;
+    int cantidadFanta = 0;
+    int cantidadJamaica = 0;
+    int cantidadHorchata = 0;
+    int cantidadAgua = 0;
     NuevoProductoDTO sencilla = new NuevoProductoDTO("sencilla", 0, 60);
     NuevoProductoDTO especial = new NuevoProductoDTO("especial", 0, 70);
     NuevoProductoDTO ahogada = new NuevoProductoDTO("ahogada", 0, 15);
     NuevoProductoDTO coca = new NuevoProductoDTO("coca", 0, 25);
     NuevoProductoDTO pepsi = new NuevoProductoDTO("pepsi", 0, 22);
+    NuevoProductoDTO fanta = new NuevoProductoDTO("fanta", 0, 22);
+    NuevoProductoDTO jamaica = new NuevoProductoDTO("jamaica", 0, 20);
+    NuevoProductoDTO horchata = new NuevoProductoDTO("horchata", 0, 20);
+    NuevoProductoDTO agua = new NuevoProductoDTO("agua", 0, 15);
     List<NuevoProductoDTO> listaProductos = new ArrayList<>();
 
     /**
@@ -95,7 +103,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jButton29 = new javax.swing.JButton();
         jButton30 = new javax.swing.JButton();
-        jLabel32 = new javax.swing.JLabel();
+        cantFanta = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jButton22 = new javax.swing.JButton();
@@ -116,14 +124,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jButton38 = new javax.swing.JButton();
         jButton39 = new javax.swing.JButton();
-        jLabel41 = new javax.swing.JLabel();
+        cantHorchata = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jButton34 = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         jButton35 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
-        jLabel38 = new javax.swing.JLabel();
+        cantJamaica = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         ordenPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -143,7 +151,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel47 = new javax.swing.JLabel();
         jButton41 = new javax.swing.JButton();
         jButton42 = new javax.swing.JButton();
-        jLabel48 = new javax.swing.JLabel();
+        cantAgua = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
@@ -497,8 +505,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("0");
+        cantFanta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantFanta.setText("0");
 
         jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel33.setText("Fanta");
@@ -520,7 +528,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(cantFanta, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel13Layout.createSequentialGroup()
@@ -539,7 +547,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32)
+                    .addComponent(cantFanta)
                     .addComponent(jLabel31))
                 .addContainerGap())
         );
@@ -746,8 +754,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel41.setText("0");
+        cantHorchata.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantHorchata.setText("0");
 
         jLabel42.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel42.setText("Horchata");
@@ -769,7 +777,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cantHorchata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
@@ -788,7 +796,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel41)
+                    .addComponent(cantHorchata)
                     .addComponent(jLabel40))
                 .addContainerGap())
         );
@@ -829,8 +837,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel38.setText("0");
+        cantJamaica.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantJamaica.setText("0");
 
         jLabel39.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel39.setText("Jamaica");
@@ -852,7 +860,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(cantJamaica, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
@@ -871,7 +879,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel38)
+                    .addComponent(cantJamaica)
                     .addComponent(jLabel37))
                 .addContainerGap())
         );
@@ -1038,8 +1046,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("0");
+        cantAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cantAgua.setText("0");
 
         jLabel49.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel49.setText("Agua");
@@ -1061,7 +1069,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cantAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
@@ -1080,7 +1088,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel48)
+                    .addComponent(cantAgua)
                     .addComponent(jLabel47))
                 .addContainerGap())
         );
@@ -1514,11 +1522,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
+        if (!listaProductos.contains(fanta)) {
+            listaProductos.add(fanta);
+        }
+
+        cantidadFanta++;
+        fanta.setCantidad(cantidadFanta);
+        String cFanta = String.valueOf(cantidadFanta);
+        cantFanta.setText(cFanta);
+        cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        // TODO add your handling code here:
+        if (listaProductos.contains(fanta) && cantidadFanta > 1) {
+            cantidadFanta--;
+            fanta.setCantidad(cantidadFanta);
+            String cFanta = String.valueOf(cantidadFanta);
+            cantFanta.setText(cFanta);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        } else {
+            cantidadFanta = 0;
+            fanta.setCantidad(cantidadFanta);
+            cantFanta.setText("0");
+            if (listaProductos.contains(fanta)) {
+                listaProductos.remove(fanta);
+            }
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
@@ -1526,11 +1559,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        // TODO add your handling code here:
+        if (!listaProductos.contains(jamaica)) {
+            listaProductos.add(jamaica);
+        }
+
+        cantidadJamaica++;
+        jamaica.setCantidad(cantidadJamaica);
+        String cJamaica = String.valueOf(cantidadJamaica);
+        cantJamaica.setText(cJamaica);
+        cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
+        if (listaProductos.contains(jamaica) && cantidadJamaica > 1) {
+            cantidadJamaica--;
+            jamaica.setCantidad(cantidadJamaica);
+            String cJamaica = String.valueOf(cantidadJamaica);
+            cantJamaica.setText(cJamaica);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        } else {
+            cantidadJamaica = 0;
+            jamaica.setCantidad(cantidadJamaica);
+            cantJamaica.setText("0");
+            if (listaProductos.contains(jamaica)) {
+                listaProductos.remove(jamaica);
+            }
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
@@ -1538,11 +1596,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        // TODO add your handling code here:
+        if (!listaProductos.contains(horchata)) {
+            listaProductos.add(horchata);
+        }
+
+        cantidadHorchata++;
+        horchata.setCantidad(cantidadHorchata);
+        String cHorchata = String.valueOf(cantidadHorchata);
+        cantHorchata.setText(cHorchata);
+        cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        // TODO add your handling code here:
+        if (listaProductos.contains(horchata) && cantidadHorchata > 1) {
+            cantidadHorchata--;
+            horchata.setCantidad(cantidadHorchata);
+            String cAgua = String.valueOf(cantidadHorchata);
+            cantHorchata.setText(cAgua);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        } else {
+            cantidadHorchata = 0;
+            horchata.setCantidad(cantidadHorchata);
+            cantHorchata.setText("0");
+            if (listaProductos.contains(horchata)) {
+                listaProductos.remove(horchata);
+            }
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
     }//GEN-LAST:event_jButton39ActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -1556,11 +1639,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton40ActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
-        // TODO add your handling code here:
+        if (!listaProductos.contains(agua)) {
+            listaProductos.add(agua);
+        }
+
+        cantidadAgua++;
+        agua.setCantidad(cantidadAgua);
+        String cAgua = String.valueOf(cantidadAgua);
+        cantAgua.setText(cAgua);
+        cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-        // TODO add your handling code here:
+        if (listaProductos.contains(agua) && cantidadAgua > 1) {
+            cantidadAgua--;
+            agua.setCantidad(cantidadAgua);
+            String cAgua = String.valueOf(cantidadAgua);
+            cantAgua.setText(cAgua);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        } else {
+            cantidadAgua = 0;
+            agua.setCantidad(cantidadAgua);
+            cantAgua.setText("0");
+            if (listaProductos.contains(agua)) {
+                listaProductos.remove(agua);
+            }
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
     }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
@@ -1589,13 +1697,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ordenBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()) );
-    IAdminOrden adminOrden = new FacadeAdminOrden();
-    adminOrden.generarOrden(orden);
-    JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
-    listaProductos.clear();
-    ordenPanel.setVisible(false);
-    cargarDatosTabla(tablaOrden, listaProductos);
+        NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()));
+        IAdminOrden adminOrden = new FacadeAdminOrden();
+        adminOrden.generarOrden(orden);
+        JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
+        listaProductos.clear();
+        ordenPanel.setVisible(false);
+        cargarDatosTabla(tablaOrden, listaProductos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ordenesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenesBotonActionPerformed
@@ -1688,9 +1796,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JLabel cantAgua;
     private javax.swing.JLabel cantAhogada;
     private javax.swing.JLabel cantCoca;
     private javax.swing.JLabel cantEspecial;
+    private javax.swing.JLabel cantFanta;
+    private javax.swing.JLabel cantHorchata;
+    private javax.swing.JLabel cantJamaica;
     private javax.swing.JLabel cantPepsi;
     private javax.swing.JLabel cantSencilla;
     private javax.swing.JButton jButton1;
@@ -1733,22 +1845,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
