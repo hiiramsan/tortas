@@ -10,7 +10,6 @@ public class NuevoProductoDTO {
     private String descripcion;
     private int precio;
     private String categoria;
-    private List<String> ingredientes;
     private String notas;
 
     public NuevoProductoDTO() {
@@ -22,14 +21,13 @@ public class NuevoProductoDTO {
         this.precio = precio;
     }
 
-    public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, int precio, String categoria, List<String> ingredientes, String notas) {
+    public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, int precio, String categoria, String notas) {
         this.id = id;
         this.cantidad = cantidad;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;
-        this.ingredientes = ingredientes;
         this.notas = notas;
     }
 
@@ -79,14 +77,6 @@ public class NuevoProductoDTO {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public List<String> getIngredientes() {
-        return ingredientes;
-    }
-
-    public void setIngredientes(List<String> ingredientes) {
-        this.ingredientes = ingredientes;
     }
 
     public String getNotas() {
