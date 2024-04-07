@@ -14,11 +14,11 @@ import java.util.Objects;
  */
 public class Orden {
 
-private float total;
+    private float total;
     private List<Producto> productos;
     private String nombreCliente;
     private Estado estado;
-private int numeroOrden;
+    private int numeroOrden;
 
     public Orden() {
     }
@@ -30,8 +30,6 @@ private int numeroOrden;
         this.estado = estado;
         this.numeroOrden = numeroOrden;
     }
-
-    
 
     public float getTotal() {
         return total;
@@ -116,7 +114,4 @@ private int numeroOrden;
         return "Orden{" + "total=" + total + ", productos=" + productos + ", nombreCliente=" + nombreCliente + ", estado=" + estado + ", numeroOrden=" + numeroOrden + '}';
     }
 
-   
-
-   
 }

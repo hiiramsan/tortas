@@ -41,6 +41,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     NuevoProductoDTO jamaica = new NuevoProductoDTO("jamaica", 0, 20);
     NuevoProductoDTO horchata = new NuevoProductoDTO("horchata", 0, 20);
     NuevoProductoDTO agua = new NuevoProductoDTO("agua", 0, 15);
+    private static DetallesTorta detallesTorta;
+    private static boolean detallesTortaAbierto = false;
     List<NuevoProductoDTO> listaProductos = new ArrayList<>();
 
     /**
@@ -222,7 +224,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Bebidas");
         jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 303, 89, -1));
 
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.setPreferredSize(new java.awt.Dimension(196, 118));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sencilla.png"))); // NOI18N
         jButton4.setBorder(null);
@@ -1330,8 +1338,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        DetallesTorta DT = new DetallesTorta(this, true);
-        DT.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void sumarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarSencillaActionPerformed
@@ -1711,6 +1717,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Ordenes o = new Ordenes();
         o.setVisible(true);
     }//GEN-LAST:event_ordenesBotonActionPerformed
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        if (!detallesTortaAbierto) {
+            detallesTorta = new DetallesTorta();
+            detallesTorta.setVisible(true);
+            detallesTortaAbierto = true;
+        }
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     /**
      * @param args the command line arguments
