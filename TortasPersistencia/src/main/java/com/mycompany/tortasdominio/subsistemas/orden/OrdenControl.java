@@ -95,6 +95,7 @@ public class OrdenControl {
     public void especificacionesOrden(NuevaOrdenDTO orden) {
         List<NuevoProductoDTO> productos = orden.getListaProductos();
         for (NuevoProductoDTO producto : productos) {
+            //Si es instancia de torta solo se realizara eso
             if (producto instanceof TortaDTO) {
                 TortaDTO torta = (TortaDTO) producto; // Hacemos un casting a Torta
                 System.out.println("Ingredientes de la torta:");
