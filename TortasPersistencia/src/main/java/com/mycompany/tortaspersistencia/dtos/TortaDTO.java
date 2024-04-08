@@ -19,8 +19,9 @@ public class TortaDTO extends NuevoProductoDTO {
     private int cantCarne;
     private String descripcion;
     
-    public TortaDTO(String nombre, int cantidad, int precio) {
-        super(nombre, cantidad, precio);
+    
+    public TortaDTO(String nombre, int cantidad, int precio, String categoria) {
+        super(nombre, cantidad, precio, categoria);
         cantPan = 1;
         cantCebolla = 1;
         cantTomate = 1;
@@ -31,8 +32,8 @@ public class TortaDTO extends NuevoProductoDTO {
         cantCarne = 1;
     }
 
-    public TortaDTO(String nombre, int cantidad, int precio, int cantPan, int cantCebolla, int cantTomate, int cantRepollo, int cantMayonesa, int cantMostaza, int cantJalapeño, int cantCarne) {
-        super(nombre, cantidad, precio);
+    public TortaDTO(String nombre, int cantidad, int precio, int cantPan, int cantCebolla, int cantTomate, int cantRepollo, int cantMayonesa, int cantMostaza, int cantJalapeño, int cantCarne, String categoria) {
+        super(nombre, cantidad, precio, categoria);
         this.cantPan = cantPan;
         this.cantCebolla = cantCebolla;
         this.cantTomate = cantTomate;

@@ -37,17 +37,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int cantidadAgua = 0;
 
     // tortas : este DTO ya tiene atributos de ingredientes
-    TortaDTO tortaSencilla = new TortaDTO("Sencilla", 0, 60);
-    TortaDTO tortaEspecial = new TortaDTO("Especial", 0, 70);
+    TortaDTO tortaSencilla = new TortaDTO("Sencilla", 0, 60, "Torta");
+    TortaDTO tortaEspecial = new TortaDTO("Especial", 0, 70, "Torta");
 
     // productos : no tienen atributos de ingredientes
-    NuevoProductoDTO ahogada = new NuevoProductoDTO("ahogada", 0, 15);
-    NuevoProductoDTO coca = new NuevoProductoDTO("coca", 0, 25);
-    NuevoProductoDTO pepsi = new NuevoProductoDTO("pepsi", 0, 22);
-    NuevoProductoDTO fanta = new NuevoProductoDTO("fanta", 0, 22);
-    NuevoProductoDTO jamaica = new NuevoProductoDTO("jamaica", 0, 20);
-    NuevoProductoDTO horchata = new NuevoProductoDTO("horchata", 0, 20);
-    NuevoProductoDTO agua = new NuevoProductoDTO("agua", 0, 15);
+    NuevoProductoDTO ahogada = new NuevoProductoDTO("ahogada", 0, 15, "Bebida");
+    NuevoProductoDTO coca = new NuevoProductoDTO("coca", 0, 25, "Bebida");
+    NuevoProductoDTO pepsi = new NuevoProductoDTO("pepsi", 0, 22, "Bebida");
+    NuevoProductoDTO fanta = new NuevoProductoDTO("fanta", 0, 22, "Bebida");
+    NuevoProductoDTO jamaica = new NuevoProductoDTO("jamaica", 0, 20, "Bebida");
+    NuevoProductoDTO horchata = new NuevoProductoDTO("horchata", 0, 20, "Bebida");
+    NuevoProductoDTO agua = new NuevoProductoDTO("agua", 0, 15, "Bebida");
 
     private static DetallesTorta detallesTorta;
     private static boolean detallesTortaAbierto = false;

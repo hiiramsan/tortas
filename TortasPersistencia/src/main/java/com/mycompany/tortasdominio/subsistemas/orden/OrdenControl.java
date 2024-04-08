@@ -8,6 +8,7 @@ import com.mycompany.tortasdominio.entidades.Orden;
 import com.mycompany.tortaspersistencia.dtos.Estado;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
+import com.mycompany.tortaspersistencia.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class OrdenControl {
         for (NuevoProductoDTO listaProducto : nuevaOrden.getListaProductos()) {
             System.out.println("Item: x" + listaProducto.getCantidad() + " " + listaProducto.getNombre());
         }
+        
         System.out.println("Estado de orden: " + nuevaOrden.getEstado());
          System.out.println("Numero de orden: " + nuevaOrden.getNumeroOrden());
         System.out.println("Total: " + nuevaOrden.getTotal());

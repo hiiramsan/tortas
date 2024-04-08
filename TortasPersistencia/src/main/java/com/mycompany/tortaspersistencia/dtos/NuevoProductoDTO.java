@@ -15,10 +15,11 @@ public class NuevoProductoDTO {
     public NuevoProductoDTO() {
     }
 
-    public NuevoProductoDTO(String nombre, int cantidad, int precio) {
+    public NuevoProductoDTO(String nombre, int cantidad, int precio, String categoria) {
         this.cantidad = cantidad;
         this.nombre = nombre;
         this.precio = precio;
+        this.categoria = categoria;
     }
 
     public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, int precio, String categoria, String notas) {
