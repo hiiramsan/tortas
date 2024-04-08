@@ -19,4 +19,6 @@ public interface IAdminOrden {
     public void cancelarOrden(int index);
 
     public void completarOrden(int index);
+ 
+    public void especificacionesOrden(NuevaOrdenDTO orden);
 }

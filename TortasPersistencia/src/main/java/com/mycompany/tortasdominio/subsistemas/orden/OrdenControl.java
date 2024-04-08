@@ -9,6 +9,7 @@ import com.mycompany.tortasdominio.entidades.Producto;
 import com.mycompany.tortaspersistencia.dtos.Estado;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
+import com.mycompany.tortaspersistencia.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +89,26 @@ public class OrdenControl {
             ordenes.set(index, orden);
         } else {
             System.out.println("La orden no existe.");
+        }
+    }
+
+    public void especificacionesOrden(NuevaOrdenDTO orden) {
+        List<NuevoProductoDTO> productos = orden.getListaProductos();
+        for (NuevoProductoDTO producto : productos) {
+            if (producto instanceof TortaDTO) {
+                TortaDTO torta = (TortaDTO) producto; // Hacemos un casting a Torta
+                System.out.println("Ingredientes de la torta:");
+                System.out.println(torta.getCantCebolla());
+                System.out.println(torta.getCantCebolla());
+                System.out.println(torta.getCantJalapeño());
+                System.out.println(torta.getCantMayonesa());
+                System.out.println(torta.getCantMostaza());
+                System.out.println(torta.getCantPan());
+                System.out.println(torta.getCantRepollo());
+                System.out.println(torta.getCantRepollo());
+                System.out.println(torta.getCantTomate());
+                
+            }
         }
     }
     /*

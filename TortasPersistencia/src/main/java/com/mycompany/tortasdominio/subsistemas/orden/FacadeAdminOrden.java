@@ -31,4 +31,9 @@ public class FacadeAdminOrden implements IAdminOrden {
         ordenControl.completarOrden(index);
     }
 
+    @Override
+    public void especificacionesOrden(NuevaOrdenDTO orden) {
+        ordenControl.especificacionesOrden(orden);
+    }
+
 }
