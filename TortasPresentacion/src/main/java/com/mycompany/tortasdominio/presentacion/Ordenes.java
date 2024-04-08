@@ -8,9 +8,11 @@ import com.mycompany.tortasdominio.entidades.Orden;
 import com.mycompany.tortasdominio.entidades.Producto;
 import com.mycompany.tortasdominio.subsistemas.orden.FacadeAdminOrden;
 import com.mycompany.tortasdominio.subsistemas.orden.IAdminOrden;
+import com.mycompany.tortaspersistencia.dtos.Estado;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +29,7 @@ public class Ordenes extends javax.swing.JFrame {
      * @param listaOrden
      */
     public Ordenes(List<Orden> listaOrden) {
+        this.listaOrden = listaOrden;
         initComponents();
         llenarTabla(listaOrden);
     }
@@ -40,7 +43,6 @@ public class Ordenes extends javax.swing.JFrame {
         ordenesEncontradas.addColumn("Número de orden");
         ordenesEncontradas.addColumn("Fecha");
 
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         for (Orden orden : listaOrden) {
             StringBuilder productosString = new StringBuilder();
             for (Producto producto : orden.getProductos()) {
@@ -70,21 +72,21 @@ public class Ordenes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        eliminarrBoton = new javax.swing.JButton();
+        eliminarBoton = new javax.swing.JButton();
         entregadaBoton = new javax.swing.JButton();
         tablaOrdenes = new javax.swing.JScrollPane();
         jTPOrden = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        eliminarrBoton.setText("cancelada");
-        eliminarrBoton.addActionListener(new java.awt.event.ActionListener() {
+        eliminarBoton.setText("Cancelar");
+        eliminarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarrBotonActionPerformed(evt);
+                eliminarBotonActionPerformed(evt);
             }
         });
 
-        entregadaBoton.setText("entregada");
+        entregadaBoton.setText("Listo");
         entregadaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entregadaBotonActionPerformed(evt);
@@ -112,59 +114,71 @@ public class Ordenes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(189, 189, 189)
-                        .addComponent(eliminarrBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102)
+                        .addComponent(eliminarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
                         .addComponent(entregadaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(17, 17, 17)
                         .addComponent(tablaOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tablaOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(entregadaBoton)
-                            .addComponent(eliminarrBoton))
-                        .addGap(24, 24, 24))))
+                .addGap(34, 34, 34)
+                .addComponent(tablaOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entregadaBoton)
+                    .addComponent(eliminarBoton))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eliminarrBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarrBotonActionPerformed
-        // TODO add your handling code here:
-        IAdminOrden adminOrden = new FacadeAdminOrden();
-        adminOrden.cancelarOrden(txtNumOrden.getText());
-        cargarDatosTabla(jTPOrden, listaOrdenes);
-    }//GEN-LAST:event_eliminarrBotonActionPerformed
+    private void eliminarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBotonActionPerformed
+        // Obtener el índice de la fila seleccionada
+        int filaSeleccionada = jTPOrden.getSelectedRow();
+
+        // Verificar si se seleccionó una fila
+        if (filaSeleccionada != -1) {
+            // Obtener la orden correspondiente al índice de fila seleccionado
+            Orden orden = listaOrden.get(filaSeleccionada);
+
+            // Cambiar el estado de la orden a "entregado"
+            orden.setEstado(Estado.CANCELADA);
+
+            // Actualizar la tabla de órdenes
+            llenarTabla(listaOrden);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fila para marcar como entregada.");
+        }
+    }//GEN-LAST:event_eliminarBotonActionPerformed
 
     private void entregadaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entregadaBotonActionPerformed
-        IAdminOrden adminOrden = new FacadeAdminOrden();
-        adminOrden.cancelarOrden(txtNumOrden.getText());
-        cargarDatosTabla(jTPOrden, listaOrdenes);
+        // Obtener el índice de la fila seleccionada
+        int filaSeleccionada = jTPOrden.getSelectedRow();
+
+        // Verificar si se seleccionó una fila
+        if (filaSeleccionada != -1) {
+            // Obtener la orden correspondiente al índice de fila seleccionado
+            Orden orden = listaOrden.get(filaSeleccionada);
+
+            // Cambiar el estado de la orden a "entregado"
+            orden.setEstado(Estado.COMPLETADA);
+
+            // Actualizar la tabla de órdenes
+            llenarTabla(listaOrden);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fila para marcar como entregada.");
+        }
     }//GEN-LAST:event_entregadaBotonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton eliminarrBoton;
+    private javax.swing.JButton eliminarBoton;
     private javax.swing.JButton entregadaBoton;
     private javax.swing.JTable jTPOrden;
     private javax.swing.JScrollPane tablaOrdenes;
     // End of variables declaration//GEN-END:variables
-
-    private String obtenerNombreProductos(List<NuevoProductoDTO> productos) {
-        return productos.stream()
-                .map(p -> p.getNombre())
-                .collect(Collectors.joining(", "));
-    }
-
-    public void mostrarTabla(List<Orden> listaOrdenes) {
-//        cargarDatosTabla(jTPOrden, listaOrdenes);
-    }
 }
