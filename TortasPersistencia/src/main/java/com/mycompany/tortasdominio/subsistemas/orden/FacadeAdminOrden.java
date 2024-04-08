@@ -4,7 +4,9 @@
  */
 package com.mycompany.tortasdominio.subsistemas.orden;
 
+import com.mycompany.tortasdominio.entidades.Orden;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
+import java.util.List;
 
 /**
  *
@@ -15,20 +17,18 @@ public class FacadeAdminOrden implements IAdminOrden {
     OrdenControl ordenControl = new OrdenControl();
 
     @Override
-    public void generarOrden(NuevaOrdenDTO nuevaOrden) {
-        ordenControl.generarOrden(nuevaOrden);
+    public List<Orden> generarOrden(NuevaOrdenDTO nuevaOrden) {
+        return ordenControl.generarOrden(nuevaOrden);
     }
 
     @Override
     public void cancelarOrden(int index) {
-         ordenControl.cancelarOrden(index);
+        ordenControl.cancelarOrden(index);
     }
 
     @Override
     public void completarOrden(int index) {
- ordenControl.completarOrden(index);
+        ordenControl.completarOrden(index);
     }
-
-    
 
 }

@@ -9,6 +9,7 @@ package com.mycompany.tortaspersistencia.dtos;
  * @author carlo
  */
 public class TortaDTO extends NuevoProductoDTO {
+
     private int cantPan;
     private int cantCebolla;
     private int cantTomate;
@@ -18,8 +19,7 @@ public class TortaDTO extends NuevoProductoDTO {
     private int cantJalapeño;
     private int cantCarne;
     private String descripcion;
-    
-    
+
     public TortaDTO(String nombre, int cantidad, int precio, String categoria) {
         super(nombre, cantidad, precio, categoria);
         cantPan = 1;
@@ -51,7 +51,7 @@ public class TortaDTO extends NuevoProductoDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
     public int getCantPan() {
         return cantPan;
     }
@@ -116,7 +116,4 @@ public class TortaDTO extends NuevoProductoDTO {
         this.cantCarne = cantCarne;
     }
 
-    
-    
-    
 }

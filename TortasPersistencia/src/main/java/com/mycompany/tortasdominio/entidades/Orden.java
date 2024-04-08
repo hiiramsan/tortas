@@ -5,6 +5,7 @@
 package com.mycompany.tortasdominio.entidades;
 
 import com.mycompany.tortaspersistencia.dtos.Estado;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,16 +20,18 @@ public class Orden {
     private String nombreCliente;
     private Estado estado;
     private int numeroOrden;
+    private Date fecha;
 
     public Orden() {
     }
 
-    public Orden(float total, List<Producto> productos, String nombreCliente, Estado estado, int numeroOrden) {
+    public Orden(float total, List<Producto> productos, String nombreCliente, Estado estado, int numeroOrden, Date fecha) {
         this.total = total;
         this.productos = productos;
         this.nombreCliente = nombreCliente;
         this.estado = estado;
         this.numeroOrden = numeroOrden;
+        this.fecha = fecha;
     }
 
     public float getTotal() {
@@ -71,14 +74,23 @@ public class Orden {
         this.numeroOrden = numeroOrden;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Float.floatToIntBits(this.total);
-        hash = 23 * hash + Objects.hashCode(this.productos);
-        hash = 23 * hash + Objects.hashCode(this.nombreCliente);
-        hash = 23 * hash + Objects.hashCode(this.estado);
-        hash = 23 * hash + this.numeroOrden;
+        int hash = 3;
+        hash = 59 * hash + Float.floatToIntBits(this.total);
+        hash = 59 * hash + Objects.hashCode(this.productos);
+        hash = 59 * hash + Objects.hashCode(this.nombreCliente);
+        hash = 59 * hash + Objects.hashCode(this.estado);
+        hash = 59 * hash + this.numeroOrden;
+        hash = 59 * hash + Objects.hashCode(this.fecha);
         return hash;
     }
 
@@ -106,12 +118,24 @@ public class Orden {
         if (!Objects.equals(this.productos, other.productos)) {
             return false;
         }
-        return this.estado == other.estado;
+        if (this.estado != other.estado) {
+            return false;
+        }
+        return Objects.equals(this.fecha, other.fecha);
     }
 
     @Override
     public String toString() {
-        return "Orden{" + "total=" + total + ", productos=" + productos + ", nombreCliente=" + nombreCliente + ", estado=" + estado + ", numeroOrden=" + numeroOrden + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Orden{");
+        sb.append("total=").append(total);
+        sb.append(", productos=").append(productos);
+        sb.append(", nombreCliente=").append(nombreCliente);
+        sb.append(", estado=").append(estado);
+        sb.append(", numeroOrden=").append(numeroOrden);
+        sb.append(", fecha=").append(fecha);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

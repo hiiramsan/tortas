@@ -1,6 +1,6 @@
 package com.mycompany.tortaspersistencia.dtos;
 
-import java.util.List;
+import java.util.Map;
 
 public class NuevoProductoDTO {
 
@@ -11,6 +11,7 @@ public class NuevoProductoDTO {
     private int precio;
     private String categoria;
     private String notas;
+    private Map<String, Integer> ingredientes;
 
     public NuevoProductoDTO() {
     }

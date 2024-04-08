@@ -5,10 +5,10 @@
 package com.mycompany.tortasdominio.subsistemas.orden;
 
 import com.mycompany.tortasdominio.entidades.Orden;
+import com.mycompany.tortasdominio.entidades.Producto;
 import com.mycompany.tortaspersistencia.dtos.Estado;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
-import com.mycompany.tortaspersistencia.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,39 +19,55 @@ import java.util.List;
 public class OrdenControl {
 
     List<NuevaOrdenDTO> listaOrdenes = new ArrayList<>();
+    List<Producto> listaProductos = new ArrayList<>();
     private List<Orden> ordenes;
     private static int contadorOrdenes = 1;
-    
+
     public OrdenControl() {
         this.ordenes = new ArrayList<>();
     }
 
     // imprimir orden
-    public void generarOrden(NuevaOrdenDTO nuevaOrden) {
+    public List<Orden> generarOrden(NuevaOrdenDTO nuevaOrden) {
+        for (NuevoProductoDTO nuevoProductoDTO : nuevaOrden.getListaProductos()) {
+            Producto producto = new Producto(nuevoProductoDTO.getNombre(), nuevoProductoDTO.getCantidad(), nuevoProductoDTO.getPrecio());
+            listaProductos.add(producto);
+        }
+
+        listaOrdenes.add(nuevaOrden);
+
+        // Verificar si la orden se agregó correctamente
+        if (listaOrdenes.contains(nuevaOrden)) {
+            System.out.println("La orden se ha guardado correctamente.");
+            Orden orden = new Orden(nuevaOrden.getTotal(), listaProductos, nuevaOrden.getNombreCliente(), nuevaOrden.getEstado(), nuevaOrden.getNumeroOrden(), nuevaOrden.getFecha());
+            ordenes.add(orden);
+        } else {
+            System.out.println("Error al guardar la orden.");
+        }
+        contadorOrdenes++;
+        return ordenes;
+    }
+
+    public void imprimirOrden(NuevaOrdenDTO nuevaOrden) {
         System.out.println("*************************************************");
         System.out.println("Cliente: " + nuevaOrden.getNombreCliente());
-
         for (NuevoProductoDTO listaProducto : nuevaOrden.getListaProductos()) {
             System.out.println("Item: x" + listaProducto.getCantidad() + " " + listaProducto.getNombre());
         }
-        
+
         System.out.println("Estado de orden: " + nuevaOrden.getEstado());
-         System.out.println("Numero de orden: " + nuevaOrden.getNumeroOrden());
+        System.out.println("Numero de orden: " + nuevaOrden.getNumeroOrden());
         System.out.println("Total: " + nuevaOrden.getTotal());
+        System.out.println("Fecha: " + nuevaOrden.getFecha());
 
         System.out.println("*************************************************");
-        
-         listaOrdenes.add(nuevaOrden);
-    
-    listaOrdenes.add(nuevaOrden);
 
-    // Verificar si la orden se agregó correctamente
-    if (listaOrdenes.contains(nuevaOrden)) {
-        System.out.println("La orden se ha guardado correctamente.");
-    } else {
-        System.out.println("Error al guardar la orden.");
-    }
-  
+        // Verificar si la orden se agregó correctamente
+        if (listaOrdenes.contains(nuevaOrden)) {
+            System.out.println("La orden se ha guardado correctamente.");
+        } else {
+            System.out.println("Error al guardar la orden.");
+        }
         contadorOrdenes++;
     }
 
@@ -64,8 +80,8 @@ public class OrdenControl {
             System.out.println("La orden no existe.");
         }
     }
-    
-     public void completarOrden(int index) {
+
+    public void completarOrden(int index) {
         if (index >= 0 && index < ordenes.size()) {
             Orden orden = ordenes.get(index);
             orden.setEstado(Estado.COMPLETADA);

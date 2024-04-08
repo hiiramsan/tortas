@@ -4,7 +4,9 @@
  */
 package com.mycompany.tortasdominio.subsistemas.orden;
 
+import com.mycompany.tortasdominio.entidades.Orden;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
+import java.util.List;
 
 /**
  *
@@ -12,9 +14,9 @@ import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
  */
 public interface IAdminOrden {
 
-    public void generarOrden(NuevaOrdenDTO nuevaOrden);
-    
-     public void cancelarOrden(int index);
-     
-     public void completarOrden(int index);
+    public List<Orden> generarOrden(NuevaOrdenDTO nuevaOrden);
+
+    public void cancelarOrden(int index);
+
+    public void completarOrden(int index);
 }

@@ -28,6 +28,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
     /**
      * Creates new form DetallesTorta
+     * @param tortaDTO
      */
     public DetallesTorta(TortaDTO tortaDTO) {
         this.tortaDTO = tortaDTO;
