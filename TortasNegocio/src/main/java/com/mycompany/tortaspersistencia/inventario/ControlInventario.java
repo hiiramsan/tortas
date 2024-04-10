@@ -17,9 +17,9 @@ public class ControlInventario {
 
     public ControlInventario() {
         inventario = new HashMap<>();
-        inventario.put("Coca-cola", 3);
-        inventario.put("Pepsi", 3);
-        inventario.put("Fanta", 3);
+        inventario.put("Coca-cola", 10);
+        inventario.put("Pepsi", 4);
+        inventario.put("Fanta", 7);
         inventario.put("Jamaica", 2);
         inventario.put("Horchata", 1);
         inventario.put("Agua", 1);
@@ -38,6 +38,13 @@ public class ControlInventario {
             int cantidadDisponible = inventario.get(nombreBebida);
             inventario.put(nombreBebida, cantidadDisponible - cantidad);
         }
+    }
+    
+     public int getProductStock(String nombreBebida) {
+        if (inventario.containsKey(nombreBebida)) {
+            return inventario.get(nombreBebida);
+        }
+        return 0; 
     }
 
 }

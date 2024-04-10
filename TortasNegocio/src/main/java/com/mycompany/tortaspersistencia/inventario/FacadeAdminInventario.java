@@ -24,4 +24,9 @@ public class FacadeAdminInventario implements IInventario {
     public void actualizarInventario(String nombreBebida, int cantidad) {
         control.actualizarInventario(nombreBebida, cantidad);
     }
+    
+    @Override
+    public int getProductStock(String nombreBebida) {
+        return control.getProductStock(nombreBebida);
+    }
 }

@@ -11,6 +11,8 @@ import com.mycompany.tortasdominio.subsistemas.orden.IAdminOrden;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
 import com.mycompany.tortaspersistencia.dtos.TortaDTO;
+import com.mycompany.tortaspersistencia.inventario.FacadeAdminInventario;
+import com.mycompany.tortaspersistencia.inventario.IInventario;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
@@ -47,17 +49,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // productos : no tienen atributos de ingredientes
     NuevoProductoDTO ahogada = new NuevoProductoDTO("ahogada", 0, 15, "Bebida");
-    NuevoProductoDTO coca = new NuevoProductoDTO("coca", 0, 25, "Bebida");
-    NuevoProductoDTO pepsi = new NuevoProductoDTO("pepsi", 0, 22, "Bebida");
-    NuevoProductoDTO fanta = new NuevoProductoDTO("fanta", 0, 22, "Bebida");
-    NuevoProductoDTO jamaica = new NuevoProductoDTO("jamaica", 0, 20, "Bebida");
-    NuevoProductoDTO horchata = new NuevoProductoDTO("horchata", 0, 20, "Bebida");
-    NuevoProductoDTO agua = new NuevoProductoDTO("agua", 0, 15, "Bebida");
+    NuevoProductoDTO coca = new NuevoProductoDTO("Coca-cola", 0, 25, "Bebida");
+    NuevoProductoDTO pepsi = new NuevoProductoDTO("Pepsi", 0, 22, "Bebida");
+    NuevoProductoDTO fanta = new NuevoProductoDTO("Fanta", 0, 22, "Bebida");
+    NuevoProductoDTO jamaica = new NuevoProductoDTO("Jamaica", 0, 20, "Bebida");
+    NuevoProductoDTO horchata = new NuevoProductoDTO("Horchata", 0, 20, "Bebida");
+    NuevoProductoDTO agua = new NuevoProductoDTO("Agua", 0, 15, "Bebida");
 
     Map<String, Integer> ingredientes = new HashMap<>();
     private static DetallesTorta detallesTorta;
     private static List<NuevoProductoDTO> listaProductos = new ArrayList<>();
     private static List<Orden> listaOrden = new ArrayList<>();
+    IInventario inventario = new FacadeAdminInventario();
+
+    // stock
+    int stockCocaCola;
+    int stockPepsi;
+    int stockFanta;
 
     /**
      * Creates new form VentanaPrincipal
@@ -65,6 +73,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         ordenPanel.setVisible(false);
+
         // actualizar tiempo
         Thread updaterThread = new Thread(() -> {
             while (true) {
@@ -79,6 +88,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         updaterThread.start();
+
+        actualizarStock();
+
+    }
+
+    public void actualizarStock() {
+        stockCocaCola = inventario.getProductStock("Coca-cola");
+        stockCocaColaTxt.setText("Stock: " + String.valueOf(stockCocaCola));
+
+        stockPepsi = inventario.getProductStock("Pepsi");
+        stockPepsiTxt.setText("Stock: " + String.valueOf(stockPepsi));
+
+        stockFanta = inventario.getProductStock("Fanta");
+        stockFantaTxt.setText("Stock: " + String.valueOf(stockFanta));
     }
 
     public List<NuevoProductoDTO> getListaProductos() {
@@ -94,6 +117,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             instance = new VentanaPrincipal();
         }
         return instance;
+    }
+
+    public void resetCantidades() {
+        cantidadSencilla = 0;
+        cantidadEspecial = 0;
+        cantidadAhogada = 0;
+        cantidadCoca = 0;
+        cantidadPepsi = 0;
+        cantidadFanta = 0;
+        cantidadJamaica = 0;
+        cantidadHorchata = 0;
+        cantidadAgua = 0;
+
+        cantSencilla.setText("0");
+        cantAhogada.setText("0");
+        cantEspecial.setText("0");
+        cantFanta.setText("0");
+        cantAgua.setText("0");
+        cantSencilla.setText("0");
+        cantHorchata.setText("0");
+        cantJamaica.setText("0");
+        cantPepsi.setText("0");
+
     }
 
     /**
@@ -138,6 +184,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton30 = new javax.swing.JButton();
         cantFanta = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        stockFantaTxt = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jButton22 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
@@ -145,6 +192,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         cantCoca = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        stockCocaColaTxt = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jButton25 = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
@@ -152,6 +200,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton27 = new javax.swing.JButton();
         cantPepsi = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
+        stockPepsiTxt = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jButton37 = new javax.swing.JButton();
         jLabel40 = new javax.swing.JLabel();
@@ -308,14 +357,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(restarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cantSencilla, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sumarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(sumarSencilla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -542,6 +591,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel33.setText("Fanta");
 
+        stockFantaTxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        stockFantaTxt.setForeground(new java.awt.Color(0, 153, 0));
+        stockFantaTxt.setText("Stock: ");
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -557,23 +610,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cantFanta, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cantFanta, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockFantaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockFantaTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -625,6 +687,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel27.setText("Coca cola");
 
+        stockCocaColaTxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        stockCocaColaTxt.setForeground(new java.awt.Color(0, 153, 0));
+        stockCocaColaTxt.setText("Stock: ");
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -640,23 +706,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cantCoca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 15, Short.MAX_VALUE)))
+                        .addGap(0, 15, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(stockCocaColaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cantCoca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockCocaColaTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -708,6 +782,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel30.setText("Pepsi");
 
+        stockPepsiTxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        stockPepsiTxt.setForeground(new java.awt.Color(0, 153, 0));
+        stockPepsiTxt.setText("Stock: ");
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -723,15 +801,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cantPepsi, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cantPepsi, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockPepsiTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -739,7 +823,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addComponent(stockPepsiTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1478,16 +1565,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        if (!listaProductos.contains(coca)) {
-            listaProductos.add(coca);
+        if (cantidadCoca < stockCocaCola) {
+            if (!listaProductos.contains(coca)) {
+                listaProductos.add(coca);
+            }
+
+            cantidadCoca++;
+            coca.setCantidad(cantidadCoca);
+            String cCoca = String.valueOf(cantidadCoca);
+            cantCoca.setText(cCoca);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
 
-        cantidadCoca++;
-        coca.setCantidad(cantidadCoca);
-        String cCoca = String.valueOf(cantidadCoca);
-        cantCoca.setText(cCoca);
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
@@ -1516,16 +1606,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        if (!listaProductos.contains(pepsi)) {
-            listaProductos.add(pepsi);
+
+        if (cantidadPepsi < stockPepsi) {
+            if (!listaProductos.contains(pepsi)) {
+                listaProductos.add(pepsi);
+            }
+
+            cantidadPepsi++;
+            pepsi.setCantidad(cantidadPepsi);
+            String cPepsi = String.valueOf(cantidadPepsi);
+            cantPepsi.setText(cPepsi);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
 
-        cantidadPepsi++;
-        pepsi.setCantidad(cantidadPepsi);
-        String cPepsi = String.valueOf(cantidadPepsi);
-        cantPepsi.setText(cPepsi);
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
@@ -1553,16 +1647,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        if (!listaProductos.contains(fanta)) {
-            listaProductos.add(fanta);
+        if (cantidadFanta < stockFanta) {
+            if (!listaProductos.contains(fanta)) {
+                listaProductos.add(fanta);
+            }
+
+            cantidadFanta++;
+            fanta.setCantidad(cantidadFanta);
+            String cFanta = String.valueOf(cantidadFanta);
+            cantFanta.setText(cFanta);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
 
-        cantidadFanta++;
-        fanta.setCantidad(cantidadFanta);
-        String cFanta = String.valueOf(cantidadFanta);
-        cantFanta.setText(cFanta);
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
@@ -1733,14 +1830,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         listaOrden = adminOrden.generarOrden(orden);
         JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
         listaProductos.clear();
+        actualizarStock();
+        resetCantidades();
         ordenPanel.setVisible(false);
         cargarDatosTabla(tablaOrden, listaProductos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         detallesTorta = new DetallesTorta(tortaSencilla);
-        
-        detallesTorta.addWindowListener(new WindowAdapter(){
+
+        detallesTorta.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 cargarDatosTabla(tablaOrden, listaProductos);
             }
@@ -1754,8 +1853,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         o.setVisible(true);
     }//GEN-LAST:event_jLabel36MouseClicked
 
-  
-    
     /**
      * @param args the command line arguments
      */
@@ -1938,6 +2035,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ordenBtn;
     private javax.swing.JPanel ordenPanel;
     private javax.swing.JButton restarSencilla;
+    private javax.swing.JLabel stockCocaColaTxt;
+    private javax.swing.JLabel stockFantaTxt;
+    private javax.swing.JLabel stockPepsiTxt;
     private javax.swing.JLabel subtotal;
     private javax.swing.JButton sumarSencilla;
     private javax.swing.JTable tablaOrden;

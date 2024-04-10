@@ -14,4 +14,5 @@ public interface IInventario {
 
     void actualizarInventario(String nombreBebida, int cantidad);
 
+    int getProductStock(String nombreBebida);
 }

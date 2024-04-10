@@ -1,6 +1,9 @@
 com\mycompany\tortaspersistencia\dtos\TortaDTO.class
+com\mycompany\tortaspersistencia\inventario\FacadeAdminInventario.class
 com\mycompany\tortasdominio\subsistemas\productos\FacadeAdminProductos.class
 com\mycompany\tortasdominio\subsistemas\orden\FacadeAdminOrden.class
+com\mycompany\tortaspersistencia\inventario\ControlInventario.class
+com\mycompany\tortasdominio\subsistemas\orden\Prueba.class
 com\mycompany\tortaspersistencia\dtos\NuevoProductoDTO.class
 com\mycompany\tortasdominio\entidades\Orden.class
 com\mycompany\tortasdominio\subsistemas\orden\OrdenControl.class
@@ -11,3 +14,4 @@ com\mycompany\tortasdominio\subsistemas\productos\ProductoControl.class
 com\mycompany\tortaspersistencia\dtos\NuevaOrdenDTO.class
 com\mycompany\tortasdominio\entidades\Tortas.class
 com\mycompany\tortasdominio\subsistemas\productos\IAdminProductos.class
+com\mycompany\tortaspersistencia\inventario\IInventario.class

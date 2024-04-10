@@ -10,6 +10,8 @@ import com.mycompany.tortaspersistencia.dtos.Estado;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
 import com.mycompany.tortaspersistencia.dtos.TortaDTO;
+import com.mycompany.tortaspersistencia.inventario.FacadeAdminInventario;
+import com.mycompany.tortaspersistencia.inventario.IInventario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class OrdenControl {
             System.out.println("La orden se ha guardado correctamente.");
             Orden orden = new Orden(nuevaOrden.getTotal(), listaProductos, nuevaOrden.getNombreCliente(), nuevaOrden.getEstado(), nuevaOrden.getNumeroOrden(), nuevaOrden.getFecha());
             ordenes.add(orden);
+            actualizarInventrio(listaProductos);
         } else {
             System.out.println("Error al guardar la orden.");
         }
@@ -108,6 +111,15 @@ public class OrdenControl {
                 System.out.println("Carne: "+ torta.getCantCarne());
 
             }
+        }
+    }
+    
+    public void actualizarInventrio(List<Producto> listaProductos) {
+        IInventario inventario = new FacadeAdminInventario();
+        
+        for(Producto producto : listaProductos) {
+            inventario.actualizarInventario(producto.getNombre(), producto.getCantidad());
+            System.out.println(producto.getNombre());
         }
     }
 
