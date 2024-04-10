@@ -99,16 +99,15 @@ public class OrdenControl {
             if (producto instanceof TortaDTO) {
                 TortaDTO torta = (TortaDTO) producto; // Hacemos un casting a Torta
                 System.out.println("Ingredientes de la torta:");
-                System.out.println(torta.getCantCebolla());
-                System.out.println(torta.getCantCebolla());
-                System.out.println(torta.getCantJalapeño());
-                System.out.println(torta.getCantMayonesa());
-                System.out.println(torta.getCantMostaza());
-                System.out.println(torta.getCantPan());
-                System.out.println(torta.getCantRepollo());
-                System.out.println(torta.getCantRepollo());
-                System.out.println(torta.getCantTomate());
-                
+                System.out.println("Pan:" + torta.getCantPan());
+                System.out.println("Cebolla: " + torta.getCantCebolla());
+                System.out.println("Tomate: " + torta.getCantTomate());
+                System.out.println("Repollo: " + torta.getCantRepollo());
+                System.out.println("Jalapeño: " + torta.getCantJalapeño());
+                System.out.println("Mayonesa: " + torta.getCantMayonesa());
+                System.out.println("Mostaza: " + torta.getCantMostaza());
+                System.out.println("Carne: "+ torta.getCantCarne());
+
             }
         }
     }

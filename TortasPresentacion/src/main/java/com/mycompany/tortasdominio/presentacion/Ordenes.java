@@ -77,8 +77,6 @@ public class Ordenes extends javax.swing.JFrame {
         tablaOrdenes = new javax.swing.JScrollPane();
         jTPOrden = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         eliminarBoton.setText("Cancelar");
         eliminarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

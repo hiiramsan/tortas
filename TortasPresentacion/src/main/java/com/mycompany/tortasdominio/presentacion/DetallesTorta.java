@@ -569,49 +569,66 @@ public class DetallesTorta extends javax.swing.JDialog {
 
     private void btnMenosPanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPanActionPerformed
         // TODO add your handling code here:
-        cantPan--;
+        
+        if(cantPan>0){
+            cantPan--;
+        }
         panTxt.setText(String.valueOf(cantPan));
     }//GEN-LAST:event_btnMenosPanActionPerformed
 
     private void btnMenosPan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan1ActionPerformed
         // TODO add your handling code here:
-        cantCebolla--;
+        if(cantCebolla>0){
+            cantCebolla--;
+        }
         cebollaTxt.setText(String.valueOf(cantCebolla));
     }//GEN-LAST:event_btnMenosPan1ActionPerformed
 
     private void btnMenosPan3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan3ActionPerformed
         // TODO add your handling code here:
-        cantTomate--;
+        if (cantTomate>0) {
+            cantTomate--;
+        }
         tomateTxt.setText(String.valueOf(cantTomate));
     }//GEN-LAST:event_btnMenosPan3ActionPerformed
 
     private void btnMenosPan4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan4ActionPerformed
         // TODO add your handling code here:
-        cantRepollo++;
+        if (cantRepollo>0) {
+            cantRepollo--;
+        }
         repolloTxt.setText(String.valueOf(cantRepollo));
     }//GEN-LAST:event_btnMenosPan4ActionPerformed
 
     private void btnMenosPan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan2ActionPerformed
         // TODO add your handling code here:
-        cantMayonesa++;
+        if (cantMayonesa>0) {
+            cantMayonesa--;
+        }
         mayonesaTxt.setText(String.valueOf(cantMayonesa));
     }//GEN-LAST:event_btnMenosPan2ActionPerformed
 
     private void btnMenosPan5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan5ActionPerformed
         // TODO add your handling code here:
-        cantMostaza++;
+        if (cantMostaza>0) {
+            cantMostaza--;
+        }
         mostazaTxt.setText(String.valueOf(cantMostaza));
     }//GEN-LAST:event_btnMenosPan5ActionPerformed
 
     private void btnMenosPan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan6ActionPerformed
         // TODO add your handling code here:
-        cantJalapeño++;
+        if (cantJalapeño>0) {
+            cantJalapeño--;
+        }
         jalapenoTxt.setText(String.valueOf(cantJalapeño));
     }//GEN-LAST:event_btnMenosPan6ActionPerformed
 
     private void btnMenosPan7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan7ActionPerformed
         // TODO add your handling code here:
-        cantCarne--;
+        if (cantCarne>0) {
+            cantCarne--;
+        }
         carneTxt.setText(String.valueOf(cantCarne));
     }//GEN-LAST:event_btnMenosPan7ActionPerformed
 
