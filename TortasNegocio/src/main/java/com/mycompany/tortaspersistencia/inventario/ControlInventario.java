@@ -39,12 +39,12 @@ public class ControlInventario {
             inventario.put(nombreBebida, cantidadDisponible - cantidad);
         }
     }
-    
-     public int getProductStock(String nombreBebida) {
+
+    public int getProductStock(String nombreBebida) {
         if (inventario.containsKey(nombreBebida)) {
             return inventario.get(nombreBebida);
         }
-        return 0; 
+        return 0;
     }
 
 }

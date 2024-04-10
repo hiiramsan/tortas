@@ -6,12 +6,8 @@ package com.mycompany.tortasdominio.presentacion;
 
 import com.mycompany.tortasdominio.entidades.Orden;
 import com.mycompany.tortasdominio.entidades.Producto;
-import com.mycompany.tortasdominio.subsistemas.orden.FacadeAdminOrden;
-import com.mycompany.tortasdominio.subsistemas.orden.IAdminOrden;
 import com.mycompany.tortaspersistencia.dtos.Estado;
-import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
