@@ -11,6 +11,8 @@ import com.mycompany.tortasdominio.subsistemas.orden.IAdminOrden;
 import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
 import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
 import com.mycompany.tortaspersistencia.dtos.TortaDTO;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -106,7 +108,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        ordenesBoton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -211,11 +212,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/IconoComida.png"))); // NOI18N
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono1.png"))); // NOI18N
-
-        ordenesBoton.setText("ordenes");
-        ordenesBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ordenesBotonActionPerformed(evt);
+        jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel36MouseClicked(evt);
             }
         });
 
@@ -224,16 +224,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ordenesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,9 +237,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ordenesBoton)
-                .addContainerGap(478, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(164, 180, 148));
@@ -1744,16 +1737,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cargarDatosTabla(tablaOrden, listaProductos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void ordenesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenesBotonActionPerformed
-        Ordenes o = new Ordenes(listaOrden);
-        o.setVisible(true);
-    }//GEN-LAST:event_ordenesBotonActionPerformed
-
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         detallesTorta = new DetallesTorta(tortaSencilla);
+        
+        detallesTorta.addWindowListener(new WindowAdapter(){
+            public void windowClosed(WindowEvent e) {
+                cargarDatosTabla(tablaOrden, listaProductos);
+            }
+        });
         detallesTorta.setVisible(true);
     }//GEN-LAST:event_jPanel2MouseClicked
 
+    private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
+        // TODO add your handling code here:
+        Ordenes o = new Ordenes(listaOrden);
+        o.setVisible(true);
+    }//GEN-LAST:event_jLabel36MouseClicked
+
+  
+    
     /**
      * @param args the command line arguments
      */
@@ -1935,7 +1937,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel nombreCliente;
     private javax.swing.JButton ordenBtn;
     private javax.swing.JPanel ordenPanel;
-    private javax.swing.JButton ordenesBoton;
     private javax.swing.JButton restarSencilla;
     private javax.swing.JLabel subtotal;
     private javax.swing.JButton sumarSencilla;

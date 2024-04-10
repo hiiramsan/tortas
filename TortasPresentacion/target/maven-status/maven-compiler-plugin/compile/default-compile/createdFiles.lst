@@ -8,7 +8,6 @@ com\mycompany\tortasdominio\presentacion\VentanaPrincipal$31.class
 com\mycompany\tortasdominio\presentacion\DetallesTorta$14.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal.class
 com\mycompany\tortasdominio\presentacion\DetallesTorta$9.class
-com\mycompany\tortasdominio\presentacion\DetallesTorta$17.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$37.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$27.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$14.class
@@ -28,6 +27,7 @@ com\mycompany\tortasdominio\presentacion\VentanaPrincipal$23.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$6.class
 com\mycompany\tortasdominio\presentacion\DetallesTorta$8.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$18.class
+com\mycompany\tortasdominio\presentacion\VentanaPrincipal$38.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$36.class
 com\mycompany\tortasdominio\presentacion\DetallesTorta$1.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$16.class
@@ -54,6 +54,5 @@ com\mycompany\tortasdominio\presentacion\VentanaPrincipal$13.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$1.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$30.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$33.class
-com\mycompany\tortasdominio\presentacion\DetallesTorta$16.class
 com\mycompany\tortasdominio\presentacion\Ordenes.class
 com\mycompany\tortasdominio\presentacion\VentanaPrincipal$28.class

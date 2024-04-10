@@ -16,8 +16,6 @@ import javax.swing.ScrollPaneConstants;
 public class DetallesTorta extends javax.swing.JDialog {
 
     private TortaDTO tortaDTO;
-
-    int cantPan;
     int cantCebolla;
     int cantTomate;
     int cantRepollo;
@@ -33,6 +31,7 @@ public class DetallesTorta extends javax.swing.JDialog {
     public DetallesTorta(TortaDTO tortaDTO) {
         this.tortaDTO = tortaDTO;
         initComponents();
+        jLabel35.setText("Torta " + tortaDTO.getNombre());
         txtNota.setLineWrap(true);
         txtNota.setWrapStyleWord(true);
 
@@ -40,7 +39,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         scrollNota.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         // cargar cantidades desde tortaDTO
-        cantPan = tortaDTO.getCantPan();
         cantCebolla = tortaDTO.getCantCebolla();
         cantTomate = tortaDTO.getCantTomate();
         cantRepollo = tortaDTO.getCantRepollo();
@@ -50,7 +48,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         cantCarne = tortaDTO.getCantCarne();
 
         // actualizarr los campos de texto con las cantidades
-        panTxt.setText(String.valueOf(cantPan));
         tomateTxt.setText(String.valueOf(cantTomate));
         carneTxt.setText(String.valueOf(cantCarne));
         mostazaTxt.setText(String.valueOf(cantMostaza));
@@ -74,15 +71,11 @@ public class DetallesTorta extends javax.swing.JDialog {
         scrollNota = new javax.swing.JScrollPane();
         txtNota = new javax.swing.JTextArea();
         jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnMenosPan = new javax.swing.JButton();
-        btnMasPan = new javax.swing.JButton();
-        panTxt = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnMenosPan1 = new javax.swing.JButton();
         btnMasPan1 = new javax.swing.JButton();
@@ -102,9 +95,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btnMenosPan2 = new javax.swing.JButton();
-        btnMasPan4 = new javax.swing.JButton();
-        mayonesaTxt = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         btnMenosPan5 = new javax.swing.JButton();
         btnMasPan5 = new javax.swing.JButton();
@@ -117,6 +107,9 @@ public class DetallesTorta extends javax.swing.JDialog {
         btnMenosPan7 = new javax.swing.JButton();
         btnMasPan7 = new javax.swing.JButton();
         carneTxt = new javax.swing.JLabel();
+        btnMenosPan2 = new javax.swing.JButton();
+        mayonesaTxt = new javax.swing.JLabel();
+        btnMasPan4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,9 +124,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel35.setText("Nombre torta");
 
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel36.setText("Pan");
-
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel37.setText("Tomate");
 
@@ -147,33 +137,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         jLabel40.setText("Añadir una nota");
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnMenosPan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMenos2.png"))); // NOI18N
-        btnMenosPan.setBorder(null);
-        btnMenosPan.setBorderPainted(false);
-        btnMenosPan.setFocusPainted(false);
-        btnMenosPan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenosPanActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnMenosPan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 21, 21));
-
-        btnMasPan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMas2.png"))); // NOI18N
-        btnMasPan.setBorder(null);
-        btnMasPan.setOpaque(true);
-        btnMasPan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasPanActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnMasPan, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 0, 21, 21));
-
-        panTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        panTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        panTxt.setText("0");
-        panTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(panTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -288,33 +251,6 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMenosPan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMenos2.png"))); // NOI18N
-        btnMenosPan2.setBorder(null);
-        btnMenosPan2.setBorderPainted(false);
-        btnMenosPan2.setFocusPainted(false);
-        btnMenosPan2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenosPan2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnMenosPan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 21, 21));
-
-        btnMasPan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMas2.png"))); // NOI18N
-        btnMasPan4.setBorder(null);
-        btnMasPan4.setOpaque(true);
-        btnMasPan4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasPan4ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnMasPan4, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 0, 21, 21));
-
-        mayonesaTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        mayonesaTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        mayonesaTxt.setText("0");
-        mayonesaTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(mayonesaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
-
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnMenosPan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMenos2.png"))); // NOI18N
@@ -402,6 +338,30 @@ public class DetallesTorta extends javax.swing.JDialog {
         carneTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel9.add(carneTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
+        btnMenosPan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMenos2.png"))); // NOI18N
+        btnMenosPan2.setBorder(null);
+        btnMenosPan2.setBorderPainted(false);
+        btnMenosPan2.setFocusPainted(false);
+        btnMenosPan2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenosPan2ActionPerformed(evt);
+            }
+        });
+
+        mayonesaTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        mayonesaTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
+        mayonesaTxt.setText("0");
+        mayonesaTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btnMasPan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMas2.png"))); // NOI18N
+        btnMasPan4.setBorder(null);
+        btnMasPan4.setOpaque(true);
+        btnMasPan4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasPan4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -425,11 +385,18 @@ public class DetallesTorta extends javax.swing.JDialog {
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel37)
                                                     .addComponent(jLabel38))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(39, 39, 39)
                                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel35)
+                                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel36)
+                                                .addComponent(jLabel41)
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(btnMenosPan2)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(45, 45, 45)
+                                                        .addComponent(btnMasPan4))
+                                                    .addComponent(mayonesaTxt))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -441,15 +408,13 @@ public class DetallesTorta extends javax.swing.JDialog {
                                             .addComponent(jLabel42)
                                             .addComponent(jLabel43)
                                             .addComponent(jLabel44))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel41)
-                                        .addGap(28, 28, 28)
                                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -463,7 +428,7 @@ public class DetallesTorta extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,10 +439,16 @@ public class DetallesTorta extends javax.swing.JDialog {
                         .addGap(33, 33, 33))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnMenosPan2)
+                                    .addComponent(btnMasPan4)
+                                    .addComponent(mayonesaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -517,12 +488,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMasPanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasPanActionPerformed
-        // TODO add your handling code here:
-        cantPan++;
-        panTxt.setText(String.valueOf(cantPan));
-    }//GEN-LAST:event_btnMasPanActionPerformed
 
     private void btnMasPan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasPan1ActionPerformed
         // TODO add your handling code here:
@@ -566,15 +531,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         cantCarne++;
         carneTxt.setText(String.valueOf(cantCarne));
     }//GEN-LAST:event_btnMasPan7ActionPerformed
-
-    private void btnMenosPanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPanActionPerformed
-        // TODO add your handling code here:
-        
-        if(cantPan>0){
-            cantPan--;
-        }
-        panTxt.setText(String.valueOf(cantPan));
-    }//GEN-LAST:event_btnMenosPanActionPerformed
 
     private void btnMenosPan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosPan1ActionPerformed
         // TODO add your handling code here:
@@ -640,7 +596,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         tortaDTO.setCantJalapeño(cantJalapeño);
         tortaDTO.setCantMayonesa(cantMayonesa);
         tortaDTO.setCantMostaza(cantMostaza);
-        tortaDTO.setCantPan(cantPan);
         tortaDTO.setCantTomate(cantTomate);
         tortaDTO.setCantRepollo(cantRepollo);
         tortaDTO.setDescripcion(txtNota.getText());
@@ -666,7 +621,6 @@ public class DetallesTorta extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarBtn;
-    private javax.swing.JButton btnMasPan;
     private javax.swing.JButton btnMasPan1;
     private javax.swing.JButton btnMasPan2;
     private javax.swing.JButton btnMasPan3;
@@ -674,7 +628,6 @@ public class DetallesTorta extends javax.swing.JDialog {
     private javax.swing.JButton btnMasPan5;
     private javax.swing.JButton btnMasPan6;
     private javax.swing.JButton btnMasPan7;
-    private javax.swing.JButton btnMenosPan;
     private javax.swing.JButton btnMenosPan1;
     private javax.swing.JButton btnMenosPan2;
     private javax.swing.JButton btnMenosPan3;
@@ -686,7 +639,6 @@ public class DetallesTorta extends javax.swing.JDialog {
     private javax.swing.JLabel cebollaTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -707,7 +659,6 @@ public class DetallesTorta extends javax.swing.JDialog {
     private javax.swing.JLabel jalapenoTxt;
     private javax.swing.JLabel mayonesaTxt;
     private javax.swing.JLabel mostazaTxt;
-    private javax.swing.JLabel panTxt;
     private javax.swing.JLabel repolloTxt;
     private javax.swing.JScrollPane scrollNota;
     private javax.swing.JLabel tomateTxt;
