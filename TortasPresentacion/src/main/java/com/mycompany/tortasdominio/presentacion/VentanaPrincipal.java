@@ -69,6 +69,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int stockCocaCola;
     int stockPepsi;
     int stockFanta;
+    int stockTemporalCocaCola;
 
     /**
      * Creates new form VentanaPrincipal
@@ -97,6 +98,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void actualizarStock() {
         stockCocaCola = inventario.getProductStock("Coca-cola");
+        stockTemporalCocaCola = stockCocaCola;
         stockCocaColaTxt.setText("Stock: " + String.valueOf(stockCocaCola));
 
         stockPepsi = inventario.getProductStock("Pepsi");
@@ -104,6 +106,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         stockFanta = inventario.getProductStock("Fanta");
         stockFantaTxt.setText("Stock: " + String.valueOf(stockFanta));
+    }
+
+    public void actualizarStockTemporal() {
+        stockCocaColaTxt.setText("Stock: " + String.valueOf(stockTemporalCocaCola));
     }
 
     public List<NuevoProductoDTO> getListaProductos() {
@@ -1563,9 +1569,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        if (inventario.verificarDisponibilidad("Coca-cola", 1)) {
-            inventario.actualizarInventario("Coca-cola", 1);
-            actualizarStock();
+        if (stockTemporalCocaCola > 0) {
+            stockTemporalCocaCola--;
+            actualizarStockTemporal();
             if (!listaProductos.contains(coca)) {
                 listaProductos.add(coca);
             }
@@ -1575,20 +1581,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             cantCoca.setText(cCoca);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
+        } else {
+            System.out.println("No hay más stock disponible de Coca-Cola.");
         }
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        if (listaProductos.contains(coca) && cantidadCoca > 0) {
+        if (cantidadCoca > 0) { // Verifica que haya al menos un producto de Coca-Cola para eliminar
+            stockTemporalCocaCola++; // Incrementa el stock temporal ya que se está eliminando un producto
+            actualizarStockTemporal();
             cantidadCoca--;
-            coca.setCantidad(cantidadCoca);
+            if (cantidadCoca == 0) {
+                listaProductos.remove(coca); // Elimina el producto de la lista si la cantidad llega a cero
+            } else {
+                coca.setCantidad(cantidadCoca);
+            }
             String cCoca = String.valueOf(cantidadCoca);
             cantCoca.setText(cCoca);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
-            // Actualizar el inventario
-            inventario.actualizarInventario("Coca-cola", -1); // Restar una unidad al inventario
-            actualizarStock();
         }
     }//GEN-LAST:event_jButton24ActionPerformed
 
@@ -1822,6 +1833,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             inventario.actualizarInventario(listaProducto.getNombre(), listaProducto.getCantidad());
         }
         resetCantidades();
+        actualizarStock();
         JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
         listaProductos.clear();
         ordenPanel.setVisible(false);

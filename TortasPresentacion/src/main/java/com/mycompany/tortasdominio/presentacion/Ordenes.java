@@ -40,7 +40,7 @@ public class Ordenes extends javax.swing.JFrame {
         ordenesEncontradas.addColumn("Fecha");
 
         for (Orden orden : listaOrden) {
-            StringBuilder productosString = new StringBuilder();
+            StringBuilder productosString = new StringBuilder(); // Crear una nueva cadena para cada orden
             for (Producto producto : orden.getProductos()) {
                 productosString.append(producto.getNombre()).append(" x").append(producto.getCantidad()).append(", ");
             }
