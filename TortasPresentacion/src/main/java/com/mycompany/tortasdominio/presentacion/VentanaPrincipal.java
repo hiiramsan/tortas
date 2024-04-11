@@ -26,8 +26,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Abe
+ * @author Abel Eduardo Sanchez Guerrero | 00000
+ * @author Eduardo Talavera Ramos | 00000245244
+ * @author Carlos Hiram Sanchez Menseses | 00000246787
+ * @author Ana Cristina Castro Noriega | 00000
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -61,6 +63,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private static List<NuevoProductoDTO> listaProductos = new ArrayList<>();
     private static List<Orden> listaOrden = new ArrayList<>();
     IInventario inventario = new FacadeAdminInventario();
+    IAdminOrden adminOrden = new FacadeAdminOrden();
 
     // stock
     int stockCocaCola;
@@ -1814,8 +1817,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()), new Date());
-        IAdminOrden adminOrden = new FacadeAdminOrden();
-        listaOrden = adminOrden.generarOrden(orden);
+        adminOrden.generarOrden(orden);
+        for (NuevoProductoDTO listaProducto : listaProductos) {
+            inventario.actualizarInventario(listaProducto.getNombre(), listaProducto.getCantidad());
+        }
         resetCantidades();
         JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
         listaProductos.clear();
@@ -1836,7 +1841,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
         // TODO add your handling code here:
-        Ordenes o = new Ordenes(listaOrden);
+        Ordenes o = new Ordenes(adminOrden.obtenerOrdenes());
         o.setVisible(true);
     }//GEN-LAST:event_jLabel36MouseClicked
 

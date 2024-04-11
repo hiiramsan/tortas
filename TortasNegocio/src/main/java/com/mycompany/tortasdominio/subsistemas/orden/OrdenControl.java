@@ -31,7 +31,7 @@ public class OrdenControl {
     }
 
     // imprimir orden
-    public List<Orden> generarOrden(NuevaOrdenDTO nuevaOrden) {
+    public void generarOrden(NuevaOrdenDTO nuevaOrden) {
         for (NuevoProductoDTO nuevoProductoDTO : nuevaOrden.getListaProductos()) {
             Producto producto = new Producto(nuevoProductoDTO.getNombre(), nuevoProductoDTO.getCantidad(), nuevoProductoDTO.getPrecio());
             listaProductos.add(producto);
@@ -49,7 +49,6 @@ public class OrdenControl {
             System.out.println("Error al guardar la orden.");
         }
         contadorOrdenes++;
-        return ordenes;
     }
 
     public void imprimirOrden(NuevaOrdenDTO nuevaOrden) {
@@ -108,19 +107,22 @@ public class OrdenControl {
                 System.out.println("Jalapeño: " + torta.getCantJalapeño());
                 System.out.println("Mayonesa: " + torta.getCantMayonesa());
                 System.out.println("Mostaza: " + torta.getCantMostaza());
-                System.out.println("Carne: "+ torta.getCantCarne());
+                System.out.println("Carne: " + torta.getCantCarne());
 
             }
         }
     }
-    
+
     public void actualizarInventrio(List<Producto> listaProductos) {
         IInventario inventario = new FacadeAdminInventario();
-        
-        for(Producto producto : listaProductos) {
+
+        for (Producto producto : listaProductos) {
             inventario.actualizarInventario(producto.getNombre(), producto.getCantidad());
             System.out.println(producto.getNombre());
         }
     }
 
+    public List<Orden> obtenerOrdenes() {
+        return ordenes;
+    }
 }

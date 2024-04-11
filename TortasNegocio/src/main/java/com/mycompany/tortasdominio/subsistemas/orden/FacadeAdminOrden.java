@@ -17,8 +17,13 @@ public class FacadeAdminOrden implements IAdminOrden {
     OrdenControl ordenControl = new OrdenControl();
 
     @Override
-    public List<Orden> generarOrden(NuevaOrdenDTO nuevaOrden) {
-        return ordenControl.generarOrden(nuevaOrden);
+    public void generarOrden(NuevaOrdenDTO nuevaOrden) {
+        ordenControl.generarOrden(nuevaOrden);
+    }
+
+    @Override
+    public List<Orden> obtenerOrdenes() {
+        return ordenControl.obtenerOrdenes();
     }
 
     @Override

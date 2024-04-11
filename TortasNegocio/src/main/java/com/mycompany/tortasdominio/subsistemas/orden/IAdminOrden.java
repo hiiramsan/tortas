@@ -14,11 +14,13 @@ import java.util.List;
  */
 public interface IAdminOrden {
 
-    public List<Orden> generarOrden(NuevaOrdenDTO nuevaOrden);
+    public void generarOrden(NuevaOrdenDTO nuevaOrden);
+
+    public List<Orden> obtenerOrdenes();
 
     public void cancelarOrden(int index);
 
     public void completarOrden(int index);
- 
+
     public void especificacionesOrden(NuevaOrdenDTO orden);
 }
