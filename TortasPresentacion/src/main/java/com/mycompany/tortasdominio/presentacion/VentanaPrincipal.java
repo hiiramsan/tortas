@@ -69,7 +69,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int stockCocaCola;
     int stockPepsi;
     int stockFanta;
+    
+    // stock temporal
     int stockTemporalCocaCola;
+    int stockTemporalPepsi;
+    int stockTemporalFanta;
 
     /**
      * Creates new form VentanaPrincipal
@@ -102,14 +106,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         stockCocaColaTxt.setText("Stock: " + String.valueOf(stockCocaCola));
 
         stockPepsi = inventario.getProductStock("Pepsi");
+        stockTemporalPepsi = stockPepsi;
         stockPepsiTxt.setText("Stock: " + String.valueOf(stockPepsi));
 
         stockFanta = inventario.getProductStock("Fanta");
+        stockTemporalFanta = stockFanta;
         stockFantaTxt.setText("Stock: " + String.valueOf(stockFanta));
     }
 
     public void actualizarStockTemporal() {
         stockCocaColaTxt.setText("Stock: " + String.valueOf(stockTemporalCocaCola));
+        stockPepsiTxt.setText("Stock: " + String.valueOf(stockTemporalPepsi));
+        stockFantaTxt.setText("Stock: " + String.valueOf(stockTemporalFanta));
     }
 
     public List<NuevoProductoDTO> getListaProductos() {
@@ -1587,12 +1595,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        if (cantidadCoca > 0) { // Verifica que haya al menos un producto de Coca-Cola para eliminar
-            stockTemporalCocaCola++; // Incrementa el stock temporal ya que se está eliminando un producto
+        if (cantidadCoca > 0) { 
+            stockTemporalCocaCola++; 
             actualizarStockTemporal();
             cantidadCoca--;
             if (cantidadCoca == 0) {
-                listaProductos.remove(coca); // Elimina el producto de la lista si la cantidad llega a cero
+                listaProductos.remove(coca); 
             } else {
                 coca.setCantidad(cantidadCoca);
             }
@@ -1608,37 +1616,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-
-        if (cantidadPepsi < stockPepsi) {
+     
+        if (stockTemporalPepsi > 0) {
+            stockTemporalPepsi--;
+            actualizarStockTemporal();
             if (!listaProductos.contains(pepsi)) {
                 listaProductos.add(pepsi);
             }
-
             cantidadPepsi++;
             pepsi.setCantidad(cantidadPepsi);
             String cPepsi = String.valueOf(cantidadPepsi);
             cantPepsi.setText(cPepsi);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
+        } else {
+            System.out.println("No hay más stock disponible de Pepsi.");
         }
 
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        if (listaProductos.contains(pepsi) && cantidadPepsi > 1) {
+        if (cantidadPepsi > 0) { 
+            stockTemporalPepsi++; 
+            actualizarStockTemporal();
             cantidadPepsi--;
-            pepsi.setCantidad(cantidadPepsi);
+            if (cantidadPepsi == 0) {
+                listaProductos.remove(pepsi); 
+            } else {
+                pepsi.setCantidad(cantidadPepsi);
+            }
             String cPepsi = String.valueOf(cantidadPepsi);
             cantPepsi.setText(cPepsi);
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
-        } else {
-            cantidadPepsi = 0;
-            pepsi.setCantidad(cantidadPepsi);
-            cantPepsi.setText("0");
-            if (listaProductos.contains(pepsi)) {
-                listaProductos.remove(pepsi);
-            }
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
         }
@@ -1649,36 +1657,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        if (cantidadFanta < stockFanta) {
+
+        if (stockTemporalFanta > 0) {
+            stockTemporalFanta--;
+            actualizarStockTemporal();
             if (!listaProductos.contains(fanta)) {
                 listaProductos.add(fanta);
             }
-
             cantidadFanta++;
             fanta.setCantidad(cantidadFanta);
             String cFanta = String.valueOf(cantidadFanta);
             cantFanta.setText(cFanta);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
+        } else {
+            System.out.println("No hay más stock disponible de Fanta.");
         }
-
+        
+        
+        
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        if (listaProductos.contains(fanta) && cantidadFanta > 1) {
+     
+        if (cantidadFanta > 0) { 
+            stockTemporalFanta++; 
+            actualizarStockTemporal();
             cantidadFanta--;
-            fanta.setCantidad(cantidadFanta);
+            if (cantidadFanta == 0) {
+                listaProductos.remove(fanta); 
+            } else {
+                fanta.setCantidad(cantidadFanta);
+            }
             String cFanta = String.valueOf(cantidadFanta);
             cantFanta.setText(cFanta);
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
-        } else {
-            cantidadFanta = 0;
-            fanta.setCantidad(cantidadFanta);
-            cantFanta.setText("0");
-            if (listaProductos.contains(fanta)) {
-                listaProductos.remove(fanta);
-            }
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
         }
