@@ -32,6 +32,9 @@ public class OrdenControl {
 
     // imprimir orden
     public void generarOrden(NuevaOrdenDTO nuevaOrden) {
+        // Lista de productos específica para esta orden
+        List<Producto> listaProductos = new ArrayList<>();
+
         for (NuevoProductoDTO nuevoProductoDTO : nuevaOrden.getListaProductos()) {
             Producto producto = new Producto(nuevoProductoDTO.getNombre(), nuevoProductoDTO.getCantidad(), nuevoProductoDTO.getPrecio());
             listaProductos.add(producto);
