@@ -4,15 +4,14 @@
  */
 package com.mycompany.tortasdominio.presentacion;
 
-import com.mycompany.tortasdominio.entidades.Orden;
-import com.mycompany.tortasdominio.entidades.Producto;
-import com.mycompany.tortasdominio.subsistemas.orden.FacadeAdminOrden;
-import com.mycompany.tortasdominio.subsistemas.orden.IAdminOrden;
-import com.mycompany.tortaspersistencia.dtos.NuevaOrdenDTO;
-import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
-import com.mycompany.tortaspersistencia.dtos.TortaDTO;
-import com.mycompany.tortaspersistencia.inventario.FacadeAdminInventario;
-import com.mycompany.tortaspersistencia.inventario.IInventario;
+
+import com.mycompany.admininventario.FacadeAdminInventario;
+import com.mycompany.admininventario.IInventario;
+import com.mycompany.adminorden.FacadeAdminOrden;
+import com.mycompany.adminorden.IAdminOrden;
+import com.mycompany.tortasdtos.NuevaOrdenDTO;
+import com.mycompany.tortasdtos.NuevoProductoDTO;
+import com.mycompany.tortasdtos.TortaDTO;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
@@ -61,7 +60,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Map<String, Integer> ingredientes = new HashMap<>();
     private static DetallesTorta detallesTorta;
     private static List<NuevoProductoDTO> listaProductos = new ArrayList<>();
-    private static List<Orden> listaOrden = new ArrayList<>();
+    private static List<NuevaOrdenDTO> listaOrden = new ArrayList<>();
     IInventario inventario = new FacadeAdminInventario();
     IAdminOrden adminOrden = new FacadeAdminOrden();
 
@@ -1964,12 +1963,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
     }
 
-    public void mostrarTabla(List<Producto> productos) {
+    public void mostrarTabla(List<NuevoProductoDTO> productos) {
         DefaultTableModel model = (DefaultTableModel) tablaOrden.getModel();
 
         model.setRowCount(0);
 
-        for (Producto producto : productos) {
+        for (NuevoProductoDTO producto : productos) {
             Object[] rowData = {producto.getCantidad(), producto.getNombre(), producto.getPrecio()};
             model.addRow(rowData);
         }

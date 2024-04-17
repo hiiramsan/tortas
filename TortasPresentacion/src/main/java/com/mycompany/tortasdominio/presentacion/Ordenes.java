@@ -4,9 +4,9 @@
  */
 package com.mycompany.tortasdominio.presentacion;
 
-import com.mycompany.tortasdominio.entidades.Orden;
-import com.mycompany.tortasdominio.entidades.Producto;
-import com.mycompany.tortaspersistencia.dtos.Estado;
+import com.mycompany.tortasdtos.Estado;
+import com.mycompany.tortasdtos.NuevaOrdenDTO;
+import com.mycompany.tortasdtos.NuevoProductoDTO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,20 +17,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ordenes extends javax.swing.JFrame {
 
-    List<Orden> listaOrden;
+    List<NuevaOrdenDTO> listaOrden;
 
     /**
      * Creates new form Ordenes
      *
      * @param listaOrden
      */
-    public Ordenes(List<Orden> listaOrden) {
+    public Ordenes(List<NuevaOrdenDTO> listaOrden) {
         this.listaOrden = listaOrden;
         initComponents();
         llenarTabla(listaOrden);
     }
 
-    private void llenarTabla(List<Orden> listaOrden) {
+    private void llenarTabla(List<NuevaOrdenDTO> listaOrden) {
         DefaultTableModel ordenesEncontradas = new DefaultTableModel();
         ordenesEncontradas.addColumn("Nombre");
         ordenesEncontradas.addColumn("Productos");
@@ -39,9 +39,9 @@ public class Ordenes extends javax.swing.JFrame {
         ordenesEncontradas.addColumn("Número de orden");
         ordenesEncontradas.addColumn("Fecha");
 
-        for (Orden orden : listaOrden) {
+        for (NuevaOrdenDTO orden : listaOrden) {
             StringBuilder productosString = new StringBuilder(); // Crear una nueva cadena para cada orden
-            for (Producto producto : orden.getProductos()) {
+            for (NuevoProductoDTO producto : orden.getListaProductos()) {
                 productosString.append(producto.getNombre()).append(" x").append(producto.getCantidad()).append(", ");
             }
             String productosFormatted = productosString.toString();
@@ -138,7 +138,7 @@ public class Ordenes extends javax.swing.JFrame {
         // Verificar si se seleccionó una fila
         if (filaSeleccionada != -1) {
             // Obtener la orden correspondiente al índice de fila seleccionado
-            Orden orden = listaOrden.get(filaSeleccionada);
+            NuevaOrdenDTO orden = listaOrden.get(filaSeleccionada);
 
             // Cambiar el estado de la orden a "entregado"
             orden.setEstado(Estado.CANCELADA);
@@ -157,7 +157,7 @@ public class Ordenes extends javax.swing.JFrame {
         // Verificar si se seleccionó una fila
         if (filaSeleccionada != -1) {
             // Obtener la orden correspondiente al índice de fila seleccionado
-            Orden orden = listaOrden.get(filaSeleccionada);
+            NuevaOrdenDTO orden = listaOrden.get(filaSeleccionada);
 
             // Cambiar el estado de la orden a "entregado"
             orden.setEstado(Estado.COMPLETADA);

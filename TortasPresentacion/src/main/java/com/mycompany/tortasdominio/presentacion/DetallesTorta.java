@@ -4,8 +4,8 @@
  */
 package com.mycompany.tortasdominio.presentacion;
 
-import com.mycompany.tortaspersistencia.dtos.NuevoProductoDTO;
-import com.mycompany.tortaspersistencia.dtos.TortaDTO;
+import com.mycompany.tortasdtos.NuevoProductoDTO;
+import com.mycompany.tortasdtos.TortaDTO;
 import java.util.List;
 import javax.swing.ScrollPaneConstants;
 
