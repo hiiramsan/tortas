@@ -12,4 +12,11 @@
         <exec.mainClass>com.mycompany.tortaspersistencia.TortasPersistencia</exec.mainClass>
     </properties>
     <name>TortasNegocio</name>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>TortasDominio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

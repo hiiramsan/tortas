@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import java.util.List;
+import com.mycompany.tortaspersistencia.dtos.Estado;
+import java.util.Date;
+
 /**
  *
  * @author Ramosz

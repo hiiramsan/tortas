@@ -7,6 +7,8 @@ package com.mycompany.tortasdominio.entidades;
 import java.util.List;
 import java.util.Objects;
 
+
+
 /**
  *
  * @author Ramosz

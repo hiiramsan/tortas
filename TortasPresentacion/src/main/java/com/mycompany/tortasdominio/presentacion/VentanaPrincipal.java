@@ -69,11 +69,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int stockCocaCola;
     int stockPepsi;
     int stockFanta;
+    int stockJamaica;
+    int stockHorchata;
+    int stockAgua;
     
     // stock temporal
     int stockTemporalCocaCola;
     int stockTemporalPepsi;
     int stockTemporalFanta;
+    int stockTemporalJamaica;
+    int stockTemporalHorchata;
+    int stockTemporalAgua;
 
     /**
      * Creates new form VentanaPrincipal
@@ -112,12 +118,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         stockFanta = inventario.getProductStock("Fanta");
         stockTemporalFanta = stockFanta;
         stockFantaTxt.setText("Stock: " + String.valueOf(stockFanta));
+        
+        stockJamaica = inventario.getProductStock("Jamaica");
+        stockTemporalJamaica = stockJamaica;
+        stockJamaicaTxt.setText("Stock: " + String.valueOf(stockJamaica));
+        
+        stockHorchata = inventario.getProductStock("Horchata");
+        stockTemporalHorchata = stockHorchata;
+        stockHorchataTxt.setText("Stock: " + String.valueOf(stockHorchata));
+        
+        stockAgua = inventario.getProductStock("Agua");
+        stockTemporalAgua = stockAgua;
+        stockAguaTxt.setText("Stock: " + String.valueOf(stockAgua));
+        
     }
 
     public void actualizarStockTemporal() {
         stockCocaColaTxt.setText("Stock: " + String.valueOf(stockTemporalCocaCola));
         stockPepsiTxt.setText("Stock: " + String.valueOf(stockTemporalPepsi));
         stockFantaTxt.setText("Stock: " + String.valueOf(stockTemporalFanta));
+        stockJamaicaTxt.setText("Stock: " + String.valueOf(stockTemporalJamaica));
+        stockHorchataTxt.setText("Stock: " + String.valueOf(stockTemporalHorchata));
+        stockAguaTxt.setText("Stock: " + String.valueOf(stockTemporalAgua));
     }
 
     public List<NuevoProductoDTO> getListaProductos() {
@@ -222,6 +244,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton39 = new javax.swing.JButton();
         cantHorchata = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
+        stockHorchataTxt = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jButton34 = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
@@ -229,6 +252,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton36 = new javax.swing.JButton();
         cantJamaica = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
+        stockJamaicaTxt = new javax.swing.JLabel();
         ordenPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -249,6 +273,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton42 = new javax.swing.JButton();
         cantAgua = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
+        stockAguaTxt = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         jButton31 = new javax.swing.JButton();
@@ -727,9 +752,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cantCoca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(stockCocaColaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(stockCocaColaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -890,6 +913,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel42.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel42.setText("Horchata");
 
+        stockHorchataTxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        stockHorchataTxt.setForeground(new java.awt.Color(0, 153, 0));
+        stockHorchataTxt.setText("Stock: ");
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
@@ -911,7 +938,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stockHorchataTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -919,9 +948,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel42))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockHorchataTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -973,6 +1005,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel39.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel39.setText("Jamaica");
 
+        stockJamaicaTxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        stockJamaicaTxt.setForeground(new java.awt.Color(0, 153, 0));
+        stockJamaicaTxt.setText("Stock: ");
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -994,7 +1030,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stockJamaicaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1004,7 +1042,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel39))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockJamaicaTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1182,6 +1223,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel49.setText("Agua");
 
+        stockAguaTxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        stockAguaTxt.setForeground(new java.awt.Color(0, 153, 0));
+        stockAguaTxt.setText("Stock: ");
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -1203,7 +1248,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stockAguaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1211,9 +1258,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel49))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(jLabel49)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stockAguaTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1701,35 +1751,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        if (!listaProductos.contains(jamaica)) {
-            listaProductos.add(jamaica);
+        if (cantidadJamaica > 0) { 
+            stockTemporalJamaica++; 
+            actualizarStockTemporal();
+            cantidadJamaica--;
+            if (cantidadJamaica == 0) {
+                listaProductos.remove(jamaica); 
+            } else {
+                jamaica.setCantidad(cantidadJamaica);
+            }
+            String cJamaica = String.valueOf(cantidadJamaica);
+            cantJamaica.setText(cJamaica);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
-
-        cantidadJamaica++;
-        jamaica.setCantidad(cantidadJamaica);
-        String cJamaica = String.valueOf(cantidadJamaica);
-        cantJamaica.setText(cJamaica);
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        if (listaProductos.contains(jamaica) && cantidadJamaica > 1) {
-            cantidadJamaica--;
+       if (stockTemporalJamaica > 0) {
+            stockTemporalJamaica--;
+            actualizarStockTemporal();
+            if (!listaProductos.contains(jamaica)) {
+                listaProductos.add(jamaica);
+            }
+            cantidadJamaica++;
             jamaica.setCantidad(cantidadJamaica);
             String cJamaica = String.valueOf(cantidadJamaica);
             cantJamaica.setText(cJamaica);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
         } else {
-            cantidadJamaica = 0;
-            jamaica.setCantidad(cantidadJamaica);
-            cantJamaica.setText("0");
-            if (listaProductos.contains(jamaica)) {
-                listaProductos.remove(jamaica);
-            }
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
+            System.out.println("No hay más stock disponible de Jamaica.");
         }
     }//GEN-LAST:event_jButton36ActionPerformed
 
@@ -1738,35 +1790,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        if (!listaProductos.contains(horchata)) {
-            listaProductos.add(horchata);
+         if (cantidadHorchata > 0) { 
+            stockTemporalHorchata++; 
+            actualizarStockTemporal();
+            cantidadHorchata--;
+            if (cantidadHorchata == 0) {
+                listaProductos.remove(horchata); 
+            } else {
+                horchata.setCantidad(cantidadHorchata);
+            }
+            String cHorchata = String.valueOf(cantidadHorchata);
+            cantHorchata.setText(cHorchata);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
-
-        cantidadHorchata++;
-        horchata.setCantidad(cantidadHorchata);
-        String cHorchata = String.valueOf(cantidadHorchata);
-        cantHorchata.setText(cHorchata);
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        if (listaProductos.contains(horchata) && cantidadHorchata > 1) {
-            cantidadHorchata--;
+       if (stockTemporalHorchata > 0) {
+            stockTemporalHorchata--;
+            actualizarStockTemporal();
+            if (!listaProductos.contains(horchata)) {
+                listaProductos.add(horchata);
+            }
+            cantidadHorchata++;
             horchata.setCantidad(cantidadHorchata);
-            String cAgua = String.valueOf(cantidadHorchata);
-            cantHorchata.setText(cAgua);
+            String cHorchata = String.valueOf(cantidadHorchata);
+            cantHorchata.setText(cHorchata);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
         } else {
-            cantidadHorchata = 0;
-            horchata.setCantidad(cantidadHorchata);
-            cantHorchata.setText("0");
-            if (listaProductos.contains(horchata)) {
-                listaProductos.remove(horchata);
-            }
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
+            System.out.println("No hay más stock disponible de Horchata.");
         }
     }//GEN-LAST:event_jButton39ActionPerformed
 
@@ -1781,35 +1835,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton40ActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
-        if (!listaProductos.contains(agua)) {
-            listaProductos.add(agua);
+        if (cantidadAgua > 0) { 
+            stockTemporalAgua++; 
+            actualizarStockTemporal();
+            cantidadAgua--;
+            if (cantidadAgua == 0) {
+                listaProductos.remove(agua); 
+            } else {
+                agua.setCantidad(cantidadAgua);
+            }
+            String cAgua = String.valueOf(cantidadAgua);
+            cantAgua.setText(cAgua);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
         }
-
-        cantidadAgua++;
-        agua.setCantidad(cantidadAgua);
-        String cAgua = String.valueOf(cantidadAgua);
-        cantAgua.setText(cAgua);
-        cargarDatosTabla(tablaOrden, listaProductos);
-        actualizarTotal(listaProductos);
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-        if (listaProductos.contains(agua) && cantidadAgua > 1) {
-            cantidadAgua--;
+       if (stockTemporalAgua > 0) {
+            stockTemporalAgua--;
+            actualizarStockTemporal();
+            if (!listaProductos.contains(agua)) {
+                listaProductos.add(agua);
+            }
+            cantidadAgua++;
             agua.setCantidad(cantidadAgua);
             String cAgua = String.valueOf(cantidadAgua);
             cantAgua.setText(cAgua);
             cargarDatosTabla(tablaOrden, listaProductos);
             actualizarTotal(listaProductos);
         } else {
-            cantidadAgua = 0;
-            agua.setCantidad(cantidadAgua);
-            cantAgua.setText("0");
-            if (listaProductos.contains(agua)) {
-                listaProductos.remove(agua);
-            }
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
+            System.out.println("No hay más stock disponible de Agua.");
         }
     }//GEN-LAST:event_jButton42ActionPerformed
 
@@ -2051,8 +2107,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ordenBtn;
     private javax.swing.JPanel ordenPanel;
     private javax.swing.JButton restarSencilla;
+    private javax.swing.JLabel stockAguaTxt;
     private javax.swing.JLabel stockCocaColaTxt;
     private javax.swing.JLabel stockFantaTxt;
+    private javax.swing.JLabel stockHorchataTxt;
+    private javax.swing.JLabel stockJamaicaTxt;
     private javax.swing.JLabel stockPepsiTxt;
     private javax.swing.JLabel subtotal;
     private javax.swing.JButton sumarSencilla;
