@@ -1061,11 +1061,11 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButton39" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="menosHorchataBoton" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cantHorchata" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton38" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="masHorchataBoton" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1093,8 +1093,8 @@
                       </Group>
                       <EmptySpace pref="7" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton38" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jButton39" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="masHorchataBoton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="menosHorchataBoton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="cantHorchata" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1126,7 +1126,7 @@
                 <Property name="text" type="java.lang.String" value="$20"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton38">
+            <Component class="javax.swing.JButton" name="masHorchataBoton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="7b" red="24" type="rgb"/>
@@ -1143,10 +1143,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton38ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masHorchataBotonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton39">
+            <Component class="javax.swing.JButton" name="menosHorchataBoton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
@@ -1157,7 +1157,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton39ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosHorchataBotonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="cantHorchata">
@@ -1216,11 +1216,11 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButton36" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="menosJamaicaBoton" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cantJamaica" pref="32" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton35" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="masJamaicaBoton" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1248,8 +1248,8 @@
                       </Group>
                       <EmptySpace pref="7" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton35" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jButton36" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="masJamaicaBoton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="menosJamaicaBoton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="cantJamaica" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1281,7 +1281,7 @@
                 <Property name="text" type="java.lang.String" value="$20"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton35">
+            <Component class="javax.swing.JButton" name="masJamaicaBoton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="7b" red="24" type="rgb"/>
@@ -1298,10 +1298,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton35ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masJamaicaBotonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton36">
+            <Component class="javax.swing.JButton" name="menosJamaicaBoton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
@@ -1312,7 +1312,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton36ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosJamaicaBotonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="cantJamaica">
@@ -1579,11 +1579,11 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButton42" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="menosAguaBoton" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cantAgua" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton41" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="masAguaBoton" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1611,8 +1611,8 @@
                       </Group>
                       <EmptySpace pref="7" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton41" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jButton42" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="masAguaBoton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="menosAguaBoton" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="cantAgua" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1644,7 +1644,7 @@
                 <Property name="text" type="java.lang.String" value="$15"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton41">
+            <Component class="javax.swing.JButton" name="masAguaBoton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a0" green="7b" red="24" type="rgb"/>
@@ -1661,10 +1661,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton41ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masAguaBotonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton42">
+            <Component class="javax.swing.JButton" name="menosAguaBoton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
@@ -1675,7 +1675,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton42ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosAguaBotonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="cantAgua">

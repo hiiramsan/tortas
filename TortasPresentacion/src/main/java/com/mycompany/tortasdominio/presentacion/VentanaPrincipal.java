@@ -240,16 +240,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jButton37 = new javax.swing.JButton();
         jLabel40 = new javax.swing.JLabel();
-        jButton38 = new javax.swing.JButton();
-        jButton39 = new javax.swing.JButton();
+        masHorchataBoton = new javax.swing.JButton();
+        menosHorchataBoton = new javax.swing.JButton();
         cantHorchata = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         stockHorchataTxt = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jButton34 = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
-        jButton35 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
+        masJamaicaBoton = new javax.swing.JButton();
+        menosJamaicaBoton = new javax.swing.JButton();
         cantJamaica = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         stockJamaicaTxt = new javax.swing.JLabel();
@@ -269,8 +269,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         jButton40 = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
-        jButton41 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
+        masAguaBoton = new javax.swing.JButton();
+        menosAguaBoton = new javax.swing.JButton();
         cantAgua = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         stockAguaTxt = new javax.swing.JLabel();
@@ -887,23 +887,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel40.setText("$20");
 
-        jButton38.setBackground(new java.awt.Color(36, 123, 160));
-        jButton38.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton38.setForeground(new java.awt.Color(255, 255, 255));
-        jButton38.setText("+");
-        jButton38.setBorder(null);
-        jButton38.addActionListener(new java.awt.event.ActionListener() {
+        masHorchataBoton.setBackground(new java.awt.Color(36, 123, 160));
+        masHorchataBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        masHorchataBoton.setForeground(new java.awt.Color(255, 255, 255));
+        masHorchataBoton.setText("+");
+        masHorchataBoton.setBorder(null);
+        masHorchataBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton38ActionPerformed(evt);
+                masHorchataBotonActionPerformed(evt);
             }
         });
 
-        jButton39.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton39.setText("-");
-        jButton39.setBorder(null);
-        jButton39.addActionListener(new java.awt.event.ActionListener() {
+        menosHorchataBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        menosHorchataBoton.setText("-");
+        menosHorchataBoton.setBorder(null);
+        menosHorchataBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton39ActionPerformed(evt);
+                menosHorchataBotonActionPerformed(evt);
             }
         });
 
@@ -932,11 +932,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(menosHorchataBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cantHorchata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(masHorchataBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -956,8 +956,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(stockHorchataTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(masHorchataBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menosHorchataBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantHorchata)
                     .addComponent(jLabel40))
                 .addContainerGap())
@@ -979,23 +979,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel37.setText("$20");
 
-        jButton35.setBackground(new java.awt.Color(36, 123, 160));
-        jButton35.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton35.setForeground(new java.awt.Color(255, 255, 255));
-        jButton35.setText("+");
-        jButton35.setBorder(null);
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
+        masJamaicaBoton.setBackground(new java.awt.Color(36, 123, 160));
+        masJamaicaBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        masJamaicaBoton.setForeground(new java.awt.Color(255, 255, 255));
+        masJamaicaBoton.setText("+");
+        masJamaicaBoton.setBorder(null);
+        masJamaicaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
+                masJamaicaBotonActionPerformed(evt);
             }
         });
 
-        jButton36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton36.setText("-");
-        jButton36.setBorder(null);
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
+        menosJamaicaBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        menosJamaicaBoton.setText("-");
+        menosJamaicaBoton.setBorder(null);
+        menosJamaicaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
+                menosJamaicaBotonActionPerformed(evt);
             }
         });
 
@@ -1024,11 +1024,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(menosJamaicaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cantJamaica, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(masJamaicaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1048,8 +1048,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(stockJamaicaTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(masJamaicaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menosJamaicaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantJamaica)
                     .addComponent(jLabel37))
                 .addContainerGap())
@@ -1197,23 +1197,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel47.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel47.setText("$15");
 
-        jButton41.setBackground(new java.awt.Color(36, 123, 160));
-        jButton41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton41.setForeground(new java.awt.Color(255, 255, 255));
-        jButton41.setText("+");
-        jButton41.setBorder(null);
-        jButton41.addActionListener(new java.awt.event.ActionListener() {
+        masAguaBoton.setBackground(new java.awt.Color(36, 123, 160));
+        masAguaBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        masAguaBoton.setForeground(new java.awt.Color(255, 255, 255));
+        masAguaBoton.setText("+");
+        masAguaBoton.setBorder(null);
+        masAguaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton41ActionPerformed(evt);
+                masAguaBotonActionPerformed(evt);
             }
         });
 
-        jButton42.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton42.setText("-");
-        jButton42.setBorder(null);
-        jButton42.addActionListener(new java.awt.event.ActionListener() {
+        menosAguaBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        menosAguaBoton.setText("-");
+        menosAguaBoton.setBorder(null);
+        menosAguaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton42ActionPerformed(evt);
+                menosAguaBotonActionPerformed(evt);
             }
         });
 
@@ -1242,11 +1242,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(6, 6, 6)))
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(menosAguaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cantAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(masAguaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1266,8 +1266,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(stockAguaTxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(masAguaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menosAguaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantAgua)
                     .addComponent(jLabel47))
                 .addContainerGap())
@@ -1750,25 +1750,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton34ActionPerformed
 
-    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        if (cantidadJamaica > 0) { 
-            stockTemporalJamaica++; 
-            actualizarStockTemporal();
-            cantidadJamaica--;
-            if (cantidadJamaica == 0) {
-                listaProductos.remove(jamaica); 
-            } else {
-                jamaica.setCantidad(cantidadJamaica);
-            }
-            String cJamaica = String.valueOf(cantidadJamaica);
-            cantJamaica.setText(cJamaica);
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
-        }
-    }//GEN-LAST:event_jButton35ActionPerformed
-
-    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-       if (stockTemporalJamaica > 0) {
+    private void masJamaicaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masJamaicaBotonActionPerformed
+        if (stockTemporalJamaica > 0) {
             stockTemporalJamaica--;
             actualizarStockTemporal();
             if (!listaProductos.contains(jamaica)) {
@@ -1783,31 +1766,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             System.out.println("No hay más stock disponible de Jamaica.");
         }
-    }//GEN-LAST:event_jButton36ActionPerformed
+    }//GEN-LAST:event_masJamaicaBotonActionPerformed
+
+    private void menosJamaicaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosJamaicaBotonActionPerformed
+       if (cantidadJamaica > 0) { 
+            stockTemporalJamaica++; 
+            actualizarStockTemporal();
+            cantidadJamaica--;
+            if (cantidadJamaica == 0) {
+                listaProductos.remove(jamaica); 
+            } else {
+                jamaica.setCantidad(cantidadJamaica);
+            }
+            String cJamaica = String.valueOf(cantidadJamaica);
+            cantJamaica.setText(cJamaica);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
+    }//GEN-LAST:event_menosJamaicaBotonActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton37ActionPerformed
 
-    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-         if (cantidadHorchata > 0) { 
-            stockTemporalHorchata++; 
-            actualizarStockTemporal();
-            cantidadHorchata--;
-            if (cantidadHorchata == 0) {
-                listaProductos.remove(horchata); 
-            } else {
-                horchata.setCantidad(cantidadHorchata);
-            }
-            String cHorchata = String.valueOf(cantidadHorchata);
-            cantHorchata.setText(cHorchata);
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
-        }
-    }//GEN-LAST:event_jButton38ActionPerformed
-
-    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-       if (stockTemporalHorchata > 0) {
+    private void masHorchataBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masHorchataBotonActionPerformed
+        if (stockTemporalHorchata > 0) {
             stockTemporalHorchata--;
             actualizarStockTemporal();
             if (!listaProductos.contains(horchata)) {
@@ -1822,7 +1805,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             System.out.println("No hay más stock disponible de Horchata.");
         }
-    }//GEN-LAST:event_jButton39ActionPerformed
+    }//GEN-LAST:event_masHorchataBotonActionPerformed
+
+    private void menosHorchataBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosHorchataBotonActionPerformed
+        if (cantidadHorchata > 0) { 
+            stockTemporalHorchata++; 
+            actualizarStockTemporal();
+            cantidadHorchata--;
+            if (cantidadHorchata == 0) {
+                listaProductos.remove(horchata); 
+            } else {
+                horchata.setCantidad(cantidadHorchata);
+            }
+            String cHorchata = String.valueOf(cantidadHorchata);
+            cantHorchata.setText(cHorchata);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
+    }//GEN-LAST:event_menosHorchataBotonActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         listaProductos.clear();
@@ -1834,25 +1834,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton40ActionPerformed
 
-    private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
-        if (cantidadAgua > 0) { 
-            stockTemporalAgua++; 
-            actualizarStockTemporal();
-            cantidadAgua--;
-            if (cantidadAgua == 0) {
-                listaProductos.remove(agua); 
-            } else {
-                agua.setCantidad(cantidadAgua);
-            }
-            String cAgua = String.valueOf(cantidadAgua);
-            cantAgua.setText(cAgua);
-            cargarDatosTabla(tablaOrden, listaProductos);
-            actualizarTotal(listaProductos);
-        }
-    }//GEN-LAST:event_jButton41ActionPerformed
-
-    private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-       if (stockTemporalAgua > 0) {
+    private void masAguaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masAguaBotonActionPerformed
+         if (stockTemporalAgua > 0) {
             stockTemporalAgua--;
             actualizarStockTemporal();
             if (!listaProductos.contains(agua)) {
@@ -1867,7 +1850,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             System.out.println("No hay más stock disponible de Agua.");
         }
-    }//GEN-LAST:event_jButton42ActionPerformed
+    }//GEN-LAST:event_masAguaBotonActionPerformed
+
+    private void menosAguaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosAguaBotonActionPerformed
+    if (cantidadAgua > 0) { 
+            stockTemporalAgua++; 
+            actualizarStockTemporal();
+            cantidadAgua--;
+            if (cantidadAgua == 0) {
+                listaProductos.remove(agua); 
+            } else {
+                agua.setCantidad(cantidadAgua);
+            }
+            String cAgua = String.valueOf(cantidadAgua);
+            cantAgua.setText(cAgua);
+            cargarDatosTabla(tablaOrden, listaProductos);
+            actualizarTotal(listaProductos);
+        }
+    }//GEN-LAST:event_menosAguaBotonActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         // TODO add your handling code here:
@@ -2042,15 +2042,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
-    private javax.swing.JButton jButton41;
-    private javax.swing.JButton jButton42;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -2103,6 +2097,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHora;
+    private javax.swing.JButton masAguaBoton;
+    private javax.swing.JButton masHorchataBoton;
+    private javax.swing.JButton masJamaicaBoton;
+    private javax.swing.JButton menosAguaBoton;
+    private javax.swing.JButton menosHorchataBoton;
+    private javax.swing.JButton menosJamaicaBoton;
     private javax.swing.JLabel nombreCliente;
     private javax.swing.JButton ordenBtn;
     private javax.swing.JPanel ordenPanel;
