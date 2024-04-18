@@ -4,7 +4,7 @@
  */
 package com.mycompany.admininventario;
 
-import java.util.HashMap;
+import com.mycompany.objetonegocio.InventarioProductos;
 import java.util.Map;
 
 /**
@@ -16,13 +16,8 @@ public class ControlInventario {
     private Map<String, Integer> inventario;
 
     public ControlInventario() {
-        inventario = new HashMap<>();
-        inventario.put("Coca-cola", 10);
-        inventario.put("Pepsi", 4);
-        inventario.put("Fanta", 7);
-        inventario.put("Jamaica", 2);
-        inventario.put("Horchata", 1);
-        inventario.put("Agua", 1);
+        InventarioProductos inventarioProductos = InventarioProductos.obtenerInstancia();
+        inventario = inventarioProductos.obtenerInventario();
     }
 
     public boolean verificarDisponibilidad(String nombreBebida, int cantidad) {
@@ -46,6 +41,4 @@ public class ControlInventario {
         }
         return 0;
     }
-
 }
-

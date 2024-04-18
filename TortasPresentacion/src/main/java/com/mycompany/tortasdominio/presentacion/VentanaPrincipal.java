@@ -4,7 +4,6 @@
  */
 package com.mycompany.tortasdominio.presentacion;
 
-
 import com.mycompany.admininventario.FacadeAdminInventario;
 import com.mycompany.admininventario.IInventario;
 import com.mycompany.adminorden.FacadeAdminOrden;
@@ -71,7 +70,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int stockJamaica;
     int stockHorchata;
     int stockAgua;
-    
+
     // stock temporal
     int stockTemporalCocaCola;
     int stockTemporalPepsi;
@@ -117,19 +116,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         stockFanta = inventario.getProductStock("Fanta");
         stockTemporalFanta = stockFanta;
         stockFantaTxt.setText("Stock: " + String.valueOf(stockFanta));
-        
+
         stockJamaica = inventario.getProductStock("Jamaica");
         stockTemporalJamaica = stockJamaica;
         stockJamaicaTxt.setText("Stock: " + String.valueOf(stockJamaica));
-        
+
         stockHorchata = inventario.getProductStock("Horchata");
         stockTemporalHorchata = stockHorchata;
         stockHorchataTxt.setText("Stock: " + String.valueOf(stockHorchata));
-        
+
         stockAgua = inventario.getProductStock("Agua");
         stockTemporalAgua = stockAgua;
         stockAguaTxt.setText("Stock: " + String.valueOf(stockAgua));
-        
+
     }
 
     public void actualizarStockTemporal() {
@@ -1644,12 +1643,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        if (cantidadCoca > 0) { 
-            stockTemporalCocaCola++; 
+        if (cantidadCoca > 0) {
+            stockTemporalCocaCola++;
             actualizarStockTemporal();
             cantidadCoca--;
             if (cantidadCoca == 0) {
-                listaProductos.remove(coca); 
+                listaProductos.remove(coca);
             } else {
                 coca.setCantidad(cantidadCoca);
             }
@@ -1665,7 +1664,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-     
+
         if (stockTemporalPepsi > 0) {
             stockTemporalPepsi--;
             actualizarStockTemporal();
@@ -1685,12 +1684,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        if (cantidadPepsi > 0) { 
-            stockTemporalPepsi++; 
+        if (cantidadPepsi > 0) {
+            stockTemporalPepsi++;
             actualizarStockTemporal();
             cantidadPepsi--;
             if (cantidadPepsi == 0) {
-                listaProductos.remove(pepsi); 
+                listaProductos.remove(pepsi);
             } else {
                 pepsi.setCantidad(cantidadPepsi);
             }
@@ -1722,19 +1721,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             System.out.println("No hay más stock disponible de Fanta.");
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-     
-        if (cantidadFanta > 0) { 
-            stockTemporalFanta++; 
+
+        if (cantidadFanta > 0) {
+            stockTemporalFanta++;
             actualizarStockTemporal();
             cantidadFanta--;
             if (cantidadFanta == 0) {
-                listaProductos.remove(fanta); 
+                listaProductos.remove(fanta);
             } else {
                 fanta.setCantidad(cantidadFanta);
             }
@@ -1768,12 +1766,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_masJamaicaBotonActionPerformed
 
     private void menosJamaicaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosJamaicaBotonActionPerformed
-       if (cantidadJamaica > 0) { 
-            stockTemporalJamaica++; 
+        if (cantidadJamaica > 0) {
+            stockTemporalJamaica++;
             actualizarStockTemporal();
             cantidadJamaica--;
             if (cantidadJamaica == 0) {
-                listaProductos.remove(jamaica); 
+                listaProductos.remove(jamaica);
             } else {
                 jamaica.setCantidad(cantidadJamaica);
             }
@@ -1807,12 +1805,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_masHorchataBotonActionPerformed
 
     private void menosHorchataBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosHorchataBotonActionPerformed
-        if (cantidadHorchata > 0) { 
-            stockTemporalHorchata++; 
+        if (cantidadHorchata > 0) {
+            stockTemporalHorchata++;
             actualizarStockTemporal();
             cantidadHorchata--;
             if (cantidadHorchata == 0) {
-                listaProductos.remove(horchata); 
+                listaProductos.remove(horchata);
             } else {
                 horchata.setCantidad(cantidadHorchata);
             }
@@ -1834,7 +1832,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton40ActionPerformed
 
     private void masAguaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masAguaBotonActionPerformed
-         if (stockTemporalAgua > 0) {
+        if (stockTemporalAgua > 0) {
             stockTemporalAgua--;
             actualizarStockTemporal();
             if (!listaProductos.contains(agua)) {
@@ -1852,12 +1850,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_masAguaBotonActionPerformed
 
     private void menosAguaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosAguaBotonActionPerformed
-    if (cantidadAgua > 0) { 
-            stockTemporalAgua++; 
+        if (cantidadAgua > 0) {
+            stockTemporalAgua++;
             actualizarStockTemporal();
             cantidadAgua--;
             if (cantidadAgua == 0) {
-                listaProductos.remove(agua); 
+                listaProductos.remove(agua);
             } else {
                 agua.setCantidad(cantidadAgua);
             }

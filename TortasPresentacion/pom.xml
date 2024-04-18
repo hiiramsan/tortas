@@ -13,12 +13,17 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>TortasDominio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>AdminInventario</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>TortasDominio</artifactId>
+            <artifactId>TortasDTOs</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -28,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>TortasDTOs</artifactId>
+            <artifactId>ObjetoNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
