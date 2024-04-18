@@ -12,10 +12,9 @@ import java.util.Map;
  */
 public class InventarioProductos {
 
-    private static InventarioProductos instancia = null;
+    private static InventarioProductos instancia ;
     private final Map<String, Integer> inventario;
-
-    // Constructor privado para evitar instanciación directa desde fuera de la clase
+    
     private InventarioProductos() {
         inventario = new HashMap<>();
         inventario.put("Coca-cola", 10);
@@ -25,8 +24,7 @@ public class InventarioProductos {
         inventario.put("Horchata", 1);
         inventario.put("Agua", 1);
     }
-
-    // Método estático para obtener la instancia única de la clase
+    
     public static InventarioProductos obtenerInstancia() {
         if (instancia == null) {
             instancia = new InventarioProductos();
