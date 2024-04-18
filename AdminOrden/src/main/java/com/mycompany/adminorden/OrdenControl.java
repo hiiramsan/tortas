@@ -18,6 +18,7 @@ import java.util.List;
  * @author carlo
  */
 public class OrdenControl {
+
     List<NuevaOrdenDTO> listaOrdenes = new ArrayList<>();
     List<NuevoProductoDTO> listaProductos = new ArrayList<>();
     private List<NuevaOrdenDTO> ordenes;
@@ -34,7 +35,7 @@ public class OrdenControl {
 
         for (NuevoProductoDTO producto : nuevaOrden.getListaProductos()) {
             //NuevoProductoDTO producto = new NuevoProductoDTO(nuevoProductoDTO.getNombre(), nuevoProductoDTO.getCantidad(), nuevoProductoDTO.getPrecio());
-            
+
             listaProductos.add(producto);
         }
 
@@ -45,7 +46,7 @@ public class OrdenControl {
             System.out.println("La orden se ha guardado correctamente.");
             NuevaOrdenDTO orden = new NuevaOrdenDTO(nuevaOrden.getNombreCliente(), listaProductos, nuevaOrden.getTotal(), nuevaOrden.getFecha());
             ordenes.add(orden);
-            actualizarInventrio(listaProductos);
+//            actualizarInventrio(listaProductos);
         } else {
             System.out.println("Error al guardar la orden.");
         }
@@ -114,15 +115,15 @@ public class OrdenControl {
         }
     }
 
-    public void actualizarInventrio(List<NuevoProductoDTO> listaProductos) {
-        IInventario inventario = new FacadeAdminInventario();
-
-        for (NuevoProductoDTO producto : listaProductos) {
-            inventario.actualizarInventario(producto.getNombre(), producto.getCantidad());
-            System.out.println(producto.getNombre());
-        }
-    }
-
+//    public void actualizarInventrio(List<NuevoProductoDTO> listaProductos) {
+//        IInventario inventario = new FacadeAdminInventario();
+//
+//        for (NuevoProductoDTO producto : listaProductos) {
+//            inventario.actualizarInventario(producto.getNombre(), producto.getCantidad());
+//            System.out.println(producto.getNombre());
+//        }
+//    }
+    
     public List<NuevaOrdenDTO> obtenerOrdenes() {
         return ordenes;
     }
