@@ -1,0 +1,173 @@
+{
+    "_id" : ObjectId("662afa8b9af9b47aea4ac575"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(2),
+            "categoria" : "Bebida",
+            "nombre" : "Pepsi",
+            "precio" : NumberInt(22)
+        }
+    ],
+    "nombreCliente" : "Abel",
+    "numeroOrden" : NumberInt(1),
+    "total" : 44.0
+}
+{
+    "_id" : ObjectId("662b04a49af9b47aea4ad755"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Bebida",
+            "nombre" : "Pepsi",
+            "precio" : NumberInt(22)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Torta",
+            "nombre" : "Especial",
+            "precio" : NumberInt(70)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Bebida",
+            "nombre" : "Coca-cola",
+            "precio" : NumberInt(25)
+        }
+    ],
+    "nombreCliente" : "Abel",
+    "numeroOrden" : NumberInt(1),
+    "total" : 117.0
+}
+{
+    "_id" : ObjectId("662b05059af9b47aea4ad845"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Torta",
+            "descripcion" : "",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Bebida",
+            "nombre" : "Coca-cola",
+            "precio" : NumberInt(25)
+        }
+    ],
+    "nombreCliente" : "Abel",
+    "numeroOrden" : NumberInt(1),
+    "total" : 85.0
+}
+{
+    "_id" : ObjectId("662b05969af9b47aea4ad991"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(6),
+            "categoria" : "Torta",
+            "descripcion" : "",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        },
+        {
+            "cantidad" : NumberInt(6),
+            "categoria" : "Torta",
+            "descripcion" : "",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        },
+        {
+            "cantidad" : NumberInt(6),
+            "categoria" : "Torta",
+            "descripcion" : "",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        }
+    ],
+    "nombreCliente" : "Abel",
+    "numeroOrden" : NumberInt(1),
+    "total" : 1080.0
+}
+{
+    "_id" : ObjectId("662b06949af9b47aea4adb99"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(2),
+            "categoria" : "Bebida",
+            "nombre" : "Pepsi",
+            "precio" : NumberInt(22)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Torta",
+            "descripcion" : "Bien quemado el pan",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        }
+    ],
+    "nombreCliente" : "Eduardo",
+    "numeroOrden" : NumberInt(1),
+    "total" : 104.0
+}
+{
+    "_id" : ObjectId("662b07099af9b47aea4adc9e"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Bebida",
+            "nombre" : "Pepsi",
+            "precio" : NumberInt(22)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Torta",
+            "descripcion" : "Bien quemado",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        }
+    ],
+    "nombreCliente" : "Jorge Lopez",
+    "numeroOrden" : NumberInt(2),
+    "total" : 22.0
+}
+{
+    "_id" : ObjectId("662b074a9af9b47aea4add3c"),
+    "estado" : "PENDIENTE",
+    "fecha" : "2024-4-25",
+    "listaProductos" : [
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Bebida",
+            "nombre" : "Pepsi",
+            "precio" : NumberInt(22)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Torta",
+            "descripcion" : "Bien quemao\n",
+            "nombre" : "Sencilla",
+            "precio" : NumberInt(60)
+        },
+        {
+            "cantidad" : NumberInt(1),
+            "categoria" : "Bebida",
+            "nombre" : "Fanta",
+            "precio" : NumberInt(22)
+        }
+    ],
+    "nombreCliente" : "Juanito",
+    "numeroOrden" : NumberInt(3),
+    "total" : 104.0
+}
