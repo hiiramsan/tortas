@@ -145,8 +145,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return listaProductos;
     }
 
-    public static void agregarProducto(NuevoProductoDTO producto) {
+    public void agregarProducto(NuevoProductoDTO producto) {
         listaProductos.add(producto);
+        cargarDatosTabla(tablaOrden, listaProductos);
     }
 
     public static VentanaPrincipal getInstance() {
@@ -1511,6 +1512,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         DetallesTorta DT = new DetallesTorta(tortaSencilla);
         DT.setVisible(true);
+        cargarDatosTabla(tablaOrden, listaProductos);
      }//GEN-LAST:event_jButton4ActionPerformed
 
     private void sumarSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumarSencillaActionPerformed

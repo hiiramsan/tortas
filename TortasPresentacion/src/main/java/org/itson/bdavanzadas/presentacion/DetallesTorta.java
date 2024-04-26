@@ -38,24 +38,6 @@ public class DetallesTorta extends javax.swing.JDialog {
         scrollNota.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollNota.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        // cargar cantidades desde tortaDTO
-        cantCebolla = tortaDTO.getCantCebolla();
-        cantTomate = tortaDTO.getCantTomate();
-        cantRepollo = tortaDTO.getCantRepollo();
-        cantMayonesa = tortaDTO.getCantMayonesa();
-        cantMostaza = tortaDTO.getCantMostaza();
-        cantJalapeño = tortaDTO.getCantJalapeño();
-        cantCarne = tortaDTO.getCantCarne();
-
-        // actualizarr los campos de texto con las cantidades
-        tomateTxt.setText(String.valueOf(cantTomate));
-        carneTxt.setText(String.valueOf(cantCarne));
-        mostazaTxt.setText(String.valueOf(cantMostaza));
-        repolloTxt.setText(String.valueOf(cantRepollo));
-        cebollaTxt.setText(String.valueOf(cantCebolla));
-        mayonesaTxt.setText(String.valueOf(cantMayonesa));
-        jalapenoTxt.setText(String.valueOf(cantJalapeño));
-
     }
 
     /**
@@ -600,6 +582,7 @@ public class DetallesTorta extends javax.swing.JDialog {
         tortaDTO.setCantRepollo(cantRepollo);
         tortaDTO.setDescripcion(txtNota.getText());
         agregarProductoALista();
+        
         dispose();
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
@@ -612,10 +595,10 @@ public class DetallesTorta extends javax.swing.JDialog {
          }
          
          if(listaProductos.isEmpty()) {
-             System.out.println("no hay listawe ");
+             System.out.println("no hay lista");
          }
          
-         VentanaPrincipal.agregarProducto(tortaDTO);
+         ventanaPrincipal.agregarProducto(tortaDTO);
 
     }
 
