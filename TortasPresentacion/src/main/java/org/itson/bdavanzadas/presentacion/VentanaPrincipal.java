@@ -1511,7 +1511,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        DetallesTorta DT = new DetallesTorta(tortaSencilla);
+        DetallesTorta DT = new DetallesTorta();
         DT.setVisible(true);
         cargarDatosTabla(tablaOrden, listaProductos);
      }//GEN-LAST:event_jButton4ActionPerformed
@@ -1550,7 +1550,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_restarSencillaActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        DetallesTorta DT = new DetallesTorta(tortaEspecial);
+        DetallesTorta DT = new DetallesTorta();
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -1910,7 +1910,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        detallesTorta = new DetallesTorta(tortaSencilla);
+        detallesTorta = new DetallesTorta();
 
         detallesTorta.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {

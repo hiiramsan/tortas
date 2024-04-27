@@ -15,7 +15,8 @@ import javax.swing.ScrollPaneConstants;
  */
 public class DetallesTorta extends javax.swing.JDialog {
 
-    private TortaDTO tortaDTO;
+    //private TortaDTO tortaDTO;
+    TortaDTO tortaDTO = new TortaDTO("Detalles", 0, 60, "Torta");
     int cantCebolla;
     int cantTomate;
     int cantRepollo;
@@ -28,8 +29,7 @@ public class DetallesTorta extends javax.swing.JDialog {
      * Creates new form DetallesTorta
      * @param tortaDTO
      */
-    public DetallesTorta(TortaDTO tortaDTO) {
-        this.tortaDTO = tortaDTO;
+    public DetallesTorta() {
         initComponents();
         jLabel35.setText("Torta " + tortaDTO.getNombre());
         txtNota.setLineWrap(true);
