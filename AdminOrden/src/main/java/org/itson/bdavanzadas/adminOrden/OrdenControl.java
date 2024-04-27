@@ -4,8 +4,6 @@
  */
 package org.itson.bdavanzadas.adminOrden;
 
-import org.itson.bdavanzadas.adminInventario.FacadeAdminInventario;
-import org.itson.bdavanzadas.adminInventario.IInventario;
 import org.itson.bdavanzadas.dtos.Estado;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;

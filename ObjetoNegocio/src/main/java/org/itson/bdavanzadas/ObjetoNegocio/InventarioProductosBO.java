@@ -18,18 +18,17 @@ import org.itson.bdavanzadas.persistencia.entidades.Producto;
  */
 public class InventarioProductosBO {
 
-    private static InventarioProductosBO instancia ;
+    private static InventarioProductosBO instancia;
     private final Map<String, Integer> inventario;
     private IInventarioDAO inventarioDAO;
-    
+
     private InventarioProductosBO() {
         IConexion conexion = new Conexion();
         inventarioDAO = new InventarioDAO(conexion);
-        
-        inventario = new HashMap<>();
 
+        inventario = new HashMap<>();
     }
-    
+
     public static InventarioProductosBO obtenerInstancia() {
         if (instancia == null) {
             instancia = new InventarioProductosBO();
@@ -39,17 +38,14 @@ public class InventarioProductosBO {
 
     public Map<String, Integer> obtenerInventario() {
         List<Producto> productos = inventarioDAO.obtenerInventario();
-        int cantidadCoca;
-        int cantidadPepsi;
-        int cantidadFanta;
-        int cantidadJamaica;
-        int cantidadHorchata;
-        int cantindadAgua;
-                
+
         for (Producto producto : productos) {
             inventario.put(producto.getNombre(), producto.getCantidad());
         }
-   
         return inventario;
+    }
+
+    public void actualizarInventario(String nombreBebida, int cantidad) {
+        inventarioDAO.actualizarInventario(nombreBebida, cantidad);
     }
 }

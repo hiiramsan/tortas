@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.Document;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
 
 /**
@@ -19,24 +20,49 @@ import org.itson.bdavanzadas.persistencia.entidades.Producto;
  * @author Abe
  */
 public class InventarioDAO implements IInventarioDAO {
-    
+
     public IConexion conexion;
     public String nombreColeccion = "productos";
     static final Logger logger = Logger.getLogger(InventarioDAO.class.getName());
-    
-    public InventarioDAO(IConexion conexion){
+
+    public InventarioDAO(IConexion conexion) {
         this.conexion = conexion;
     }
-    
+
     @Override
-    public List<Producto> obtenerInventario(){
-        MongoDatabase base= conexion.obtenerBaseDatos();
-        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion,Producto.class);
-        
+    public List<Producto> obtenerInventario() {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
+
         List<Producto> productos = new ArrayList<>();
         coleccion.find().into(productos);
         logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
-        
+
         return productos;
+    }
+
+    @Override
+    public void actualizarInventario(String nombreBebida, int cantidad) {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
+
+        // Consultar el producto por su nombre
+        Producto producto = coleccion.find(eq("nombre", nombreBebida)).first();
+
+        if (producto != null) {
+            // Actualizar la cantidad del producto usando $inc para restar la cantidad proporcionada
+            coleccion.updateOne(eq("nombre", nombreBebida),
+                    new Document("$inc", new Document("cantidad", -cantidad)));
+
+            // Log de información
+            logger.log(Level.INFO, "Se actualizó el inventario de {0} restando {1}", new Object[]{nombreBebida, cantidad});
+        } else {
+            logger.log(Level.WARNING, "No se encontró la bebida {0} en el inventario", nombreBebida);
+        }
+
+        // Devolver todos los productos
+        List<Producto> productos = new ArrayList<>();
+        coleccion.find().into(productos);
+        logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
     }
 }

@@ -46,14 +46,14 @@ public class OrdenDAO implements IOrdenDAO {
     public Orden registrarOrden(NuevaOrdenDTO ordenDTO) {
         MongoDatabase base = conexion.obtenerBaseDatos();
         MongoCollection<Orden> coleccion = base.getCollection(nombreColeccion, Orden.class);
-        
+
         Orden orden = new Orden();
         orden.setNombreCliente(ordenDTO.getNombreCliente());
         orden.setNumeroOrden(ordenDTO.getNumeroOrden());
         List<NuevoProductoDTO> productosDTO = ordenDTO.getListaProductos();
         List<Producto> productos = new ArrayList<>();
 
-        for ( NuevoProductoDTO producto: productosDTO) {
+        for (NuevoProductoDTO producto : productosDTO) {
             Producto productoAgregar = new Producto();
             productoAgregar.setCantidad(producto.getCantidad());
             productoAgregar.setCategoria(producto.getCategoria());
@@ -67,11 +67,10 @@ public class OrdenDAO implements IOrdenDAO {
         orden.setTotal(ordenDTO.getTotal());
         orden.setFecha(ordenDTO.getFecha().toString());
         orden.setEstado(ordenDTO.getEstado().toString());
-        
+
         coleccion.insertOne(orden);
         logger.log(Level.INFO, "Se insertaron {0} ordenes", orden.toString());
-        
+
         return orden;
     }
-
 }

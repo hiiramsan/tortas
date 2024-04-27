@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package org.itson.bdavanzadas.presentacion;
+
 import org.itson.bdavanzadas.adminInventario.FacadeAdminInventario;
 import org.itson.bdavanzadas.adminInventario.IInventario;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
@@ -60,8 +61,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private static DetallesTorta detallesTorta;
     private static List<NuevoProductoDTO> listaProductos = new ArrayList<>();
     private static List<NuevaOrdenDTO> listaOrden = new ArrayList<>();
+
     IInventario inventario = new FacadeAdminInventario();
-    
     IAdminOrden adminOrden = new FacadeAdminOrden();
 
     // stock
@@ -1897,9 +1898,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()), new Fecha());
         adminOrden.generarOrden(orden);
-//        for (NuevoProductoDTO listaProducto : listaProductos) {
-//            inventario.actualizarInventario(listaProducto.getNombre(), listaProducto.getCantidad());
-//        }
+        //
+        for (NuevoProductoDTO listaProducto : listaProductos) {
+            inventario.actualizarInventario(listaProducto.getNombre(), listaProducto.getCantidad());
+        }
         resetCantidades();
         JOptionPane.showMessageDialog(null, "La orden se ha enviado con éxito");
         listaProductos.clear();

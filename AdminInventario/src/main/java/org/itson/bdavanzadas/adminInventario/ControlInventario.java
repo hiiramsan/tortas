@@ -14,10 +14,11 @@ import java.util.Map;
 public class ControlInventario {
 
     private Map<String, Integer> inventario;
+    private InventarioProductosBO operacion;
 
     public ControlInventario() {
-        InventarioProductosBO inventarioProductos = InventarioProductosBO.obtenerInstancia();
-        inventario = inventarioProductos.obtenerInventario();
+        operacion = InventarioProductosBO.obtenerInstancia();
+        inventario = operacion.obtenerInventario();
     }
 
     public boolean verificarDisponibilidad(String nombreBebida, int cantidad) {
@@ -32,6 +33,7 @@ public class ControlInventario {
         if (inventario.containsKey(nombreBebida)) {
             int cantidadDisponible = inventario.get(nombreBebida);
             inventario.put(nombreBebida, cantidadDisponible - cantidad);
+            operacion.actualizarInventario(nombreBebida, cantidad);
         }
     }
 

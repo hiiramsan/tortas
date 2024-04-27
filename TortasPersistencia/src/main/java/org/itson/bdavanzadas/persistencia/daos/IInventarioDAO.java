@@ -12,5 +12,8 @@ import org.itson.bdavanzadas.persistencia.entidades.Producto;
  * @author Abe
  */
 public interface IInventarioDAO {
+
     public List<Producto> obtenerInventario();
+
+    public void actualizarInventario(String nombreBebida, int cantidad);
 }
