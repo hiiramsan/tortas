@@ -13,8 +13,8 @@ import org.itson.bdavanzadas.persistencia.entidades.Orden;
  * @author Abe
  */
 public interface IOrdenDAO {
-    List<Orden> obtenerOrdenes();
-    
+
     Orden registrarOrden(NuevaOrdenDTO ordenDTO);
-    
+
+    List<Orden> obtenerOrdenes();
 }

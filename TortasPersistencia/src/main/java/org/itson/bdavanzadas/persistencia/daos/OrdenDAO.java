@@ -65,8 +65,8 @@ public class OrdenDAO implements IOrdenDAO {
         }
         orden.setListaProductos(productos);
         orden.setTotal(ordenDTO.getTotal());
-        orden.setFecha(ordenDTO.getFecha().toString());
-        orden.setEstado(ordenDTO.getEstado().toString());
+        orden.setFecha(ordenDTO.getFecha());
+        orden.setEstado(ordenDTO.getEstado());
 
         coleccion.insertOne(orden);
         logger.log(Level.INFO, "Se insertaron {0} ordenes", orden.toString());

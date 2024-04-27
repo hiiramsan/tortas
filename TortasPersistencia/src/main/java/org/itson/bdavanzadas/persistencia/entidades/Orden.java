@@ -4,19 +4,22 @@
  */
 package org.itson.bdavanzadas.persistencia.entidades;
 
+import java.util.Date;
 import java.util.List;
+import org.itson.bdavanzadas.dtos.Estado;
 
 /**
  *
  * @author Abe
  */
 public class Orden {
+
     private int numeroOrden;
     private float total;
     private List<Producto> listaProductos;
     private String nombreCliente;
-    private String estado;
-    private String fecha;
+    private Estado estado;
+    private Date fecha;
 
     public Orden() {
     }
@@ -53,27 +56,33 @@ public class Orden {
         this.nombreCliente = nombreCliente;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
     @Override
     public String toString() {
-        return "Orden{" + "numeroOrden=" + numeroOrden + ", total=" + total + ", listaProductos=" + listaProductos + ", nombreCliente=" + nombreCliente + ", estado=" + estado + ", fecha=" + fecha + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Orden{");
+        sb.append("numeroOrden=").append(numeroOrden);
+        sb.append(", total=").append(total);
+        sb.append(", listaProductos=").append(listaProductos);
+        sb.append(", nombreCliente=").append(nombreCliente);
+        sb.append(", estado=").append(estado);
+        sb.append(", fecha=").append(fecha);
+        sb.append('}');
+        return sb.toString();
     }
-    
-    
-
 }

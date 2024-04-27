@@ -11,6 +11,7 @@ import org.bson.types.ObjectId;
  * @author Abe
  */
 public class Producto {
+
     //se debe cambiar posteriormente por tipo int y no objectID
     //para que no este asociado solo a mongodb
     private ObjectId id;
@@ -23,7 +24,7 @@ public class Producto {
 
     public Producto() {
     }
-    
+
     public ObjectId getId() {
         return id;
     }
@@ -84,7 +85,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "id=" + id + ", cantidad=" + cantidad + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", categoria=" + categoria + ", notas=" + notas + '}';
     }
-    
-    
-    
+
 }

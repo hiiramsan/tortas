@@ -4,8 +4,6 @@
  */
 package org.itson.bdavanzadas.dtos;
 
-import java.util.Map;
-
 /**
  *
  * @author carlitossssssssss

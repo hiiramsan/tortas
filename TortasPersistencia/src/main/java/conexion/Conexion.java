@@ -22,18 +22,15 @@ public class Conexion implements IConexion {
 
     public String cadenaConexion = "mongodb://127.0.0.1:27017";
     public String nombreBaseDatos = "tortasSallela";
-    
 
     public Conexion() {
     }
 
     @Override
     public MongoDatabase obtenerBaseDatos() {
-       CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
-        
-        
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(cadenaConexion))
                 .codecRegistry(pojoCodecRegistry)
@@ -43,9 +40,7 @@ public class Conexion implements IConexion {
         //MongoClient cliente = MongoClients.create(cadenaConexion);
         MongoDatabase baseDatos = cliente.getDatabase(nombreBaseDatos);
         return baseDatos;
-    };
-    
+    }
+;
 
-
-    
 }

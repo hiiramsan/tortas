@@ -22,7 +22,6 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import org.itson.bdavanzadas.persistencia.componentes.Fecha;
 
 /**
  * @author Abel Eduardo Sanchez Guerrero | 00000
@@ -1896,7 +1895,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ordenBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()), new Fecha());
+        NuevaOrdenDTO orden = new NuevaOrdenDTO(nombreCliente.getText(), listaProductos, Float.parseFloat(total.getText()), new Date());
         adminOrden.generarOrden(orden);
         //
         for (NuevoProductoDTO listaProducto : listaProductos) {

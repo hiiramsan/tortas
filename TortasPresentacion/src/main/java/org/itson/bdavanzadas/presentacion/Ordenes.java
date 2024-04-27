@@ -10,6 +10,8 @@ import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
+import org.itson.bdavanzadas.adminOrden.IAdminOrden;
 
 /**
  *
@@ -18,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class Ordenes extends javax.swing.JFrame {
 
     List<NuevaOrdenDTO> listaOrden;
+    IAdminOrden adminOrden = new FacadeAdminOrden();
 
     /**
      * Creates new form Ordenes
@@ -25,7 +28,7 @@ public class Ordenes extends javax.swing.JFrame {
      * @param listaOrden
      */
     public Ordenes(List<NuevaOrdenDTO> listaOrden) {
-        this.listaOrden = listaOrden;
+        listaOrden = adminOrden.obtenerOrdenes();
         initComponents();
         llenarTabla(listaOrden);
     }

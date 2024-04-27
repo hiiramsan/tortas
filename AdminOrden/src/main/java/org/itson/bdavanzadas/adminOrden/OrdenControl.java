@@ -35,8 +35,6 @@ public class OrdenControl {
         List<NuevoProductoDTO> listaProductos = new ArrayList<>();
 
         for (NuevoProductoDTO producto : nuevaOrden.getListaProductos()) {
-            //NuevoProductoDTO producto = new NuevoProductoDTO(nuevoProductoDTO.getNombre(), nuevoProductoDTO.getCantidad(), nuevoProductoDTO.getPrecio());
-
             listaProductos.add(producto);
         }
 
@@ -47,7 +45,6 @@ public class OrdenControl {
             System.out.println("La orden se ha guardado correctamente.");
             ordenes.add(nuevaOrden);
             ordenBO.agregarOrden(nuevaOrden);
-//            actualizarInventrio(listaProductos);
         } else {
             System.out.println("Error al guardar la orden.");
         }
@@ -111,21 +108,11 @@ public class OrdenControl {
                 System.out.println("Mayonesa: " + torta.getCantMayonesa());
                 System.out.println("Mostaza: " + torta.getCantMostaza());
                 System.out.println("Carne: " + torta.getCantCarne());
-
             }
         }
     }
 
-//    public void actualizarInventrio(List<NuevoProductoDTO> listaProductos) {
-//        IInventario inventario = new FacadeAdminInventario();
-//
-//        for (NuevoProductoDTO producto : listaProductos) {
-//            inventario.actualizarInventario(producto.getNombre(), producto.getCantidad());
-//            System.out.println(producto.getNombre());
-//        }
-//    }
-    
     public List<NuevaOrdenDTO> obtenerOrdenes() {
-        return ordenes;
+        return ordenBO.obtenerOrden();
     }
 }

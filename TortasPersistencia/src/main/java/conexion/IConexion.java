@@ -11,6 +11,6 @@ import com.mongodb.client.MongoDatabase;
  * @author Abe
  */
 public interface IConexion {
-    
+
     public MongoDatabase obtenerBaseDatos();
 }

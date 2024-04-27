@@ -4,8 +4,8 @@
  */
 package org.itson.bdavanzadas.dtos;
 
+import java.util.Date;
 import java.util.List;
-import org.itson.bdavanzadas.persistencia.componentes.Fecha;
 
 /**
  *
@@ -20,14 +20,14 @@ public class NuevaOrdenDTO {
     private List<NuevoProductoDTO> listaProductos;
     private String nombreCliente;
     private Estado estado;
-    private Fecha fecha;
+    private Date fecha;
 
     public NuevaOrdenDTO() {
         this.numeroOrden = proximoNumeroOrden++;
         this.estado = Estado.PENDIENTE;
     }
 
-    public NuevaOrdenDTO(String nombreCliente, List<NuevoProductoDTO> listaProductos, float total, Fecha fecha) {
+    public NuevaOrdenDTO(String nombreCliente, List<NuevoProductoDTO> listaProductos, float total, Date fecha) {
         this.numeroOrden = proximoNumeroOrden++;
         this.total = total;
         this.listaProductos = listaProductos;
@@ -84,11 +84,11 @@ public class NuevaOrdenDTO {
         this.estado = estado;
     }
 
-    public Fecha getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Fecha fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
