@@ -33,10 +33,6 @@ public class OrdenBO {
     }
 
     public List<NuevaOrdenDTO> obtenerOrden() {
-        return convertirDTO();
-    }
-
-    public List<NuevaOrdenDTO> convertirDTO() {
         List<Orden> ordenes = ordenDAO.obtenerOrdenes();
         List<NuevaOrdenDTO> ordenesDTO = new ArrayList<>();
 
@@ -48,14 +44,18 @@ public class OrdenBO {
             ordenDTO.setNumeroOrden(orden.getNumeroOrden());
 
             List<NuevoProductoDTO> productosDTO = new ArrayList<>();
+            float total = 0.0f;
 
             for (Producto producto : orden.getListaProductos()) {
                 NuevoProductoDTO nuevoProductoDTO = new NuevoProductoDTO();
                 nuevoProductoDTO.setNombre(producto.getNombre());
                 nuevoProductoDTO.setPrecio(producto.getPrecio());
+                nuevoProductoDTO.setCantidad(producto.getCantidad()); 
                 productosDTO.add(nuevoProductoDTO);
+                total += producto.getCantidad() * producto.getPrecio(); // 
             }
             ordenDTO.setListaProductos(productosDTO);
+            ordenDTO.setTotal(total); 
             ordenesDTO.add(ordenDTO);
         }
         return ordenesDTO;
