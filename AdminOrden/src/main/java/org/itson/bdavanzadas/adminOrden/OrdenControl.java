@@ -115,4 +115,8 @@ public class OrdenControl {
     public List<NuevaOrdenDTO> obtenerOrdenes() {
         return ordenBO.obtenerOrden();
     }
+    
+    public Double obtenerPrecioPorNombre(String nombreProducto) {
+        return ordenBO.obtenerPrecioPorNombre(nombreProducto);
+    }
 }

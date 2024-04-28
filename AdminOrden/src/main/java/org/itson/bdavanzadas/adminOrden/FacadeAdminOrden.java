@@ -38,4 +38,9 @@ public class FacadeAdminOrden implements IAdminOrden {
     public void especificacionesOrden(NuevaOrdenDTO orden) {
         ordenControl.especificacionesOrden(orden);
     }
+    
+    @Override
+    public Double obtenerPrecioPorNombre(String nombreProducto) {
+       return ordenControl.obtenerPrecioPorNombre(nombreProducto);
+    }
 }

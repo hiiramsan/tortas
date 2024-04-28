@@ -50,7 +50,6 @@ public class Ordenes extends javax.swing.JFrame {
             StringBuilder productosString = new StringBuilder(); // Crear una nueva cadena para cada orden
             for (NuevoProductoDTO producto : orden.getListaProductos()) {
                 productosString.append(producto.getNombre()).append(" x").append(producto.getCantidad()).append(", ");
-                System.out.println(producto.getCantidad());
             }
             String productosFormatted = productosString.toString();
             if (productosFormatted.length() > 2) {
@@ -66,7 +65,6 @@ public class Ordenes extends javax.swing.JFrame {
                 fechaFormatted
             };
             ordenesEncontradas.addRow(fila);
-            System.out.println(orden.getTotal());
         }
         jTPOrden.setModel(ordenesEncontradas);
     }

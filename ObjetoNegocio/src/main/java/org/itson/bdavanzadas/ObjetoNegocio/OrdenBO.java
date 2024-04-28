@@ -4,10 +4,13 @@
  */
 package org.itson.bdavanzadas.ObjetoNegocio;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import conexion.Conexion;
 import conexion.IConexion;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.persistencia.daos.IOrdenDAO;
@@ -52,12 +55,16 @@ public class OrdenBO {
                 nuevoProductoDTO.setPrecio(producto.getPrecio());
                 nuevoProductoDTO.setCantidad(producto.getCantidad()); 
                 productosDTO.add(nuevoProductoDTO);
-                total += producto.getCantidad() * producto.getPrecio(); // 
+                total += producto.getCantidad() * producto.getPrecio(); 
             }
             ordenDTO.setListaProductos(productosDTO);
             ordenDTO.setTotal(total); 
             ordenesDTO.add(ordenDTO);
         }
         return ordenesDTO;
+    }
+    
+    public Double obtenerPrecioPorNombre(String nombreProducto) {
+        return ordenDAO.obtenerPrecioPorNombre(nombreProducto);  
     }
 }

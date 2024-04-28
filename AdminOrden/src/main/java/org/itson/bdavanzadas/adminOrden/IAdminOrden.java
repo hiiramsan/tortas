@@ -22,4 +22,6 @@ public interface IAdminOrden {
     public void completarOrden(int index);
 
     public void especificacionesOrden(NuevaOrdenDTO orden);
+    
+    public Double obtenerPrecioPorNombre(String nombreProducto);
 }

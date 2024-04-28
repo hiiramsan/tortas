@@ -14,21 +14,21 @@ public class NuevoProductoDTO {
     private int cantidad;
     private String nombre;
     private String descripcion;
-    private int precio;
+    private double precio;
     private String categoria;
     private String notas;
 
     public NuevoProductoDTO() {
     }
 
-    public NuevoProductoDTO(String nombre, int cantidad, int precio, String categoria) {
+    public NuevoProductoDTO(String nombre, int cantidad, double precio, String categoria) {
         this.cantidad = cantidad;
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
     }
 
-    public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, int precio, String categoria, String notas) {
+    public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, double precio, String categoria, String notas) {
         this.id = id;
         this.cantidad = cantidad;
         this.nombre = nombre;
@@ -70,11 +70,11 @@ public class NuevoProductoDTO {
         this.descripcion = descripcion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

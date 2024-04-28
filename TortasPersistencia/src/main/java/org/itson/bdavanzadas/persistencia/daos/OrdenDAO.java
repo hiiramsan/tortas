@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.Document;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
@@ -72,5 +73,20 @@ public class OrdenDAO implements IOrdenDAO {
         logger.log(Level.INFO, "Se insertaron {0} ordenes", orden.toString());
 
         return orden;
+    }
+    
+    @Override
+    public Double obtenerPrecioPorNombre(String nombreProducto) {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<org.bson.Document> collection = base.getCollection("productos");
+        Document query = new Document("nombre", nombreProducto);
+        
+        Document result = collection.find(query).first();
+
+        if (result != null) {
+            return result.getDouble("precio");
+        } else {
+            return null;
+        }
     }
 }

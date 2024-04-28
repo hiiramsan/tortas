@@ -18,7 +18,7 @@ public class Producto {
     private int cantidad;
     private String nombre;
     private String descripcion;
-    private int precio;
+    private double precio;
     private String categoria;
     private String notas;
 
@@ -57,11 +57,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
