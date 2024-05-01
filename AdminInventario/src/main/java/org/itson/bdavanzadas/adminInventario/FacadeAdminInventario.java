@@ -4,6 +4,9 @@
  */
 package org.itson.bdavanzadas.adminInventario;
 
+import java.util.List;
+import org.itson.bdavanzadas.persistencia.entidades.Producto;
+
 /**
  *
  * @author carlo
@@ -28,5 +31,10 @@ public class FacadeAdminInventario implements IInventario {
     @Override
     public int getProductStock(String nombreBebida) {
         return control.getProductStock(nombreBebida);
+    }
+    
+    @Override
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
+        return control.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
     }
 }

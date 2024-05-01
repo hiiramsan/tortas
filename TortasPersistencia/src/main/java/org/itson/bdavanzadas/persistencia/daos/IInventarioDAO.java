@@ -16,4 +16,6 @@ public interface IInventarioDAO {
     public List<Producto> obtenerInventario();
 
     public void actualizarInventario(String nombreBebida, int cantidad);
+    
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto);
 }

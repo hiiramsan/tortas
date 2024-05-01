@@ -48,4 +48,9 @@ public class InventarioProductosBO {
     public void actualizarInventario(String nombreBebida, int cantidad) {
         inventarioDAO.actualizarInventario(nombreBebida, cantidad);
     }
+    
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
+        List<Producto> productos = inventarioDAO.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
+        return productos;
+    }
 }

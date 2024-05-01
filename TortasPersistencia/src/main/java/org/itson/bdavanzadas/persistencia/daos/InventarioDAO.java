@@ -6,14 +6,18 @@ package org.itson.bdavanzadas.persistencia.daos;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import conexion.IConexion;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
+//import com.mongodb.client.filters.Filters;
 
 /**
  *
@@ -65,4 +69,24 @@ public class InventarioDAO implements IInventarioDAO {
         coleccion.find().into(productos);
         logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
     }
+
+    @Override
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
+
+        List<Producto> productos = new ArrayList<>();
+        Bson filtro = soloStockLimit ? Filters.lte("cantidad", stockLimit) : new Document();
+        coleccion.find(filtro).into(productos);
+        if (filtrarPorStockAlto) {
+            productos.sort(Comparator.comparingInt(Producto::getCantidad).reversed());
+        } else {
+            productos.sort(Comparator.comparingInt(Producto::getCantidad));
+        }
+
+        logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
+
+        return productos;
+    }
+
 }

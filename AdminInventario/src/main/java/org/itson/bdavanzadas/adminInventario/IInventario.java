@@ -4,6 +4,9 @@
  */
 package org.itson.bdavanzadas.adminInventario;
 
+import java.util.List;
+import org.itson.bdavanzadas.persistencia.entidades.Producto;
+
 /**
  *
  * @author carlo
@@ -15,4 +18,6 @@ public interface IInventario {
     void actualizarInventario(String nombreBebida, int cantidad);
 
     int getProductStock(String nombreBebida);
+    
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto);
 }
