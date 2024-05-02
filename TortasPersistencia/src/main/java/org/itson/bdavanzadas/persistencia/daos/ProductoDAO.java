@@ -26,7 +26,7 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public void agregarNuevoProducto(String nombre, String descripcion, double precio, String categoria) {
+    public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria) {
         MongoDatabase base = conexion.obtenerBaseDatos();
         MongoCollection<Document> coleccion = base.getCollection(nombreColeccion);
 
@@ -35,8 +35,8 @@ public class ProductoDAO implements IProductoDAO {
                 .append("nombre", nombre)
                 .append("descripcion", descripcion)
                 .append("precio", precio)
-                .append("categoria", categoria)
-                .append("cantidad", 0); // Inicialmente, la cantidad será cero
+                .append("cantidad", cantidad)
+                .append("categoria", categoria);
 
         // Insertar el nuevo producto en la colección
         coleccion.insertOne(nuevoProducto);

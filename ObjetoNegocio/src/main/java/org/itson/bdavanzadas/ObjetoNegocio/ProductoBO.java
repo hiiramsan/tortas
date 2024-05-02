@@ -22,7 +22,7 @@ public class ProductoBO {
         productoDAO = new ProductoDAO(conexion);
     }
     
-    public void agregarNuevoProducto(String nombre, String descripcion, double precio, String categoria) {
-        productoDAO.agregarNuevoProducto(nombre, descripcion, precio, categoria);
+    public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria) {
+        productoDAO.agregarNuevoProducto(nombre, descripcion, precio, cantidad, categoria);
     }
 }

@@ -10,6 +10,6 @@ package org.itson.bdavanzadas.persistencia.daos;
  */
 public interface IProductoDAO {
 
-    public void agregarNuevoProducto(String nombre, String descripcion, double precio, String categoria);
+    public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria);
 
 }
