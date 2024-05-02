@@ -17,13 +17,13 @@ public class DetallesTorta extends javax.swing.JDialog {
 
     //private TortaDTO tortaDTO;
     TortaDTO tortaDTO = new TortaDTO("Detalles", 0, 60, "Torta");
-    int cantCebolla;
-    int cantTomate;
-    int cantRepollo;
-    int cantMayonesa;
-    int cantMostaza;
-    int cantJalapeño;
-    int cantCarne;
+    int cantCebolla = 1;
+    int cantTomate = 1;
+    int cantRepollo = 1;
+    int cantMayonesa = 1;
+    int cantMostaza = 1;
+    int cantJalapeño = 1;
+    int cantCarne = 1;
 
     /**
      * Creates new form DetallesTorta
