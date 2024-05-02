@@ -1,48 +1,48 @@
 {
     "_id" : ObjectId("662ad63a4f16badd9466dc14"),
     "nombre" : "Coca-cola",
-    "cantidad" : NumberInt(4),
+    "cantidad" : NumberInt(8),
     "descripcion" : "Bebida gaseosa",
-    "precio" : NumberInt(25),
+    "precio" : 27.0,
     "categoria" : "bebida"
 }
 {
     "_id" : ObjectId("662ad63a4f16badd9466dc15"),
     "nombre" : "Pepsi",
-    "cantidad" : NumberInt(4),
+    "cantidad" : NumberInt(9),
     "descripcion" : "Bebida gaseosa",
-    "precio" : NumberInt(22),
+    "precio" : 22.0,
     "categoria" : "bebida"
 }
 {
     "_id" : ObjectId("662ad63a4f16badd9466dc16"),
     "nombre" : "Fanta",
-    "cantidad" : NumberInt(5),
+    "cantidad" : NumberInt(8),
     "descripcion" : "Bebida gaseosa",
-    "precio" : NumberInt(22),
+    "precio" : 22.0,
     "categoria" : "bebida"
 }
 {
     "_id" : ObjectId("662ad63a4f16badd9466dc17"),
     "nombre" : "Jamaica",
-    "cantidad" : NumberInt(3),
+    "cantidad" : NumberInt(10),
     "descripcion" : "Agua de sabor a Jamaica",
-    "precio" : NumberInt(20),
+    "precio" : 20.0,
     "categoria" : "bebida"
 }
 {
     "_id" : ObjectId("662ad63a4f16badd9466dc18"),
     "nombre" : "Horchata",
-    "cantidad" : NumberInt(6),
+    "cantidad" : NumberInt(7),
     "descripcion" : "Agua de sabor a horchata",
-    "precio" : NumberInt(20),
+    "precio" : 20.0,
     "categoria" : "bebida"
 }
 {
     "_id" : ObjectId("662ad63a4f16badd9466dc19"),
     "nombre" : "Agua",
-    "cantidad" : NumberInt(8),
+    "cantidad" : NumberInt(7),
     "descripcion" : "Agua",
-    "precio" : NumberInt(15),
+    "precio" : 15.0,
     "categoria" : "bebida"
 }

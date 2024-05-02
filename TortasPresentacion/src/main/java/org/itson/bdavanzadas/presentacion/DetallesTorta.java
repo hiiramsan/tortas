@@ -594,7 +594,7 @@ public class DetallesTorta extends javax.swing.JDialog {
         }
 
         if (listaProductos.isEmpty()) {
-            System.out.println("no hay lista");
+            //System.out.println("no hay lista");
         }
 
         ventanaPrincipal.agregarProducto(tortaDTO);
