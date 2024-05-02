@@ -144,7 +144,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         cebollaTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         cebollaTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        cebollaTxt.setText("0");
+        cebollaTxt.setText("1");
         cebollaTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel3.add(cebollaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
@@ -173,7 +173,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         tomateTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         tomateTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        tomateTxt.setText("0");
+        tomateTxt.setText("1");
         tomateTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel5.add(tomateTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
@@ -202,7 +202,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         repolloTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         repolloTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        repolloTxt.setText("0");
+        repolloTxt.setText("1");
         repolloTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel6.add(repolloTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
@@ -257,7 +257,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         mostazaTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         mostazaTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        mostazaTxt.setText("0");
+        mostazaTxt.setText("1");
         mostazaTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel7.add(mostazaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
@@ -286,7 +286,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         jalapenoTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jalapenoTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        jalapenoTxt.setText("0");
+        jalapenoTxt.setText("1");
         jalapenoTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel8.add(jalapenoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
@@ -315,7 +315,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         carneTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         carneTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        carneTxt.setText("0");
+        carneTxt.setText("1");
         carneTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel9.add(carneTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 21));
 
@@ -331,7 +331,7 @@ public class DetallesTorta extends javax.swing.JDialog {
 
         mayonesaTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         mayonesaTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoBarra.png"))); // NOI18N
-        mayonesaTxt.setText("0");
+        mayonesaTxt.setText("1");
         mayonesaTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btnMasPan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonMas2.png"))); // NOI18N
