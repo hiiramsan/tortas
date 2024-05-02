@@ -8,7 +8,6 @@ import java.util.List;
 import org.itson.bdavanzadas.ObjetoNegocio.InventarioProductosBO;
 import java.util.Map;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
-import org.itson.bdavanzadas.persistencia.entidades.Producto;
 
 /**
  *
@@ -46,7 +45,7 @@ public class ControlInventario {
         }
         return 0;
     }
-    
+
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
         return operacion.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
     }

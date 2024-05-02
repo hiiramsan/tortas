@@ -4,10 +4,7 @@
  */
 package org.itson.bdavanzadas.persistencia.daos;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import java.util.List;
-import org.bson.Document;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
 
@@ -20,6 +17,6 @@ public interface IOrdenDAO {
     Orden registrarOrden(NuevaOrdenDTO ordenDTO);
 
     List<Orden> obtenerOrdenes();
-    
+
     public Double obtenerPrecioPorNombre(String nombreProducto);
 }

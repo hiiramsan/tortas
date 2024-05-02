@@ -27,7 +27,6 @@ public class InventarioProductosBO {
     private InventarioProductosBO() {
         IConexion conexion = new Conexion();
         inventarioDAO = new InventarioDAO(conexion);
-
         inventario = new HashMap<>();
     }
 
@@ -50,11 +49,11 @@ public class InventarioProductosBO {
     public void actualizarInventario(String nombreBebida, int cantidad) {
         inventarioDAO.actualizarInventario(nombreBebida, cantidad);
     }
-    
+
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
         List<Producto> productos = inventarioDAO.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
         List<NuevoProductoDTO> productosDTO = new ArrayList<>();
-        for(Producto prod : productos) {
+        for (Producto prod : productos) {
             NuevoProductoDTO productoDTO = new NuevoProductoDTO();
             productoDTO.setNombre(prod.getNombre());
             productoDTO.setCantidad(prod.getCantidad());

@@ -6,7 +6,6 @@ package org.itson.bdavanzadas.adminInventario;
 
 import java.util.List;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
-import org.itson.bdavanzadas.persistencia.entidades.Producto;
 
 /**
  *

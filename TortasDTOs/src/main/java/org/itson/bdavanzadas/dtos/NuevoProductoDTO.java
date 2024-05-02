@@ -28,6 +28,12 @@ public class NuevoProductoDTO {
         this.categoria = categoria;
     }
 
+    public NuevoProductoDTO(String nombre, int cantidad, String categoria) {
+        this.cantidad = cantidad;
+        this.nombre = nombre;
+        this.categoria = categoria;
+    }
+
     public NuevoProductoDTO(int id, int cantidad, String nombre, String descripcion, double precio, String categoria, String notas) {
         this.id = id;
         this.cantidad = cantidad;
@@ -95,4 +101,3 @@ public class NuevoProductoDTO {
     }
 
 }
-

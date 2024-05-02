@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
-//import com.mongodb.client.filters.Filters;
 
 /**
  *

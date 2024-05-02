@@ -6,13 +6,13 @@ package org.itson.bdavanzadas.adminInventario;
 
 import java.util.List;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
-import org.itson.bdavanzadas.persistencia.entidades.Producto;
 
 /**
  *
  * @author carlo
  */
 public class FacadeAdminInventario implements IInventario {
+
     private ControlInventario control;
 
     public FacadeAdminInventario() {
@@ -28,12 +28,12 @@ public class FacadeAdminInventario implements IInventario {
     public void actualizarInventario(String nombreBebida, int cantidad) {
         control.actualizarInventario(nombreBebida, cantidad);
     }
-    
+
     @Override
     public int getProductStock(String nombreBebida) {
         return control.getProductStock(nombreBebida);
     }
-    
+
     @Override
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
         return control.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
