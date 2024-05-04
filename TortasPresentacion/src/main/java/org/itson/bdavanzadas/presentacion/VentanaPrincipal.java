@@ -20,9 +20,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
 
 /**
  * @author Abel Eduardo Sanchez Guerrero | 00000
@@ -70,8 +73,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private static List<NuevoProductoDTO> listaProductos = new ArrayList<>();
     private static List<NuevaOrdenDTO> listaOrden = new ArrayList<>();
 
-    IInventario inventario = new FacadeAdminInventario();
-    IAdminOrden adminOrden = new FacadeAdminOrden();
+    IInventario inventario;
+    IAdminOrden adminOrden;
 
     // stock
     int stockCocaCola;
@@ -91,8 +94,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
+     *
+     * @throws org.itson.bdavanzadas.persistencia.exception.FindException
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal() throws FindException {
+        this.inventario = new FacadeAdminInventario();
+        this.adminOrden = new FacadeAdminOrden();
         initComponents();
         ordenPanel.setVisible(false);
 
@@ -220,7 +227,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cargarDatosTabla(tablaOrden, listaProductos);
     }
 
-    public static VentanaPrincipal getInstance() {
+    public static VentanaPrincipal getInstance() throws FindException {
         if (instance == null) {
             instance = new VentanaPrincipal();
         }
@@ -1979,7 +1986,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new VentanaPrincipal().setVisible(true);
+                try {
+                    new VentanaPrincipal().setVisible(true);
+                } catch (FindException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
