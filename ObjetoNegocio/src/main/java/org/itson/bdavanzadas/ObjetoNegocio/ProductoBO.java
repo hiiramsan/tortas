@@ -26,8 +26,8 @@ public class ProductoBO {
         productoDAO.agregarNuevoProducto(nombre, descripcion, precio, cantidad, categoria);
     }
 
-    public void actualizarProducto(String nombre, String descripcion, double precio, int cantidad, String categoria) {
-        productoDAO.actualizarProducto(nombre, descripcion, precio, cantidad, categoria);
+    public void actualizarProducto(String nombrePrevio, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio, int nuevaCantidad, String nuevaCategoria) {
+        productoDAO.actualizarProducto(nombrePrevio, nuevoNombre, nuevaDescripcion, nuevoPrecio, nuevaCantidad, nuevaCategoria);
     }
 
     public void eliminarProducto(String nombre) {

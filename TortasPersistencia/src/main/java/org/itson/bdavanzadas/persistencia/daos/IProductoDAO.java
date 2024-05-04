@@ -12,7 +12,7 @@ public interface IProductoDAO {
 
     public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria);
 
-    public void actualizarProducto(String nombre, String descripcion, double precio, int cantidad, String categoria);
+    public void actualizarProducto(String nombrePrevio, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio, int nuevaCantidad, String nuevaCategoria);
 
     public void eliminarProducto(String nombre);
 

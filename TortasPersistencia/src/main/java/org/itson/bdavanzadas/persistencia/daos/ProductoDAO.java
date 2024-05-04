@@ -51,43 +51,34 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public void actualizarProducto(String nombre, String descripcion, double precio, int cantidad, String categoria) {
+    public void actualizarProducto(String nombrePrevio, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio, int nuevaCantidad, String nuevaCategoria) {
         // Obtener la conexión a la base de datos
         MongoDatabase base = conexion.obtenerBaseDatos();
         MongoCollection<Document> coleccion = base.getCollection(nombreColeccion);
 
-        // Crear un filtro para encontrar el producto por su nombre
-        Bson filtro = Filters.eq("nombre", nombre);
+        // Crear un filtro para encontrar el producto por su nombre previo
+        Bson filtro = Filters.eq("nombre", nombrePrevio);
 
-        // Buscar el producto por su nombre para obtener su ID
-        Document producto = coleccion.find(filtro).first();
+        // Crear un documento con los nuevos valores
+        Document nuevosValores = new Document()
+                .append("nombre", nuevoNombre)
+                .append("descripcion", nuevaDescripcion)
+                .append("precio", nuevoPrecio)
+                .append("cantidad", nuevaCantidad)
+                .append("categoria", nuevaCategoria);
 
-        if (producto != null) {
-            // Obtener el ID del producto
-            String id = producto.getObjectId("_id").toString();
+        // Crear un documento de actualización
+        Document updateDocumento = new Document("$set", nuevosValores);
 
-            // Crear un documento con los atributos a actualizar
-            Document actualizacion = new Document("$set", new Document()
-                    .append("descripcion", descripcion)
-                    .append("precio", precio)
-                    .append("cantidad", cantidad)
-                    .append("categoria", categoria));
+        // Actualizar el producto en la colección
+        UpdateResult resultado = coleccion.updateOne(filtro, updateDocumento);
 
-            // Crear un filtro basado en el ID para la actualización
-            Bson filtroId = Filters.eq("_id", new ObjectId(id));
-
-            // Actualizar el producto en la colección
-            UpdateResult resultado = coleccion.updateOne(filtroId, actualizacion);
-
-            // Verificar si se actualizó correctamente
-            if (resultado.getModifiedCount() > 0) {
-                // Log de información
-                logger.log(Level.INFO, "Se actualizó el producto {0} con ID {1}", new Object[]{nombre, id});
-            } else {
-                logger.log(Level.WARNING, "No se pudo actualizar el producto {0} con ID {1}.", new Object[]{nombre, id});
-            }
+        // Verificar si se actualizó correctamente
+        if (resultado.getModifiedCount() > 0) {
+            // Log de información
+            logger.log(Level.INFO, "Se actualizó el producto {0}", nuevoNombre);
         } else {
-            logger.log(Level.WARNING, "No se encontró el producto {0} para actualizar.", nombre);
+            logger.log(Level.WARNING, "No se encontró el producto {0} para actualizar.", nombrePrevio);
         }
     }
 
