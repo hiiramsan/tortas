@@ -5,7 +5,11 @@
 package org.itson.bdavanzadas.adminInventario;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -15,7 +19,7 @@ public class FacadeAdminInventario implements IInventario {
 
     private ControlInventario control;
 
-    public FacadeAdminInventario() {
+    public FacadeAdminInventario() throws FindException {
         this.control = new ControlInventario();
     }
 
@@ -26,7 +30,11 @@ public class FacadeAdminInventario implements IInventario {
 
     @Override
     public void actualizarInventario(String nombreBebida, int cantidad) {
-        control.actualizarInventario(nombreBebida, cantidad);
+        try {
+            control.actualizarInventario(nombreBebida, cantidad);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FacadeAdminInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -36,12 +44,22 @@ public class FacadeAdminInventario implements IInventario {
 
     @Override
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
-        return control.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
+        try {
+            return control.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeAdminInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public List<NuevoProductoDTO> obtenerInventarioCompleto() {
-        return control.obtenerInventario();
+        try {
+            return control.obtenerInventario();
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeAdminInventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

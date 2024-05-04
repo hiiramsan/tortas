@@ -13,6 +13,8 @@ import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.persistencia.daos.IInventarioDAO;
 import org.itson.bdavanzadas.persistencia.daos.InventarioDAO;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -37,7 +39,7 @@ public class InventarioProductosBO {
         return instancia;
     }
 
-    public Map<String, Integer> obtenerInventario() {
+    public Map<String, Integer> obtenerInventario() throws FindException {
         List<Producto> productos = inventarioDAO.obtenerInventario();
 
         for (Producto producto : productos) {
@@ -46,11 +48,11 @@ public class InventarioProductosBO {
         return inventario;
     }
 
-    public void actualizarInventario(String nombreBebida, int cantidad) {
+    public void actualizarInventario(String nombreBebida, int cantidad) throws PersistenciaException {
         inventarioDAO.actualizarInventario(nombreBebida, cantidad);
     }
 
-    public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
+    public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) throws FindException {
         List<Producto> productos = inventarioDAO.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
         List<NuevoProductoDTO> productosDTO = new ArrayList<>();
         for (Producto prod : productos) {
@@ -66,7 +68,7 @@ public class InventarioProductosBO {
         return productosDTO;
     }
 
-    public List<NuevoProductoDTO> obtenerInventarioCompleto() {
+    public List<NuevoProductoDTO> obtenerInventarioCompleto() throws FindException {
         List<Producto> productos = inventarioDAO.obtenerInventario();
         List<NuevoProductoDTO> productosDTO = new ArrayList<>();
         for (Producto prod : productos) {

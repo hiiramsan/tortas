@@ -14,6 +14,8 @@ import org.itson.bdavanzadas.persistencia.daos.IOrdenDAO;
 import org.itson.bdavanzadas.persistencia.daos.OrdenDAO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -28,11 +30,11 @@ public class OrdenBO {
         ordenDAO = new OrdenDAO(conexion);
     }
 
-    public void agregarOrden(NuevaOrdenDTO nuevaOrdenDTO) {
+    public void agregarOrden(NuevaOrdenDTO nuevaOrdenDTO) throws PersistenciaException {
         ordenDAO.registrarOrden(nuevaOrdenDTO);
     }
 
-    public List<NuevaOrdenDTO> obtenerOrden() {
+    public List<NuevaOrdenDTO> obtenerOrden() throws FindException {
         List<Orden> ordenes = ordenDAO.obtenerOrdenes();
         List<NuevaOrdenDTO> ordenesDTO = new ArrayList<>();
 
@@ -61,7 +63,7 @@ public class OrdenBO {
         return ordenesDTO;
     }
 
-    public Double obtenerPrecioPorNombre(String nombreProducto) {
+    public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException {
         return ordenDAO.obtenerPrecioPorNombre(nombreProducto);
     }
 }

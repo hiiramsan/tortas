@@ -6,6 +6,10 @@ package org.itson.bdavanzadas.adminOrden;
 
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -16,12 +20,21 @@ public class FacadeAdminOrden implements IAdminOrden {
 
     @Override
     public void generarOrden(NuevaOrdenDTO nuevaOrden) {
-        ordenControl.generarOrden(nuevaOrden);
+        try {
+            ordenControl.generarOrden(nuevaOrden);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<NuevaOrdenDTO> obtenerOrdenes() {
-        return ordenControl.obtenerOrdenes();
+        try {
+            return ordenControl.obtenerOrdenes();
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -41,6 +54,11 @@ public class FacadeAdminOrden implements IAdminOrden {
     
     @Override
     public Double obtenerPrecioPorNombre(String nombreProducto) {
-       return ordenControl.obtenerPrecioPorNombre(nombreProducto);
+        try {
+            return ordenControl.obtenerPrecioPorNombre(nombreProducto);
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

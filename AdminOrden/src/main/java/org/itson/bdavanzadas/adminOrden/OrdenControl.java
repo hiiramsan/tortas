@@ -11,6 +11,8 @@ import org.itson.bdavanzadas.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
 import org.itson.bdavanzadas.ObjetoNegocio.OrdenBO;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -30,7 +32,7 @@ public class OrdenControl {
     }
 
     // imprimir orden
-    public void generarOrden(NuevaOrdenDTO nuevaOrden) {
+    public void generarOrden(NuevaOrdenDTO nuevaOrden) throws PersistenciaException {
         // Lista de productos específica para esta orden
         List<NuevoProductoDTO> listaProductos = new ArrayList<>();
 
@@ -112,11 +114,11 @@ public class OrdenControl {
         }
     }
 
-    public List<NuevaOrdenDTO> obtenerOrdenes() {
+    public List<NuevaOrdenDTO> obtenerOrdenes() throws FindException {
         return ordenBO.obtenerOrden();
     }
     
-    public Double obtenerPrecioPorNombre(String nombreProducto) {
+    public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException {
         return ordenBO.obtenerPrecioPorNombre(nombreProducto);
     }
 }
