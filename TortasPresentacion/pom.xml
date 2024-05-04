@@ -13,12 +13,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>AdminInventario</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>ObjetoNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -38,9 +32,10 @@
             <artifactId>TortasPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>AdminInventariar</artifactId>
+            <artifactId>AdminInventario</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -48,6 +43,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
-        <exec.mainClass>com.mycompany.tortaspresentacion.VentanaPrincipal</exec.mainClass>
+        <exec.mainClass>org.itson.bdavanzadas.presentacion.VentanaPrincipal</exec.mainClass>
     </properties>
 </project>

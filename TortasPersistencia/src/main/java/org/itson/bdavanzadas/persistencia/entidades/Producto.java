@@ -4,6 +4,7 @@
  */
 package org.itson.bdavanzadas.persistencia.entidades;
 
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -21,7 +22,8 @@ public class Producto {
     private double precio;
     private String categoria;
     private String notas;
-
+    private List<Ingrediente> ingredientes;
+    
     public Producto() {
     }
 
@@ -81,6 +83,15 @@ public class Producto {
         this.notas = notas;
     }
 
+    public List<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<Ingrediente> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    
     @Override
     public String toString() {
         return "Producto{" + "id=" + id + ", cantidad=" + cantidad + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", categoria=" + categoria + ", notas=" + notas + '}';
