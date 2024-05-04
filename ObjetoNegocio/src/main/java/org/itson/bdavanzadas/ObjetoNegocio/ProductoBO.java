@@ -4,8 +4,8 @@
  */
 package org.itson.bdavanzadas.ObjetoNegocio;
 
-import conexion.Conexion;
-import conexion.IConexion;
+import org.itson.bdavanzadas.persistencia.conexion.Conexion;
+import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import org.itson.bdavanzadas.persistencia.daos.IProductoDAO;
 import org.itson.bdavanzadas.persistencia.daos.ProductoDAO;
 
@@ -23,7 +23,9 @@ public class ProductoBO {
     }
 
     public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria) {
-        productoDAO.agregarNuevoProducto(nombre, descripcion, precio, cantidad, categoria);
+        if (!productoDAO.productoExiste(nombre)) {
+            productoDAO.agregarNuevoProducto(nombre, descripcion, precio, cantidad, categoria);
+        }
     }
 
     public void actualizarProducto(String nombrePrevio, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio, int nuevaCantidad, String nuevaCategoria) {

@@ -6,6 +6,8 @@ package org.itson.bdavanzadas.persistencia.daos;
 
 import java.util.List;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -13,9 +15,9 @@ import org.itson.bdavanzadas.persistencia.entidades.Producto;
  */
 public interface IInventarioDAO {
 
-    public List<Producto> obtenerInventario();
+    public List<Producto> obtenerInventario() throws FindException;
 
-    public void actualizarInventario(String nombreBebida, int cantidad);
-    
-    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto);
+    public void actualizarInventario(String nombreBebida, int cantidad) throws PersistenciaException;
+
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) throws FindException;
 }

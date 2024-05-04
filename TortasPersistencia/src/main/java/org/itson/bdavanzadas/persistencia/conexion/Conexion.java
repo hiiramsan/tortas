@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package conexion;
+package org.itson.bdavanzadas.persistencia.conexion;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

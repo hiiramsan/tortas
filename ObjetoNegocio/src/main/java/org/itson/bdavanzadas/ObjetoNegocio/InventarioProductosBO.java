@@ -3,8 +3,8 @@
  */
 package org.itson.bdavanzadas.ObjetoNegocio;
 
-import conexion.Conexion;
-import conexion.IConexion;
+import org.itson.bdavanzadas.persistencia.conexion.Conexion;
+import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

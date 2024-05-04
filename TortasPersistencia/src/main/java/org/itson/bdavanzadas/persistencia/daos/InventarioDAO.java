@@ -8,7 +8,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
-import conexion.IConexion;
+import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -33,59 +35,73 @@ public class InventarioDAO implements IInventarioDAO {
     }
 
     @Override
-    public List<Producto> obtenerInventario() {
-        MongoDatabase base = conexion.obtenerBaseDatos();
-        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
+    public List<Producto> obtenerInventario() throws FindException {
+        try {
+            MongoDatabase base = conexion.obtenerBaseDatos();
+            MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
 
-        List<Producto> productos = new ArrayList<>();
-        coleccion.find().into(productos);
-        logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
+            List<Producto> productos = new ArrayList<>();
+            coleccion.find().into(productos);
+            logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
 
-        return productos;
+            return productos;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Error al obtener inventario", ex);
+            throw new FindException("Error al obtener inventario", ex);
+        }
     }
 
     @Override
-    public void actualizarInventario(String nombreBebida, int cantidad) {
-        MongoDatabase base = conexion.obtenerBaseDatos();
-        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
+    public void actualizarInventario(String nombreBebida, int cantidad) throws PersistenciaException {
+        try {
+            MongoDatabase base = conexion.obtenerBaseDatos();
+            MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
 
-        // Consultar el producto por su nombre
-        Producto producto = coleccion.find(eq("nombre", nombreBebida)).first();
+            // Consultar el producto por su nombre
+            Producto producto = coleccion.find(eq("nombre", nombreBebida)).first();
 
-        if (producto != null) {
-            // Actualizar la cantidad del producto usando $inc para restar la cantidad proporcionada
-            coleccion.updateOne(eq("nombre", nombreBebida),
-                    new Document("$inc", new Document("cantidad", -cantidad)));
+            if (producto != null) {
+                // Actualizar la cantidad del producto usando $inc para restar la cantidad proporcionada
+                coleccion.updateOne(eq("nombre", nombreBebida),
+                        new Document("$inc", new Document("cantidad", -cantidad)));
 
-            // Log de información
-            logger.log(Level.INFO, "Se actualizó el inventario de {0} restando {1}", new Object[]{nombreBebida, cantidad});
-        } else {
-            logger.log(Level.WARNING, "No se encontró la bebida {0} en el inventario", nombreBebida);
+                // Log de información
+                logger.log(Level.INFO, "Se actualizó el inventario de {0} restando {1}", new Object[]{nombreBebida, cantidad});
+            } else {
+                logger.log(Level.WARNING, "No se encontró la bebida {0} en el inventario", nombreBebida);
+            }
+
+            // Devolver todos los productos
+            List<Producto> productos = new ArrayList<>();
+            coleccion.find().into(productos);
+            logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Error al actualizar inventario", ex);
+            throw new PersistenciaException("Error al actualizar inventario", ex);
         }
-
-        // Devolver todos los productos
-        List<Producto> productos = new ArrayList<>();
-        coleccion.find().into(productos);
-        logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
     }
 
     @Override
-    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
-        MongoDatabase base = conexion.obtenerBaseDatos();
-        MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
+    public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) throws FindException {
+        try {
+            MongoDatabase base = conexion.obtenerBaseDatos();
+            MongoCollection<Producto> coleccion = base.getCollection(nombreColeccion, Producto.class);
 
-        List<Producto> productos = new ArrayList<>();
-        Bson filtro = soloStockLimit ? Filters.lte("cantidad", stockLimit) : new Document();
-        coleccion.find(filtro).into(productos);
-        if (filtrarPorStockAlto) {
-            productos.sort(Comparator.comparingInt(Producto::getCantidad).reversed());
-        } else {
-            productos.sort(Comparator.comparingInt(Producto::getCantidad));
+            List<Producto> productos = new ArrayList<>();
+            Bson filtro = soloStockLimit ? Filters.lte("cantidad", stockLimit) : new Document();
+            coleccion.find(filtro).into(productos);
+            if (filtrarPorStockAlto) {
+                productos.sort(Comparator.comparingInt(Producto::getCantidad).reversed());
+            } else {
+                productos.sort(Comparator.comparingInt(Producto::getCantidad));
+            }
+
+            logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
+
+            return productos;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Error al obtener inventario", ex);
+            throw new FindException("Error al obtener inventario", ex);
         }
-
-        logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
-
-        return productos;
     }
-
 }

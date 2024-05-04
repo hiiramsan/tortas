@@ -7,6 +7,8 @@ package org.itson.bdavanzadas.persistencia.daos;
 import java.util.List;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -14,9 +16,9 @@ import org.itson.bdavanzadas.persistencia.entidades.Orden;
  */
 public interface IOrdenDAO {
 
-    Orden registrarOrden(NuevaOrdenDTO ordenDTO);
+    public Orden registrarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException;
 
-    List<Orden> obtenerOrdenes();
+    public List<Orden> obtenerOrdenes() throws FindException;
 
-    public Double obtenerPrecioPorNombre(String nombreProducto);
+    public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException;
 }
