@@ -49,4 +49,8 @@ public class ControlInventario {
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
         return operacion.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
     }
+
+    public List<NuevoProductoDTO> obtenerInventario() {
+        return operacion.obtenerInventarioCompleto();
+    }
 }

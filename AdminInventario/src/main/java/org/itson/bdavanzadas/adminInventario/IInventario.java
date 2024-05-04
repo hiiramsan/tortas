@@ -18,6 +18,8 @@ public interface IInventario {
     void actualizarInventario(String nombreBebida, int cantidad);
 
     int getProductStock(String nombreBebida);
-    
+
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto);
+
+    public List<NuevoProductoDTO> obtenerInventarioCompleto();
 }

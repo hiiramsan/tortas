@@ -12,4 +12,8 @@ public interface IProductoDAO {
 
     public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria);
 
+    public void actualizarProducto(String nombre, String descripcion, double precio, int cantidad, String categoria);
+
+    public void eliminarProducto(String nombre);
+
 }

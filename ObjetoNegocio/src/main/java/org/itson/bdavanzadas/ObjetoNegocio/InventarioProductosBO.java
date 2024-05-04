@@ -65,4 +65,20 @@ public class InventarioProductosBO {
         }
         return productosDTO;
     }
+
+    public List<NuevoProductoDTO> obtenerInventarioCompleto() {
+        List<Producto> productos = inventarioDAO.obtenerInventario();
+        List<NuevoProductoDTO> productosDTO = new ArrayList<>();
+        for (Producto prod : productos) {
+            NuevoProductoDTO productoDTO = new NuevoProductoDTO();
+            productoDTO.setNombre(prod.getNombre());
+            productoDTO.setCantidad(prod.getCantidad());
+            productoDTO.setPrecio(prod.getPrecio());
+            productoDTO.setDescripcion(prod.getDescripcion());
+            productoDTO.setCategoria(prod.getCategoria());
+            productoDTO.setNotas(prod.getNotas());
+            productosDTO.add(productoDTO);
+        }
+        return productosDTO;
+    }
 }

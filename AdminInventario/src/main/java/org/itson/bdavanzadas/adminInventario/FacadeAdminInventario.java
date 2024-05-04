@@ -38,4 +38,10 @@ public class FacadeAdminInventario implements IInventario {
     public List<NuevoProductoDTO> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) {
         return control.obtenerInventario(soloStockLimit, stockLimit, filtrarPorStockAlto);
     }
+
+    @Override
+    public List<NuevoProductoDTO> obtenerInventarioCompleto() {
+        return control.obtenerInventario();
+    }
+
 }

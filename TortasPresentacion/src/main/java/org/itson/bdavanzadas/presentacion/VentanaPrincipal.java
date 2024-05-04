@@ -4,7 +4,6 @@
  */
 package org.itson.bdavanzadas.presentacion;
 
-import com.mycompany.admininventariar.FrmInventariar;
 import org.itson.bdavanzadas.adminInventario.FacadeAdminInventario;
 import org.itson.bdavanzadas.adminInventario.IInventario;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
