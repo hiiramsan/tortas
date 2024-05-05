@@ -7,9 +7,12 @@ package org.itson.bdavanzadas.ObjetoNegocio;
 import org.itson.bdavanzadas.persistencia.conexion.Conexion;
 import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import org.itson.bdavanzadas.dtos.Estado;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
+import org.itson.bdavanzadas.dtos.TortaDTO;
 import org.itson.bdavanzadas.persistencia.daos.IOrdenDAO;
 import org.itson.bdavanzadas.persistencia.daos.OrdenDAO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
@@ -31,7 +34,27 @@ public class OrdenBO {
     }
 
     public void agregarOrden(NuevaOrdenDTO nuevaOrdenDTO) throws PersistenciaException {
-        ordenDAO.registrarOrden(nuevaOrdenDTO);
+        //Si tiene campos nulos se cambian por vacios
+        NuevaOrdenDTO ordenAgregar = new NuevaOrdenDTO();
+        
+        ordenAgregar.setEstado(nuevaOrdenDTO.getEstado());
+        ordenAgregar.setFecha(nuevaOrdenDTO.getFecha());
+        List<NuevoProductoDTO> listaProductos = nuevaOrdenDTO.getListaProductos();
+        for (NuevoProductoDTO producto : listaProductos) {
+            if(producto instanceof TortaDTO){
+                producto = (TortaDTO)producto;
+                producto.set
+            }
+            
+        }
+        
+        ordenAgregar.setListaProductos(listaProductos != null ? listaProductos : new LinkedList<>());
+        ordenAgregar.setNombreCliente(nuevaOrdenDTO.getNombreCliente() != null ? nuevaOrdenDTO.getNombreCliente() : "");
+        ordenAgregar.setNumeroOrden(nuevaOrdenDTO.getNumeroOrden());
+        ordenAgregar.setTotal(nuevaOrdenDTO.getTotal());
+        
+        
+        ordenDAO.registrarOrden(ordenAgregar);
     }
 
     public List<NuevaOrdenDTO> obtenerOrden() throws FindException {

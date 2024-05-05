@@ -9,25 +9,25 @@ package org.itson.bdavanzadas.persistencia.entidades;
  * @author Abe
  */
 public class Ingrediente {
-    private String NombreIngrediente;
+    private String nombreIngrediente;
     private int cantidad;
 
     public Ingrediente() {
     }
 
     public Ingrediente(String NombreIngrediente, int cantidad) {
-        this.NombreIngrediente = NombreIngrediente;
+        this.nombreIngrediente = NombreIngrediente;
         this.cantidad = cantidad;
     }
     
     
 
     public String getNombreIngrediente() {
-        return NombreIngrediente;
+        return nombreIngrediente;
     }
 
     public void setNombreIngrediente(String NombreIngrediente) {
-        this.NombreIngrediente = NombreIngrediente;
+        this.nombreIngrediente = NombreIngrediente;
     }
 
     public int getCantidad() {
