@@ -15,10 +15,21 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>AdminInventario</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>ObjetoNegocio</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>TortasPersistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ObjetoNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

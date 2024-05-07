@@ -8,6 +8,7 @@ import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
 import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
@@ -32,6 +33,8 @@ public class FacadeAdminOrden implements IAdminOrden {
         try {
             return ordenControl.obtenerOrdenes();
         } catch (FindException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NegocioException ex) {
             Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

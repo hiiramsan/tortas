@@ -11,6 +11,7 @@ import org.itson.bdavanzadas.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
 import org.itson.bdavanzadas.ObjetoNegocio.OrdenBO;
+import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
 import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
@@ -106,7 +107,7 @@ public class OrdenControl {
                 System.out.println("Cebolla: " + torta.getCantCebolla());
                 System.out.println("Tomate: " + torta.getCantTomate());
                 System.out.println("Repollo: " + torta.getCantRepollo());
-                System.out.println("Jalapeño: " + torta.getCantJalapeño());
+                System.out.println("Jalapeño: " + torta.getCantJalapeno());
                 System.out.println("Mayonesa: " + torta.getCantMayonesa());
                 System.out.println("Mostaza: " + torta.getCantMostaza());
                 System.out.println("Carne: " + torta.getCantCarne());
@@ -114,7 +115,7 @@ public class OrdenControl {
         }
     }
 
-    public List<NuevaOrdenDTO> obtenerOrdenes() throws FindException {
+    public List<NuevaOrdenDTO> obtenerOrdenes() throws FindException, NegocioException {
         return ordenBO.obtenerOrden();
     }
     

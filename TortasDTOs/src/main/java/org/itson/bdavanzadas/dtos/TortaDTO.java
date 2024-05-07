@@ -15,10 +15,15 @@ public class TortaDTO extends NuevoProductoDTO {
     private int cantRepollo;
     private int cantMayonesa;
     private int cantMostaza;
-    private int cantJalapeño;
+    private int cantJalapeno;
     private int cantCarne;
     private String descripcion;
 
+    public TortaDTO() {
+    }
+
+    
+    
     public TortaDTO(String nombre, int cantidad, int precio, String categoria) {
         super(nombre, cantidad, precio, categoria);
         cantCebolla = 1;
@@ -26,18 +31,18 @@ public class TortaDTO extends NuevoProductoDTO {
         cantRepollo = 1;
         cantMayonesa = 1;
         cantMostaza = 1;
-        cantJalapeño = 1;
+        cantJalapeno = 1;
         cantCarne = 1;
     }
 
-    public TortaDTO(String nombre, int cantidad, int precio, int cantPan, int cantCebolla, int cantTomate, int cantRepollo, int cantMayonesa, int cantMostaza, int cantJalapeño, int cantCarne, String categoria) {
+    public TortaDTO(String nombre, int cantidad, double precio, int cantCebolla, int cantTomate, int cantRepollo, int cantMayonesa, int cantMostaza, int cantJalapeno, int cantCarne, String categoria) {
         super(nombre, cantidad, precio, categoria);
         this.cantCebolla = cantCebolla;
         this.cantTomate = cantTomate;
         this.cantRepollo = cantRepollo;
         this.cantMayonesa = cantMayonesa;
         this.cantMostaza = cantMostaza;
-        this.cantJalapeño = cantJalapeño;
+        this.cantJalapeno = cantJalapeno;
         this.cantCarne = cantCarne;
     }
 
@@ -89,12 +94,12 @@ public class TortaDTO extends NuevoProductoDTO {
         this.cantMostaza = cantMostaza;
     }
 
-    public int getCantJalapeño() {
-        return cantJalapeño;
+    public int getCantJalapeno() {
+        return cantJalapeno;
     }
 
-    public void setCantJalapeño(int cantJalapeño) {
-        this.cantJalapeño = cantJalapeño;
+    public void setCantJalapeno(int cantJalapeño) {
+        this.cantJalapeno = cantJalapeño;
     }
 
     public int getCantCarne() {

@@ -4,10 +4,14 @@
  */
 package org.itson.bdavanzadas.persistencia.daos;
 
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Aggregates.match;
+import static com.mongodb.client.model.Filters.eq;
 import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -61,7 +65,7 @@ public class OrdenDAO implements IOrdenDAO {
 
             Orden orden = new Orden();
             orden.setNombreCliente(ordenDTO.getNombreCliente());
-            orden.setNumeroOrden(ordenDTO.getNumeroOrden());
+            orden.setNumeroOrden(NumeroOrdenes()+1);
             List<NuevoProductoDTO> productosDTO = ordenDTO.getListaProductos();
             List<Producto> productos = new ArrayList<>();
 
@@ -78,7 +82,7 @@ public class OrdenDAO implements IOrdenDAO {
                     List<Ingrediente> ingredientes = new LinkedList<>();
                     ingredientes.add(new Ingrediente("cantCarne", torta.getCantCarne()));
                     ingredientes.add(new Ingrediente("cantCebolla", torta.getCantCebolla()));
-                    ingredientes.add(new Ingrediente("cantJalapeño", torta.getCantJalapeño()));
+                    ingredientes.add(new Ingrediente("cantJalapeño", torta.getCantJalapeno()));
                     ingredientes.add(new Ingrediente("cantMayonesa", torta.getCantMayonesa()));
                     ingredientes.add(new Ingrediente("cantMostaza", torta.getCantMostaza()));
                     ingredientes.add(new Ingrediente("cantRepollo", torta.getCantRepollo()));
@@ -86,18 +90,18 @@ public class OrdenDAO implements IOrdenDAO {
                     productoAgregar.setIngredientes(ingredientes);
                 } else {
                     List<Ingrediente> ingredientes = new LinkedList<>();
-                    ingredientes.add(new Ingrediente("si", 0));
                     productoAgregar.setIngredientes(ingredientes);
                 }
                 productos.add(productoAgregar);
             }
-            
+
             orden.setListaProductos(productos);
             orden.setTotal(ordenDTO.getTotal());
             orden.setFecha(ordenDTO.getFecha());
             orden.setEstado(ordenDTO.getEstado());
 
             coleccion.insertOne(orden);
+            NumeroOrdenes();
             logger.log(Level.INFO, "Se insertaron {0} ordenes", orden.toString());
 
             return orden;
@@ -125,5 +129,14 @@ public class OrdenDAO implements IOrdenDAO {
             logger.log(Level.SEVERE, "Error al obtener precio por nombre", ex);
             throw new FindException("Error al obtener precio por nombre", ex);
         }
+    }
+
+    public int NumeroOrdenes() throws PersistenciaException {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Orden> coleccion = base.getCollection(nombreColeccion, Orden.class);
+
+        int cantidad = (int) coleccion.countDocuments();
+        System.out.println(cantidad);
+        return cantidad;
     }
 }

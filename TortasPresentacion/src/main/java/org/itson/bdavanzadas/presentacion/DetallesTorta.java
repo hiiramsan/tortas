@@ -594,7 +594,7 @@ public class DetallesTorta extends javax.swing.JDialog {
         tortaDTO.setCantidad(1);
         tortaDTO.setCantCarne(cantCarne);
         tortaDTO.setCantCebolla(cantCebolla);
-        tortaDTO.setCantJalapeño(cantJalapeño);
+        tortaDTO.setCantJalapeno(cantJalapeño);
         tortaDTO.setCantMayonesa(cantMayonesa);
         tortaDTO.setCantMostaza(cantMostaza);
         tortaDTO.setCantTomate(cantTomate);

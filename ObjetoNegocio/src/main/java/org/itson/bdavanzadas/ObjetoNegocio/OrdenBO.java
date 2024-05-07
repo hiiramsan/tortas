@@ -13,6 +13,7 @@ import org.itson.bdavanzadas.dtos.Estado;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.dtos.TortaDTO;
+import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.daos.IOrdenDAO;
 import org.itson.bdavanzadas.persistencia.daos.OrdenDAO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
@@ -34,56 +35,100 @@ public class OrdenBO {
     }
 
     public void agregarOrden(NuevaOrdenDTO nuevaOrdenDTO) throws PersistenciaException {
-        //Si tiene campos nulos se cambian por vacios
         NuevaOrdenDTO ordenAgregar = new NuevaOrdenDTO();
-        
+
         ordenAgregar.setEstado(nuevaOrdenDTO.getEstado());
         ordenAgregar.setFecha(nuevaOrdenDTO.getFecha());
-        List<NuevoProductoDTO> listaProductos = nuevaOrdenDTO.getListaProductos();
-        for (NuevoProductoDTO producto : listaProductos) {
-            if(producto instanceof TortaDTO){
-                producto = (TortaDTO)producto;
-                producto.set
-            }
-            
-        }
-        
-        ordenAgregar.setListaProductos(listaProductos != null ? listaProductos : new LinkedList<>());
         ordenAgregar.setNombreCliente(nuevaOrdenDTO.getNombreCliente() != null ? nuevaOrdenDTO.getNombreCliente() : "");
         ordenAgregar.setNumeroOrden(nuevaOrdenDTO.getNumeroOrden());
         ordenAgregar.setTotal(nuevaOrdenDTO.getTotal());
-        
-        
+
+        List<NuevoProductoDTO> listaProductos = new LinkedList<>();
+
+        for (NuevoProductoDTO producto : nuevaOrdenDTO.getListaProductos()) {
+            if (producto instanceof TortaDTO) {
+                TortaDTO tortaDTO = new TortaDTO();
+                TortaDTO tortaOriginal = (TortaDTO) producto;
+
+                tortaDTO.setNombre(tortaOriginal.getNombre());
+                tortaDTO.setCantidad(tortaOriginal.getCantidad());
+                tortaDTO.setPrecio(tortaOriginal.getPrecio());
+                tortaDTO.setCategoria(tortaOriginal.getCategoria());
+
+                tortaDTO.setCantCebolla(tortaOriginal.getCantCebolla());
+                tortaDTO.setCantTomate(tortaOriginal.getCantTomate());
+                tortaDTO.setCantRepollo(tortaOriginal.getCantRepollo());
+                tortaDTO.setCantMayonesa(tortaOriginal.getCantMayonesa());
+                tortaDTO.setCantMostaza(tortaOriginal.getCantMostaza());
+                tortaDTO.setCantJalapeno(tortaOriginal.getCantJalapeno());
+                tortaDTO.setCantCarne(tortaOriginal.getCantCarne());
+
+                listaProductos.add(tortaDTO);
+            } else {
+                listaProductos.add(producto);
+            }
+        }
+
+        ordenAgregar.setListaProductos(listaProductos);
+
         ordenDAO.registrarOrden(ordenAgregar);
     }
 
-    public List<NuevaOrdenDTO> obtenerOrden() throws FindException {
+    public List<NuevaOrdenDTO> obtenerOrden() throws FindException, NegocioException {
         List<Orden> ordenes = ordenDAO.obtenerOrdenes();
-        List<NuevaOrdenDTO> ordenesDTO = new ArrayList<>();
-
+        List<NuevaOrdenDTO> ordenesDTO = new LinkedList<>();
         for (Orden orden : ordenes) {
             NuevaOrdenDTO ordenDTO = new NuevaOrdenDTO();
             ordenDTO.setEstado(orden.getEstado());
             ordenDTO.setFecha(orden.getFecha());
-            ordenDTO.setNombreCliente(orden.getNombreCliente());
-            ordenDTO.setNumeroOrden(orden.getNumeroOrden());
 
-            List<NuevoProductoDTO> productosDTO = new ArrayList<>();
-            float total = 0.0f;
+            List<NuevoProductoDTO> productosDTO = new LinkedList<>();
 
             for (Producto producto : orden.getListaProductos()) {
                 NuevoProductoDTO nuevoProductoDTO = new NuevoProductoDTO();
-                nuevoProductoDTO.setNombre(producto.getNombre());
-                nuevoProductoDTO.setPrecio(producto.getPrecio());
                 nuevoProductoDTO.setCantidad(producto.getCantidad());
-                productosDTO.add(nuevoProductoDTO);
-                total += producto.getCantidad() * producto.getPrecio();
+                nuevoProductoDTO.setCategoria(producto.getCategoria());
+                nuevoProductoDTO.setDescripcion(producto.getDescripcion());
+                nuevoProductoDTO.setNombre(producto.getNombre());
+                nuevoProductoDTO.setNotas(producto.getNotas());
+                nuevoProductoDTO.setPrecio(producto.getPrecio());
+                System.out.println("cantidad´de infredientes" + producto.getIngredientes().size());
+
+                if (producto.getIngredientes().isEmpty()) {
+                    productosDTO.add(nuevoProductoDTO);
+                } else {
+                    TortaDTO tortaDTO = new TortaDTO();
+
+                    tortaDTO.setNombre(producto.getNombre());
+                    tortaDTO.setCantidad(producto.getCantidad());
+                    tortaDTO.setPrecio(producto.getPrecio());
+                    tortaDTO.setCantCebolla(producto.getIngredientes().get(0).getCantidad());
+                    tortaDTO.setCantTomate(producto.getIngredientes().get(1).getCantidad());
+                    tortaDTO.setCantRepollo(producto.getIngredientes().get(2).getCantidad());
+                    tortaDTO.setCantMayonesa(producto.getIngredientes().get(3).getCantidad());
+                    tortaDTO.setCantMostaza(producto.getIngredientes().get(4).getCantidad());
+                    tortaDTO.setCantJalapeno(producto.getIngredientes().get(5).getCantidad());
+                    tortaDTO.setCantCarne(producto.getIngredientes().get(6).getCantidad());
+                    tortaDTO.setCategoria(producto.getCategoria());
+
+                    productosDTO.add(tortaDTO);
+                }
+
             }
-            ordenDTO.setListaProductos(productosDTO);
-            ordenDTO.setTotal(total);
-            ordenesDTO.add(ordenDTO);
+            try {
+                ordenDTO.setListaProductos(productosDTO);
+                ordenDTO.setNombreCliente(orden.getNombreCliente());
+                ordenDTO.setNumeroOrden(orden.getNumeroOrden());
+                ordenDTO.setTotal(orden.getTotal());
+
+                ordenesDTO.add(ordenDTO);
+
+            } catch (Exception e) {
+                throw new NegocioException("ocurrio un error al obtener las ordenes completadas", e);
+            }
         }
         return ordenesDTO;
+
     }
 
     public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException {
