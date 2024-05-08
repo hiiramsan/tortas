@@ -4,10 +4,12 @@
  */
 package org.itson.bdavanzadas.ObjetoNegocio;
 
+import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.persistencia.conexion.Conexion;
 import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import org.itson.bdavanzadas.persistencia.daos.IProductoDAO;
 import org.itson.bdavanzadas.persistencia.daos.ProductoDAO;
+import org.itson.bdavanzadas.persistencia.entidades.Producto;
 import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
@@ -23,21 +25,32 @@ public class ProductoBO {
         productoDAO = new ProductoDAO(conexion);
     }
 
-    public void agregarNuevoProducto(String nombre, String descripcion, double precio, int cantidad, String categoria) throws PersistenciaException {
-        if (!productoDAO.productoExiste(nombre)) {
-            productoDAO.agregarNuevoProducto(nombre, descripcion, precio, cantidad, categoria);
+    public void agregarNuevoProducto(NuevoProductoDTO nuevoProductoDTO) throws PersistenciaException {
+        if (!productoDAO.productoExiste(nuevoProductoDTO.getNombrePrevio())) {
+            productoDAO.agregarNuevoProducto(convertirAEntidad(nuevoProductoDTO));
         }
     }
 
-    public void actualizarProducto(String nombrePrevio, String nuevoNombre, String nuevaDescripcion, double nuevoPrecio, int nuevaCantidad, String nuevaCategoria) throws PersistenciaException {
-        if (productoDAO.productoExiste(nombrePrevio)) {
-            productoDAO.actualizarProducto(nombrePrevio, nuevoNombre, nuevaDescripcion, nuevoPrecio, nuevaCantidad, nuevaCategoria);
+    public void actualizarProducto(NuevoProductoDTO nuevoProductoDTO) throws PersistenciaException {
+        if (productoDAO.productoExiste(nuevoProductoDTO.getNombrePrevio())) {
+            productoDAO.actualizarProducto(convertirAEntidad(nuevoProductoDTO));
         }
     }
 
-    public void eliminarProducto(String nombre) throws PersistenciaException {
-        if (productoDAO.productoExiste(nombre)) {
-            productoDAO.eliminarProducto(nombre);
+    public void eliminarProducto(NuevoProductoDTO nuevoProductoDTO) throws PersistenciaException {
+        if (productoDAO.productoExiste(nuevoProductoDTO.getNombre())) {
+            productoDAO.eliminarProducto(convertirAEntidad(nuevoProductoDTO));
         }
+    }
+
+    public static Producto convertirAEntidad(NuevoProductoDTO nuevoProductoDTO) {
+        Producto producto = new Producto();
+        producto.setCantidad(nuevoProductoDTO.getCantidad());
+        producto.setNombre(nuevoProductoDTO.getNombre());
+        producto.setNombrePrevio(nuevoProductoDTO.getNombrePrevio());
+        producto.setDescripcion(nuevoProductoDTO.getDescripcion());
+        producto.setPrecio(nuevoProductoDTO.getPrecio());
+        producto.setCategoria(nuevoProductoDTO.getCategoria());
+        return producto;
     }
 }

@@ -18,12 +18,13 @@ public class Producto {
     private ObjectId id;
     private int cantidad;
     private String nombre;
+    private String nombrePrevio;
     private String descripcion;
     private double precio;
     private String categoria;
     private String notas;
     private List<Ingrediente> ingredientes;
-    
+
     public Producto() {
     }
 
@@ -49,6 +50,14 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getNombrePrevio() {
+        return nombrePrevio;
+    }
+
+    public void setNombrePrevio(String nombrePrevio) {
+        this.nombrePrevio = nombrePrevio;
     }
 
     public String getDescripcion() {
@@ -91,10 +100,21 @@ public class Producto {
         this.ingredientes = ingredientes;
     }
 
-    
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", cantidad=" + cantidad + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", categoria=" + categoria + ", notas=" + notas + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Producto{");
+        sb.append("id=").append(id);
+        sb.append(", cantidad=").append(cantidad);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", nombrePrevio=").append(nombrePrevio);
+        sb.append(", descripcion=").append(descripcion);
+        sb.append(", precio=").append(precio);
+        sb.append(", categoria=").append(categoria);
+        sb.append(", notas=").append(notas);
+        sb.append(", ingredientes=").append(ingredientes);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

@@ -13,12 +13,34 @@ public class NuevoProductoDTO {
     private int id;
     private int cantidad;
     private String nombre;
+    private String nombrePrevio;
     private String descripcion;
     private double precio;
     private String categoria;
     private String notas;
 
     public NuevoProductoDTO() {
+    }
+
+    public NuevoProductoDTO(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public NuevoProductoDTO(int cantidad, String nombre, String descripcion, double precio, String categoria) {
+        this.cantidad = cantidad;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.categoria = categoria;
+    }
+
+    public NuevoProductoDTO(int cantidad, String nombre, String nombrePrevio, String descripcion, double precio, String categoria) {
+        this.cantidad = cantidad;
+        this.nombre = nombre;
+        this.nombrePrevio = nombrePrevio;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.categoria = categoria;
     }
 
     public NuevoProductoDTO(String nombre, int cantidad, double precio, String categoria) {
@@ -66,6 +88,14 @@ public class NuevoProductoDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getNombrePrevio() {
+        return nombrePrevio;
+    }
+
+    public void setNombrePrevio(String nombrePrevio) {
+        this.nombrePrevio = nombrePrevio;
     }
 
     public String getDescripcion() {
