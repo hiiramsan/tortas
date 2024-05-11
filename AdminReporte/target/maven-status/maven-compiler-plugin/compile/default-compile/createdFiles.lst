@@ -1,0 +1,4 @@
+com\mycompany\adminreporte\ControlReportes$PageNumberEvent.class
+com\mycompany\adminreporte\FacadeAdminReporte.class
+com\mycompany\adminreporte\IReporte.class
+com\mycompany\adminreporte\ControlReportes.class

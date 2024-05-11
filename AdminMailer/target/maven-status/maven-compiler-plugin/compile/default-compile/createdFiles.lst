@@ -1,0 +1,5 @@
+com\mycompany\adminmailer\ControlMailer.class
+com\mycompany\adminmailer\IMailer.class
+com\mycompany\adminmailer\ControlMailer$1.class
+com\mycompany\adminmailer\FacadeAdminMailer.class
+com\mycompany\adminmailer\ControlMailer$2.class
