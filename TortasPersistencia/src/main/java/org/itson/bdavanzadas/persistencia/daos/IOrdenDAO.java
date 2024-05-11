@@ -12,7 +12,7 @@ import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public interface IOrdenDAO {
 
@@ -21,4 +21,26 @@ public interface IOrdenDAO {
     public List<Orden> obtenerOrdenes() throws FindException;
 
     public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException;
+    
+    /**
+     * Obtiene todas las ordenes que ya han sido completadas
+     * @return regresa una lista de las ordenes completadas
+     */
+    List<Orden> obtenerOrdenesCompletadas();
+    
+    /**
+     * Obtiene una orden mediante su número de orden
+     * @param numeroOrden numero de la orden
+     * @return orden encontrada mediante su numero
+     */
+    public Orden obtenerOrdenPorNumeroOrden(int numeroOrden) throws PersistenciaException;
+    
+    /**
+     * Cancela una orden 
+     * @param ordenDTO
+     * @return
+     * @throws PersistenciaException 
+     */
+    public Orden cancelarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException;
+    
 }

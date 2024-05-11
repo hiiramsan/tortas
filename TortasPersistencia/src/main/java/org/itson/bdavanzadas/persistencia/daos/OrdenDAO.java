@@ -9,6 +9,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
+import com.mongodb.client.result.UpdateResult;
 import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.itson.bdavanzadas.dtos.Estado;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.dtos.TortaDTO;
@@ -139,4 +142,96 @@ public class OrdenDAO implements IOrdenDAO {
         System.out.println(cantidad);
         return cantidad;
     }
+
+    @Override
+    public List<Orden> obtenerOrdenesCompletadas() {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Orden> coleccion = base.getCollection(nombreColeccion, Orden.class);
+
+        List<Orden> ordenesCompleatadas = new LinkedList<>();
+        AggregateIterable<Orden> result = coleccion.aggregate(Arrays.asList(
+                match(eq("estado", "COMPLETADA"))
+        ), Orden.class);
+
+        result.into(ordenesCompleatadas);
+        logger.log(Level.INFO, "Se consultaron {0} ordenes", ordenesCompleatadas.size());
+        return ordenesCompleatadas;
+
+    }
+
+    @Override
+    public Orden obtenerOrdenPorNumeroOrden(int numeroOrden) throws PersistenciaException {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Orden> coleccionOrdenes = base.getCollection("ordenes", Orden.class);
+        Orden ordenEncontrada = coleccionOrdenes.find(eq("numeroOrden", numeroOrden)).first();
+
+        if (ordenEncontrada == null) {
+            throw new PersistenciaException("No se encontró la orden con el número especificado");
+        }
+        return ordenEncontrada;
+    }
+
+    @Override
+    public Orden cancelarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+        MongoCollection<Orden> coleccionOrdenes = base.getCollection(nombreColeccion, Orden.class);
+
+        try {
+            Orden ordenEncontrada = obtenerOrdenPorNumeroOrden(ordenDTO.getNumeroOrden());
+
+            UpdateResult resultado = coleccionOrdenes.updateOne(eq("_id", ordenEncontrada.getId()), set("estado", "CANCELADA"));
+
+            if (resultado.getModifiedCount() > 0) {
+                logger.log(Level.INFO, "Orden cancelada con éxito: {0}", ordenEncontrada.toString());
+                ordenEncontrada.setEstado(Estado.PAGADA);
+
+                List<Producto> productos = new LinkedList<>();
+                for (Producto producto : ordenEncontrada.getListaProductos()) {
+                    if (cancelarProducto(producto.getNombre(), producto.getCantidad())) {
+                        logger.log(Level.INFO, "Producto inventarioado con éxito: {0}", producto.toString());
+                    }
+                    else{
+                        logger.log(Level.INFO, "No se sumo al inventario el producto: {0}", producto.toString());
+                    }
+                }
+
+                return ordenEncontrada;
+            } else {
+                throw new PersistenciaException("No se pudo encontrar la orden con ID: " + ordenEncontrada.getId());
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al actualizar la orden con numero de orden " + ordenDTO.getNumeroOrden(), e);
+        }
+    }
+
+    public boolean cancelarProducto(String nombreBebida, int cantidad) throws PersistenciaException {
+        try {
+            MongoDatabase base = conexion.obtenerBaseDatos();
+            MongoCollection<Producto> coleccion = base.getCollection("productos", Producto.class);
+
+            Producto producto = coleccion.find(eq("nombre", nombreBebida)).first();
+
+            if (producto != null) {
+                coleccion.updateOne(eq("nombre", nombreBebida),
+                        new Document("$inc", new Document("cantidad", +cantidad)));
+
+                logger.log(Level.INFO, "Se actualizó el inventario de {0} sumando {1}", new Object[]{nombreBebida, cantidad});
+            } else {
+                logger.log(Level.WARNING, "No se encontró la bebida {0} en el inventario", nombreBebida);
+                return false;
+
+            }
+
+            List<Producto> productos = new ArrayList<>();
+            coleccion.find().into(productos);
+
+            logger.log(Level.INFO, "Se consultaron {0} productos", productos.size());
+            return true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Error al actualizar inventario", ex);
+            throw new PersistenciaException("Error al actualizar inventario", ex);
+        }
+
+    }
+
 }

@@ -38,7 +38,10 @@ public class Ingrediente {
         this.cantidad = cantidad;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Ingrediente{" + "nombreIngrediente=" + nombreIngrediente + ", cantidad=" + cantidad + '}';
+    }
     
     
 }

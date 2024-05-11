@@ -24,4 +24,16 @@ public interface IAdminOrden {
     public void especificacionesOrden(NuevaOrdenDTO orden);
     
     public Double obtenerPrecioPorNombre(String nombreProducto);
+    
+    /**
+     * Cancela una orden mediante una ordenDTO
+     * @param ordenDTO valor de la orden a cancelar
+     */
+    public NuevaOrdenDTO cancelarOrden(NuevaOrdenDTO ordenDTO);
+    /**
+     * Obtiene todas las ordenes que ya hayan sido completadas
+     * @return regresa las ordenes ya completadas
+     */
+    public List<NuevaOrdenDTO> obtenerOrdenesCompletadas();
+    
 }

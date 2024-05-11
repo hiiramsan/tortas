@@ -4,6 +4,7 @@
  */
 package org.itson.bdavanzadas.adminOrden;
 
+import java.util.LinkedList;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import java.util.List;
 import java.util.logging.Level;
@@ -64,4 +65,31 @@ public class FacadeAdminOrden implements IAdminOrden {
         }
         return null;
     }
+    
+        @Override
+    public List<NuevaOrdenDTO> obtenerOrdenesCompletadas() {
+        try {
+            List<NuevaOrdenDTO> ordenesDTO = new LinkedList<>();
+            ordenesDTO = ordenControl.obtenerOrdenesCompletadas();
+            return ordenesDTO;
+
+        } catch (NegocioException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public NuevaOrdenDTO cancelarOrden(NuevaOrdenDTO ordenDTO) {
+        try {
+            NuevaOrdenDTO ordenCancelada = ordenControl.cancelarOrden(ordenDTO);
+            return ordenCancelada;
+            
+        } catch (NegocioException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }
+

@@ -10,6 +10,7 @@ import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
 import org.itson.bdavanzadas.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import org.itson.bdavanzadas.ObjetoNegocio.OrdenBO;
 import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
@@ -21,6 +22,7 @@ import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
  */
 public class OrdenControl {
 
+    private static final Logger LOG = Logger.getLogger(OrdenControl.class.getName());
     List<NuevaOrdenDTO> listaOrdenes = new ArrayList<>();
     List<NuevoProductoDTO> listaProductos = new ArrayList<>();
     private List<NuevaOrdenDTO> ordenes;
@@ -122,4 +124,27 @@ public class OrdenControl {
     public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException {
         return ordenBO.obtenerPrecioPorNombre(nombreProducto);
     }
+    
+    public List<NuevaOrdenDTO> obtenerOrdenesCompletadas() throws NegocioException {
+        try {
+            List<NuevaOrdenDTO> nuevaOrdenDTOs = ordenBO.obtenerOrdenesCompletadas();
+            LOG.info("Se consultaron " + nuevaOrdenDTOs.size() + " órdenes completadas");
+            return nuevaOrdenDTOs;
+        } catch (NegocioException ne) {
+            throw new NegocioException("Error al obtener las ordenes completadas", ne);
+        }
+    }
+
+    public NuevaOrdenDTO cancelarOrden(NuevaOrdenDTO ordenDTO) throws NegocioException {
+        try {
+            NuevaOrdenDTO ordenCanceladaDTO = ordenBO.cancelarOrden(ordenDTO);
+            
+            LOG.info("Se canceló la orden con número: " + ordenCanceladaDTO.getNumeroOrden());
+
+            return ordenCanceladaDTO;
+        } catch (NegocioException ne) {
+            throw new NegocioException("Error al cancelar la orden", ne);
+        }
+    }
+
 }

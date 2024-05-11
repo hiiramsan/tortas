@@ -1,4 +1,6 @@
+org\itson\bdavanzadas\dtos\NuevaVentaDTO.class
 org\itson\bdavanzadas\dtos\NuevaOrdenDTO.class
 org\itson\bdavanzadas\dtos\NuevoProductoDTO.class
 org\itson\bdavanzadas\dtos\TortaDTO.class
 org\itson\bdavanzadas\dtos\Estado.class
+org\itson\bdavanzadas\dtos\MetodoPago.class

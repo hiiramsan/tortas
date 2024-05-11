@@ -6,6 +6,7 @@ package org.itson.bdavanzadas.persistencia.entidades;
 
 import java.util.Date;
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.itson.bdavanzadas.dtos.Estado;
 
 /**
@@ -14,6 +15,7 @@ import org.itson.bdavanzadas.dtos.Estado;
  */
 public class Orden {
 
+    private ObjectId id;
     private int numeroOrden;
     private float total;
     private List<Producto> listaProductos;
@@ -72,10 +74,19 @@ public class Orden {
         this.fecha = fecha;
     }
 
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Orden{");
+        sb.append("id=").append(id);
         sb.append("numeroOrden=").append(numeroOrden);
         sb.append(", total=").append(total);
         sb.append(", listaProductos=").append(listaProductos);

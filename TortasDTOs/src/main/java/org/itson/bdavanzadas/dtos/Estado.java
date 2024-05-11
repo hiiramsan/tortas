@@ -9,5 +9,5 @@ package org.itson.bdavanzadas.dtos;
  * @author carlo
  */
 public enum Estado {
-    PENDIENTE, COMPLETADA, CANCELADA
+    PENDIENTE, COMPLETADA, CANCELADA, PAGADA
 }
