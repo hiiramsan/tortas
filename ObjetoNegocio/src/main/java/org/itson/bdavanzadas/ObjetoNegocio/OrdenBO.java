@@ -9,6 +9,7 @@ import org.itson.bdavanzadas.persistencia.conexion.IConexion;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
 import org.itson.bdavanzadas.dtos.Estado;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
@@ -268,6 +269,26 @@ public class OrdenBO {
             throw new NegocioException("Error al cancelar la orden", pe);
         }
         return ordenObtenidaDTO;
+    }
+    
+    public void cambiarEstadoCompletada(int numeroOrden) {
+        ordenDAO.cambiarEstadoCompletada(numeroOrden);
+    }
+
+    public void cambiarEstadoCancelada(int numeroOrden) {
+        ordenDAO.cambiarEstadoCancelada(numeroOrden);
+    }
+
+    public List<Document> obtenerOrdenesPorFechaAscendente() {
+        return ordenDAO.obtenerOrdenesPorFechaAscendente();
+    }
+
+    public List<Document> obtenerOrdenesPendientesPorCantidadTortas() {
+        return ordenDAO.obtenerOrdenesPendientesPorCantidadTortas();
+    }
+
+    public List<Document> obtenerOrdenesPendientes() {
+        return ordenDAO.obtenerOrdenesPendientes();
     }
 
 }

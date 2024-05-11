@@ -5,10 +5,14 @@
 package org.itson.bdavanzadas.persistencia.daos;
 
 import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Aggregates.match;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Sorts;
 import static com.mongodb.client.model.Updates.set;
 import com.mongodb.client.result.UpdateResult;
 import org.itson.bdavanzadas.persistencia.conexion.IConexion;
@@ -19,6 +23,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.itson.bdavanzadas.dtos.Estado;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
@@ -232,6 +237,98 @@ public class OrdenDAO implements IOrdenDAO {
             throw new PersistenciaException("Error al actualizar inventario", ex);
         }
 
+    }
+    
+    @Override
+    public void cambiarEstadoCompletada(int numeroOrden) {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+
+        MongoCollection<Document> collection = base.getCollection("ordenes");
+
+        collection.updateOne(eq("numeroOrden", numeroOrden),
+                new Document("$set", new Document("estado", Estado.COMPLETADA.toString())));
+
+    }
+
+    @Override
+    public void cambiarEstadoCancelada(int numeroOrden) {
+        MongoDatabase base = conexion.obtenerBaseDatos();
+
+        MongoCollection<Document> collection = base.getCollection("ordenes");
+
+        collection.updateOne(eq("numeroOrden", numeroOrden),
+                new Document("$set", new Document("estado", Estado.CANCELADA.toString())));
+    }
+    
+    public List<Document> obtenerOrdenesPendientes() {
+        List<Document> ordenesPendientes = new ArrayList<>();
+
+        try {
+            MongoDatabase base = conexion.obtenerBaseDatos();
+            FindIterable<Document> result = base.getCollection(nombreColeccion)
+                    .find(eq("estado", "PENDIENTE"));
+            for (Document doc : result) {
+                ordenesPendientes.add(doc);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al obtener las órdenes pendientes: " + e.getMessage());
+        }
+
+        return ordenesPendientes;
+    }
+
+    public List<Document> obtenerOrdenesPorFechaAscendente() {
+        List<Document> ordenes = new ArrayList<>();
+        MongoDatabase base = conexion.obtenerBaseDatos();
+
+        MongoCollection<Document> collection = base.getCollection("ordenes");
+        // Crea un filtro para las órdenes con estado pendiente
+        Bson filter = Filters.eq("estado", "PENDIENTE");
+
+        // Crea un filtro para ordenar por fecha ascendente
+        Bson sort = Sorts.ascending("fecha");
+
+        // Combina los filtros
+        Bson finalFilter = Filters.and(filter);
+
+        // Realiza la consulta
+        try ( MongoCursor<Document> cursor = collection.find(finalFilter).sort(sort).iterator()) {
+            while (cursor.hasNext()) {
+                Document orden = cursor.next();
+                ordenes.add(orden);
+            }
+        }
+
+        return ordenes;
+    }
+
+    public List<Document> obtenerOrdenesPendientesPorCantidadTortas() {
+        List<Document> ordenesPendientes = obtenerOrdenesPendientes();
+
+        ordenesPendientes.sort((orden1, orden2) -> {
+            List<Document> listaProductos1 = (List<Document>) orden1.get("listaProductos");
+            List<Document> listaProductos2 = (List<Document>) orden2.get("listaProductos");
+
+            int cantidadTortas1 = 0;
+            int cantidadTortas2 = 0;
+
+            for (Document producto : listaProductos1) {
+                if (producto.getString("categoria").equals("Torta")) {
+                    cantidadTortas1 += producto.getInteger("cantidad");
+                }
+            }
+
+            for (Document producto : listaProductos2) {
+                if (producto.getString("categoria").equals("Torta")) {
+                    cantidadTortas2 += producto.getInteger("cantidad");
+                }
+            }
+
+            // Ordenar de mayor a menor cantidad de tortas
+            return cantidadTortas2 - cantidadTortas1;
+        });
+
+        return ordenesPendientes;
     }
 
 }

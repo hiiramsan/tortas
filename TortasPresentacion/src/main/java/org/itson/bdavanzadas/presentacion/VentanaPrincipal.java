@@ -1925,8 +1925,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
         // TODO add your handling code here:
-        Ordenes o = new Ordenes(adminOrden.obtenerOrdenes());
-        o.setVisible(true);
+        Ordenes o = new Ordenes();
+        o.adminOrden = new FacadeAdminOrden();
+            o.setVisible(true);
     }//GEN-LAST:event_jLabel36MouseClicked
 
     private void tablaOrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaOrdenMouseClicked

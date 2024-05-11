@@ -6,6 +6,7 @@ package org.itson.bdavanzadas.adminOrden;
 
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import java.util.List;
+import org.bson.Document;
 
 /**
  *
@@ -35,5 +36,18 @@ public interface IAdminOrden {
      * @return regresa las ordenes ya completadas
      */
     public List<NuevaOrdenDTO> obtenerOrdenesCompletadas();
+    
+    public void cambiarEstadoCancelada(int numeroOrden);
+
+    public void cambiarEstadoCompletada(int numeroOrden);
+
+    
+    public List<Document> obtenerOrdenesPorFechaAscendente() ;
+    
+
+    public List<Document> obtenerOrdenesPendientesPorCantidadTortas()  ;
+    
+
+    public List<Document> obtenerOrdenesPendientes() ;
     
 }

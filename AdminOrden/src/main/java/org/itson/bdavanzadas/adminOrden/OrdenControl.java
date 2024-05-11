@@ -11,6 +11,7 @@ import org.itson.bdavanzadas.dtos.TortaDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import org.bson.Document;
 import org.itson.bdavanzadas.ObjetoNegocio.OrdenBO;
 import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
@@ -145,6 +146,29 @@ public class OrdenControl {
         } catch (NegocioException ne) {
             throw new NegocioException("Error al cancelar la orden", ne);
         }
+    }
+    
+      public void canmbiarEstadoCancelada(int numeroOrden) {
+        ordenBO.cambiarEstadoCancelada(numeroOrden);
+
+    }
+
+    public void cambiarEstadoCompletada(int numeroOrden) {
+
+        ordenBO.cambiarEstadoCompletada(numeroOrden);
+
+    }
+    
+    public List<Document> obtenerOrdenesPorFechaAscendente()throws FindException {
+        return ordenBO.obtenerOrdenesPorFechaAscendente();
+    }
+
+    public List<Document> obtenerOrdenesPendientesPorCantidadTortas() throws FindException {
+        return ordenBO.obtenerOrdenesPendientesPorCantidadTortas();
+    }
+
+    public List<Document> obtenerOrdenesPendientes() throws FindException{
+        return ordenBO.obtenerOrdenesPendientes();
     }
 
 }

@@ -5,6 +5,7 @@
 package org.itson.bdavanzadas.persistencia.daos;
 
 import java.util.List;
+import org.bson.Document;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
@@ -43,4 +44,13 @@ public interface IOrdenDAO {
      */
     public Orden cancelarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException;
     
+    public void cambiarEstadoCompletada(int numeroOrden);
+
+    public void cambiarEstadoCancelada(int numeroOrden);
+
+    public List<Document> obtenerOrdenesPorFechaAscendente();
+
+    public List<Document> obtenerOrdenesPendientesPorCantidadTortas();
+
+    public List<Document> obtenerOrdenesPendientes();
 }
