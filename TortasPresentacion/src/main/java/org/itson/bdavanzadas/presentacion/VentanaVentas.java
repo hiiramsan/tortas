@@ -77,6 +77,7 @@ public class VentanaVentas extends javax.swing.JDialog {
         };
         tblOrdenes2.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
         tblOrdenes2.getColumnModel().getColumn(4).setCellEditor(new TableActionCellEditor(event));
+        tblOrdenes2.getColumnModel().getColumn(4).setPreferredWidth(150);
 
     }
 
@@ -268,7 +269,7 @@ public class VentanaVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_lblOrdenesMouseClicked
 
     private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
-        
+
 
     }//GEN-LAST:event_lblVentasMouseClicked
 
@@ -315,6 +316,16 @@ public class VentanaVentas extends javax.swing.JDialog {
                     List<NuevaOrdenDTO> ordenes = adminOrden.obtenerOrdenesCompletadas();
                     NuevaOrdenDTO OrdenSeleccionada = ordenes.get(row);
                     OrdenSeleccionada.toString();
+                    VentanaCancelar VC = new VentanaCancelar(null, true, OrdenSeleccionada);
+                    VC.setVisible(true);
+                    if (tblOrdenes2.isEditing()) {
+                        tblOrdenes2.getCellEditor().stopCellEditing();
+                    }
+                    if (VentanaCancelar.seCancelo()) {
+                        DefaultTableModel model = (DefaultTableModel) tblOrdenes2.getModel();
+                        model.removeRow(row); 
+                        tblOrdenes2.setModel(model);;
+                    }
                     System.out.println("cancelar" + row + OrdenSeleccionada.getNumeroOrden());
                 }
 
@@ -324,7 +335,15 @@ public class VentanaVentas extends javax.swing.JDialog {
                     NuevaOrdenDTO OrdenSeleccionada = ordenes.get(row);
                     System.out.println("pagar" + row);
                     VentanaOrdenPagar ordenPagar = new VentanaOrdenPagar(null, true, OrdenSeleccionada);
+
                     ordenPagar.setVisible(true);
+                    if (tblOrdenes2.isEditing()) {
+                        tblOrdenes2.getCellEditor().stopCellEditing();
+                    }
+                    if (VentanaPagarEfectivo.sePago()) {
+                        DefaultTableModel model = (DefaultTableModel) tblOrdenes2.getModel();
+                        model.removeRow(row);
+                    }
                 }
             };
             tblOrdenes2.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());

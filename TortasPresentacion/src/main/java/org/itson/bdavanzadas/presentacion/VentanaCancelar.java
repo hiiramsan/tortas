@@ -135,9 +135,17 @@ public class VentanaCancelar extends javax.swing.JDialog {
 
     }
     private void btnCancelarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarOrdenActionPerformed
+        
         NuevaOrdenDTO ordenCancelad = adminOrden.cancelarOrden(ordenDTO);
         VentanaCancelar.ordenCancelada = ordenCancelad;
+        System.out.println("*****************************************");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        
+        VentanaCancelar.ordenCancelada.toString();
         dispose();
+        
     }//GEN-LAST:event_btnCancelarOrdenActionPerformed
 
 

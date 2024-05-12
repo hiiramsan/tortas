@@ -372,6 +372,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblHora = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1098, 744));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -433,11 +434,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(367, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(164, 180, 148));
@@ -1992,7 +1993,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarProductoBtnActionPerformed
 
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
-        VentanaVentas VV = new VentanaVentas(this, false);
+        VentanaVentas VV = new VentanaVentas(this, true);
         try {
             VentanaPrincipal.getInstance().setVisible(false);
             VV.setVisible(true);

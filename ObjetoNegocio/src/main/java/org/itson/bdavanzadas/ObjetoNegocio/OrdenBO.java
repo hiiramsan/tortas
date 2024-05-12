@@ -230,8 +230,9 @@ public class OrdenBO {
         try {
             orden = ordenDAO.cancelarOrden(ordenDTO);
 
-            ordenDTO.setEstado(orden.getEstado());
-            ordenDTO.setFecha(orden.getFecha());
+            ordenObtenidaDTO.setEstado(orden.getEstado());
+            ordenObtenidaDTO.setFecha(orden.getFecha());
+           
 
             List<NuevoProductoDTO> productosDTO = new LinkedList<>();
 
@@ -265,6 +266,11 @@ public class OrdenBO {
                 }
 
             }
+             ordenObtenidaDTO.setListaProductos(productosDTO);
+             ordenObtenidaDTO.setNombreCliente(orden.getNombreCliente());
+             ordenObtenidaDTO.setNumeroOrden(orden.getNumeroOrden());
+             ordenObtenidaDTO.setTotal(orden.getTotal());
+             
         } catch (PersistenciaException pe) {
             throw new NegocioException("Error al cancelar la orden", pe);
         }

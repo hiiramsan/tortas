@@ -7,6 +7,7 @@ package org.itson.bdavanzadas.presentacion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import org.itson.bdavanzadas.AdminVentas.FacadeAdminVentas;
 import org.itson.bdavanzadas.AdminVentas.IVentas;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
@@ -25,6 +26,7 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
     private IAdminOrden adminOrden;
     private IVentas adminVenta;
     private float cambio;
+    private float cantidadEfectivo;
     public static NuevaOrdenDTO ordenPagada;
     public static boolean pagado;
 
@@ -39,7 +41,8 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
         initComponents();
         lblTotal.setText("$" + String.valueOf(ordenDTO.getTotal()));
         lblCliente.setText(ordenDTO.getNombreCliente());
-        cambio = 0;
+        cambio = -1;
+        cantidadEfectivo =0;
         pagado = false;
         
         addWindowListener(new WindowAdapter() {
@@ -121,6 +124,7 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
         botonPagar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagar.png"))); // NOI18N
         botonPagar1.setText("Pagar");
         botonPagar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonPagar1.setRadius(30);
         botonPagar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPagar1ActionPerformed(evt);
@@ -130,6 +134,7 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
         botonCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         botonCancelar1.setText("Cancelar");
         botonCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonCancelar1.setRadius(30);
         botonCancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCancelar1ActionPerformed(evt);
@@ -274,18 +279,19 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
 
     private void botonPagar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagar1ActionPerformed
         NuevaVentaDTO nuevaVenta = new NuevaVentaDTO();
-        if (cambio >= 0) {
+        if (cantidadEfectivo >= ordenDTO.getTotal()) {
             nuevaVenta.setFechaVenta(new Date());
             nuevaVenta.setMetodoPago(MetodoPago.EFECTIVO);
             nuevaVenta.setOrden(ordenDTO);
             nuevaVenta.setTotal((double) ordenDTO.getTotal());
             NuevaVentaDTO ventaPagada = adminVenta.registrarVenta(nuevaVenta);
             VentanaPagarEfectivo.ordenPagada = ventaPagada.getOrden();
+            dispose();
         } else {
-
+            JOptionPane jp = new JOptionPane("Favor de ingresar el monto correctamente",JOptionPane.INFORMATION_MESSAGE);
         }
 
-        dispose();
+        
     }//GEN-LAST:event_botonPagar1ActionPerformed
 
     private void txtCantidadEfectivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadEfectivoKeyReleased
@@ -299,6 +305,7 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
         }
 
         cambio = cantidadEfectivo - total;
+        this.cantidadEfectivo= cantidadEfectivo;
         lblCambio.setText("$" + String.valueOf(cambio));
     }//GEN-LAST:event_txtCantidadEfectivoKeyReleased
 
