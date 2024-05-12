@@ -91,7 +91,7 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         agregarBtn1 = new utils.Btn();
         agregarBtn2 = new utils.Btn();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
