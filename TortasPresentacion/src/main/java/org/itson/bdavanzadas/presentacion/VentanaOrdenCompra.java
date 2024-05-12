@@ -654,13 +654,19 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
 
             adminReportes.generarReporteOrdenDeCompra(listaProductos, comentariosTxt.getText(), proveedorCB.getSelectedItem().toString());
 
-            String filename = "OrdenDeCompra.pdf"; // Replace with the name of your file
-            String projectDirectory = System.getProperty("user.dir");
-            String filePath = projectDirectory + File.separator + filename;
-            File file = new File(filePath);
-            String absolutePath = file.getAbsolutePath();
+            String filename = "OrdenDeCompra.pdf"; 
+            
             String proveedorMail = proveedorCB.getSelectedItem().toString();
-            adminMailer.sendEmailWithAttachment("carloshiramsanchez@gmail.com", proveedorMail, "Orden de Compra", cuerpoMensaje.toString(), absolutePath);
+            try {
+                String projectDirectory = System.getProperty("user.dir");
+                String filePath = projectDirectory + File.separator + filename;
+                File file = new File(filePath);
+                String absolutePath = file.getAbsolutePath();
+                adminMailer.sendEmailWithAttachment("carloshiramsanchez@gmail.com", proveedorMail, "Orden de Compra", cuerpoMensaje.toString(), absolutePath);
+            } catch(Exception e) {
+                adminMailer.sendPersonalizedEmail("carloshiramsanchez@gmail.com", proveedorMail, "Orden de Compra", cuerpoMensaje.toString());
+            }
+            
         }
     }
 
