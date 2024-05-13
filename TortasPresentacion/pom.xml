@@ -39,11 +39,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.itson.bdavanzadas</groupId>
-            <artifactId>AdminTarjeta</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>AdminVenta</artifactId>
             <version>${project.version}</version>
@@ -62,6 +57,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>AdminMailer</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.itson.bdavanzadas</groupId>
+            <artifactId>AdminTarjeta</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <properties>

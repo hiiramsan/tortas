@@ -73,6 +73,7 @@ public class VentanaMensajePago extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonPagar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagar1ActionPerformed

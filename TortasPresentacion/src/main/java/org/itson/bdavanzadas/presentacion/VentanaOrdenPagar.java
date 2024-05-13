@@ -4,12 +4,15 @@
  */
 package org.itson.bdavanzadas.presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
+import static org.itson.bdavanzadas.presentacion.VentanaPagarEfectivo.ordenPagada;
 
 /**
  *
@@ -36,6 +39,14 @@ public class VentanaOrdenPagar extends javax.swing.JDialog {
         lblTotal.setText(String.valueOf(ordenDTO.getTotal()));
 
         consultarProductos();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (VentanaPagarEfectivo.ordenPagada != null) {
+                    VentanaPagarEfectivo.ordenPagada.setNumeroOrden(-1);
+                }
+            }
+        });
     }
 
     private void consultarProductos() {

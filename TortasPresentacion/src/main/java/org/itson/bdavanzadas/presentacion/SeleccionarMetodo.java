@@ -5,7 +5,7 @@
 package org.itson.bdavanzadas.presentacion;
 
 
-import org.itson.bdavanzadas.adminTarjeta.VentanaPagarTarjeta1;
+import org.itson.bdavanzadas.adminTarjeta.VentanaPagarTarjeta3;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 
 /**
@@ -87,7 +87,7 @@ public class SeleccionarMetodo extends javax.swing.JDialog {
 
     private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
         this.dispose();
-        VentanaPagarTarjeta1 VPT1 = new VentanaPagarTarjeta1(null, true,ordenDTO);
+        VentanaPagarTarjeta3 VPT1 = new VentanaPagarTarjeta3(null, true,ordenDTO);
         VPT1.setVisible(true);
     }//GEN-LAST:event_btnTarjetaActionPerformed
 

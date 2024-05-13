@@ -5,9 +5,15 @@
 package org.itson.bdavanzadas.adminTarjeta;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.Timer;
 import org.itson.bdavanzadas.AdminVentas.FacadeAdminVentas;
 import org.itson.bdavanzadas.AdminVentas.IVentas;
 import org.itson.bdavanzadas.dtos.MetodoPago;
@@ -20,8 +26,14 @@ import org.itson.bdavanzadas.dtos.NuevaVentaDTO;
  */
 public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
 
-    private static final int TIEMPO_MOSTRAR_DLG = 5000;
+    private static final int TIEMPO_MOSTRAR_DLG = 2000;
     private IVentas ventas;
+    public static NuevaOrdenDTO ordenPagada;
+    public NuevaOrdenDTO ordenDTO;
+    public static boolean pagado;
+    private int contadorCambios;
+    private Timer timer;
+
     /**
      * Creates new form VentanaPagarTarjeta1
      */
@@ -29,27 +41,72 @@ public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         ventas = new FacadeAdminVentas();
-        new Thread(new Runnable() {
+        this.ordenDTO = ordenDTO;
+        contadorCambios=0;
+        
+        timer = new Timer(2000, new ActionListener() {
             @Override
-            public void run() {
-                try {
-                    Thread.sleep(TIEMPO_MOSTRAR_DLG);
-                    dispose();
-                    NuevaVentaDTO nuevaVenta = new NuevaVentaDTO();
-                    nuevaVenta.setFechaVenta(new Date());
-                    nuevaVenta.setMetodoPago(MetodoPago.TARJETA);
-                    nuevaVenta.setOrden(ordenDTO);
-                    nuevaVenta.setTotal((double) ordenDTO.getTotal());
-                    ventas.registrarVenta(nuevaVenta);
-                    VentanaMensajePago VP = new VentanaMensajePago(null, true);
-                    VP.setVisible(true);
-                    dispose();
-                    
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+            public void actionPerformed(ActionEvent e) {
+                cambiarImagen();
+                cambiarTexto();
+                
+                contadorCambios++;
+                if (contadorCambios == 3) {
+                    realizarVenta();
                 }
             }
-        }).start();
+        });
+        timer.start();
+    }
+
+    private void realizarVenta() {
+        NuevaVentaDTO nuevaVenta = new NuevaVentaDTO();
+        nuevaVenta.setFechaVenta(new Date());
+        nuevaVenta.setMetodoPago(MetodoPago.TARJETA);
+        nuevaVenta.setOrden(ordenDTO);
+        nuevaVenta.setTotal((double) ordenDTO.getTotal());
+        NuevaVentaDTO ventaPagada = ventas.registrarVenta(nuevaVenta);
+        ;
+        VentanaPagarTarjeta3.ordenPagada = ventaPagada.getOrden();
+
+        System.out.println("ORDEEEEEEEEEEN");
+        System.out.println(ordenPagada.getNumeroOrden());
+
+    }
+
+    private ImageIcon cargarImagen(String nombreImagen) {
+        String rutaImagen = "src\\main\\resources\\imagenes\\" + nombreImagen;
+        return new ImageIcon(getClass().getResource(rutaImagen));
+    }
+
+    private void cambiarImagen() {
+        if (contadorCambios == 1) {
+            ImageIcon imagenIcon = new ImageIcon("src\\main\\resources\\imagenes\\NIP.png");
+            lblImagen.setIcon(imagenIcon);
+        } else if (contadorCambios == 2) {
+            ImageIcon imagenIcon = new ImageIcon("src\\main\\resources\\imagenes\\PagoAprobado.png");
+            lblImagen.setIcon(imagenIcon);
+        }
+    }
+
+    private void cambiarTexto() {
+        if (contadorCambios == 1) {
+            lblTexto.setText("Ingrese NIP");
+        } else if (contadorCambios == 2) {
+            lblTexto.setText("Pago aprobado");
+        }
+    }
+
+    public static boolean sePago() {
+        if (ordenPagada != null) {
+            if (ordenPagada.getNumeroOrden() >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
 
     }
 
@@ -62,21 +119,21 @@ public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblAprobado = new javax.swing.JLabel();
+        lblImagen = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblTexto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(739, 598));
         setResizable(false);
 
-        lblAprobado.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblAprobado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAprobado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Pago Aprobado.gif"))); // NOI18N
-        lblAprobado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblAprobado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblAprobado.setMinimumSize(new java.awt.Dimension(260, 241));
-        lblAprobado.setPreferredSize(new java.awt.Dimension(397, 16));
+        lblImagen.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InserteTarjeta.png"))); // NOI18N
+        lblImagen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblImagen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblImagen.setMinimumSize(new java.awt.Dimension(260, 241));
+        lblImagen.setPreferredSize(new java.awt.Dimension(397, 16));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -85,12 +142,12 @@ public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setPreferredSize(new java.awt.Dimension(397, 16));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Pago aprobado");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setPreferredSize(new java.awt.Dimension(397, 16));
+        lblTexto.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTexto.setText("Ingrese tarjeta");
+        lblTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblTexto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblTexto.setPreferredSize(new java.awt.Dimension(397, 16));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,8 +161,8 @@ public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAprobado, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(244, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,9 +170,9 @@ public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblAprobado, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99))
         );
 
@@ -130,7 +187,7 @@ public class VentanaPagarTarjeta3 extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel lblAprobado;
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblTexto;
     // End of variables declaration//GEN-END:variables
 }

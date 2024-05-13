@@ -287,6 +287,8 @@ public class VentanaPagarEfectivo extends javax.swing.JDialog {
             NuevaVentaDTO ventaPagada = adminVenta.registrarVenta(nuevaVenta);
             VentanaPagarEfectivo.ordenPagada = ventaPagada.getOrden();
             dispose();
+            VentanaMensajePago VMP = new VentanaMensajePago(null, true);
+            VMP.setVisible(true);
         } else {
             JOptionPane jp = new JOptionPane("Favor de ingresar el monto correctamente",JOptionPane.INFORMATION_MESSAGE);
         }

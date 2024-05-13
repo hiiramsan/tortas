@@ -49,6 +49,7 @@ org\itson\bdavanzadas\tabla\TableActionCellRender.class
 org\itson\bdavanzadas\presentacion\FrmInventariar$14.class
 org\itson\bdavanzadas\presentacion\VentanaPrincipal$25.class
 org\itson\bdavanzadas\presentacion\VentanaPrincipal$35.class
+org\itson\bdavanzadas\presentacion\VentanaOrdenPagar$4.class
 org\itson\bdavanzadas\presentacion\VentanaPagarEfectivo$3.class
 org\itson\bdavanzadas\presentacion\VentanaPrincipal$24.class
 org\itson\bdavanzadas\presentacion\VentanaMensajePago.class

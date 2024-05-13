@@ -15,6 +15,7 @@ import org.itson.bdavanzadas.AdminVentas.FacadeAdminVentas;
 import org.itson.bdavanzadas.AdminVentas.IVentas;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
 import org.itson.bdavanzadas.adminOrden.IAdminOrden;
+import org.itson.bdavanzadas.adminTarjeta.VentanaPagarTarjeta3;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import org.itson.bdavanzadas.tabla.TableActionCellEditor;
 import org.itson.bdavanzadas.tabla.TableActionCellRender;
@@ -28,6 +29,7 @@ public class VentanaVentas extends javax.swing.JDialog {
 
     private IVentas ventas;
     private IAdminOrden adminOrden;
+    private VentanaPagarTarjeta3 ventanaTarjeta;
     DefaultTableModel modelo;
 
     /**
@@ -73,6 +75,13 @@ public class VentanaVentas extends javax.swing.JDialog {
                     model.removeRow(row);
                 }
 
+                if (VentanaPagarTarjeta3.sePago()) {
+                    DefaultTableModel model = (DefaultTableModel) tblOrdenes2.getModel();
+                    model.removeRow(row);
+                    System.out.println("SE PAGO LA VENTA POR TARJETA");
+                } else {
+                    System.out.println("NO SE PAGo");
+                }
             }
         };
         tblOrdenes2.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
@@ -323,7 +332,7 @@ public class VentanaVentas extends javax.swing.JDialog {
                     }
                     if (VentanaCancelar.seCancelo()) {
                         DefaultTableModel model = (DefaultTableModel) tblOrdenes2.getModel();
-                        model.removeRow(row); 
+                        model.removeRow(row);
                         tblOrdenes2.setModel(model);;
                     }
                     System.out.println("cancelar" + row + OrdenSeleccionada.getNumeroOrden());
@@ -344,6 +353,15 @@ public class VentanaVentas extends javax.swing.JDialog {
                         DefaultTableModel model = (DefaultTableModel) tblOrdenes2.getModel();
                         model.removeRow(row);
                     }
+
+                    if (VentanaPagarTarjeta3.sePago()) {
+                        DefaultTableModel model = (DefaultTableModel) tblOrdenes2.getModel();
+                        model.removeRow(row);
+                        System.out.println("SE PAGO LA VENTA POR TARJETA");
+                    } else {
+                        System.out.println("NO SE PAGo");
+                    }
+
                 }
             };
             tblOrdenes2.getColumnModel().getColumn(4).setCellRenderer(new TableActionCellRender());
