@@ -44,6 +44,7 @@ public class Ordenes  extends JFrame {
         this.adminOrden = new FacadeAdminOrden();
         initComponents();
         //hola
+        setSize(1400,700);
     }
 
     private void initComponents() {
