@@ -93,7 +93,6 @@ public class OrdenBO {
                 nuevoProductoDTO.setNombre(producto.getNombre());
                 nuevoProductoDTO.setNotas(producto.getNotas());
                 nuevoProductoDTO.setPrecio(producto.getPrecio());
-                System.out.println("cantidad´de infredientes" + producto.getIngredientes().size());
 
                 if (producto.getIngredientes().isEmpty()) {
                     productosDTO.add(nuevoProductoDTO);
@@ -232,7 +231,6 @@ public class OrdenBO {
 
             ordenObtenidaDTO.setEstado(orden.getEstado());
             ordenObtenidaDTO.setFecha(orden.getFecha());
-           
 
             List<NuevoProductoDTO> productosDTO = new LinkedList<>();
 
@@ -266,17 +264,17 @@ public class OrdenBO {
                 }
 
             }
-             ordenObtenidaDTO.setListaProductos(productosDTO);
-             ordenObtenidaDTO.setNombreCliente(orden.getNombreCliente());
-             ordenObtenidaDTO.setNumeroOrden(orden.getNumeroOrden());
-             ordenObtenidaDTO.setTotal(orden.getTotal());
-             
+            ordenObtenidaDTO.setListaProductos(productosDTO);
+            ordenObtenidaDTO.setNombreCliente(orden.getNombreCliente());
+            ordenObtenidaDTO.setNumeroOrden(orden.getNumeroOrden());
+            ordenObtenidaDTO.setTotal(orden.getTotal());
+
         } catch (PersistenciaException pe) {
             throw new NegocioException("Error al cancelar la orden", pe);
         }
         return ordenObtenidaDTO;
     }
-    
+
     public void cambiarEstadoCompletada(int numeroOrden) {
         ordenDAO.cambiarEstadoCompletada(numeroOrden);
     }
