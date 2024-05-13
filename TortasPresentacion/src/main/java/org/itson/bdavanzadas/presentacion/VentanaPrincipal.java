@@ -2025,6 +2025,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         o.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel38MouseClicked
 
     /**

@@ -6,6 +6,8 @@ package org.itson.bdavanzadas.presentacion;
 
 import com.mycompany.admininventariar.FacadeAdminInventariar;
 import com.mycompany.admininventariar.IInventariar;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -79,6 +81,21 @@ public class FrmInventariar extends javax.swing.JFrame {
         initComponents();
         actualizarStock();
         llenarTabla();
+        
+         addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Abrir la VentanaPrincipal al cerrar este frame
+                VentanaPrincipal vp = null;
+                try {
+                    vp = new VentanaPrincipal();
+                } catch (FindException ex) {
+                    Logger.getLogger(FrmInventariar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                vp.setVisible(true);
+            }
+        });
+        
     }
 
     public void actualizarStock() {

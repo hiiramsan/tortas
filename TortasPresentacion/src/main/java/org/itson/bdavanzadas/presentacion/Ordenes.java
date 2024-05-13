@@ -33,18 +33,18 @@ import org.itson.bdavanzadas.adminOrden.IAdminOrden;
  *
  * @author crist
  */
-public class Ordenes  extends JFrame {
+public class Ordenes extends JFrame {
 
     private JPanel panelOrdenes;
     IAdminOrden adminOrden;
-    
+
     Insets insets = new Insets(10, 10, 10, 10);
 
     public Ordenes() {
         this.adminOrden = new FacadeAdminOrden();
         initComponents();
         //hola
-        setSize(1400,700);
+        setSize(1400, 700);
     }
 
     private void initComponents() {
@@ -66,7 +66,7 @@ public class Ordenes  extends JFrame {
 
         // Botón "Actualizar"
         JButton btnActualizar = new JButton("Actualizar");
-        Color azul = new Color(36, 123, 160); 
+        Color azul = new Color(36, 123, 160);
         btnActualizar.setBackground(azul);
         btnActualizar.setForeground(Color.WHITE);
 
@@ -244,11 +244,11 @@ public class Ordenes  extends JFrame {
             System.out.println("Cancelando orden #" + orden.getInteger("numeroOrden"));
             adminOrden.cancelarOrden(orden.getInteger("numeroOrden"));
             panelOrdenRef[0].setVisible(false);
-             // Limpiar los paneles existentes
+            // Limpiar los paneles existentes
             panelOrdenes.removeAll();
             panelOrdenes.revalidate();
             panelOrdenes.repaint();
-            
+
             // Obtener y mostrar las nuevas órdenes
             List<Document> ordenesPendientesActualizadas = adminOrden.obtenerOrdenesPendientes();
             for (Document ordenesA : ordenesPendientesActualizadas) {
@@ -295,14 +295,14 @@ public class Ordenes  extends JFrame {
 
         revalidate();
         repaint();
-            
-        }
+
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             // Inicializa adminOrden aquí
             Ordenes frame = new Ordenes();
-            
+
             frame.adminOrden = new FacadeAdminOrden();
             frame.setVisible(true);
         });
