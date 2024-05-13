@@ -295,7 +295,6 @@ public class Ordenes extends JFrame {
 
         revalidate();
         repaint();
-
     }
 
     public static void main(String[] args) {
