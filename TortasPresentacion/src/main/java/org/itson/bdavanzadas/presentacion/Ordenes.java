@@ -12,10 +12,14 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -28,6 +32,7 @@ import javax.swing.SwingUtilities;
 import org.bson.Document;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
 import org.itson.bdavanzadas.adminOrden.IAdminOrden;
+import org.itson.bdavanzadas.persistencia.exception.FindException;
 
 /**
  *
@@ -146,6 +151,20 @@ public class Ordenes extends JFrame {
         for (Document orden : ordenesPendientes) {
             agregarOrden(orden, insets);
         }
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Abrir la VentanaPrincipal al cerrar este frame
+                VentanaPrincipal vp = null;
+                try {
+                    vp = new VentanaPrincipal();
+                } catch (FindException ex) {
+                    Logger.getLogger(FrmInventariar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                vp.setVisible(true);
+            }
+        });
 
     }
 

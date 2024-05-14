@@ -4,6 +4,8 @@
  */
 package org.itson.bdavanzadas.presentacion;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +33,20 @@ public class HistorialOrdenes extends javax.swing.JFrame {
         this.adminOrden = new FacadeAdminOrden();
         initComponents();
         llenarTabla();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Abrir la VentanaPrincipal al cerrar este frame
+                VentanaPrincipal vp = null;
+                try {
+                    vp = new VentanaPrincipal();
+                } catch (FindException ex) {
+                    Logger.getLogger(FrmInventariar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                vp.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -266,6 +282,7 @@ public class HistorialOrdenes extends javax.swing.JFrame {
         Ordenes o = new Ordenes();
         o.adminOrden = new FacadeAdminOrden();
         o.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel36MouseClicked
 
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
@@ -286,6 +303,7 @@ public class HistorialOrdenes extends javax.swing.JFrame {
         try {
             voc = new VentanaOrdenCompra();
             voc.setVisible(true);
+            dispose();
         } catch (FindException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
