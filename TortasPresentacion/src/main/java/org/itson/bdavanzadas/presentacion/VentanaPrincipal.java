@@ -378,6 +378,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/IconoComida.png"))); // NOI18N
+        jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel34MouseClicked(evt);
+            }
+        });
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono1.png"))); // NOI18N
         jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2044,7 +2049,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jLabel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseClicked
         HistorialOrdenes o = new HistorialOrdenes();
         o.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel40MouseClicked
+
+    private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
+        VentanaPrincipal o = null;
+        try {
+            o = new VentanaPrincipal();
+        } catch (FindException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        o.setVisible(true);
+    }//GEN-LAST:event_jLabel34MouseClicked
 
     /**
      * @param args the command line arguments

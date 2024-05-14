@@ -273,14 +273,13 @@ public class VentanaVentas extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
+
+    }//GEN-LAST:event_lblVentasMouseClicked
+
     private void lblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOrdenesMouseClicked
 
     }//GEN-LAST:event_lblOrdenesMouseClicked
-
-    private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
-
-
-    }//GEN-LAST:event_lblVentasMouseClicked
 
     private void lblTomarOrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTomarOrdenMouseClicked
         try {
@@ -289,7 +288,6 @@ public class VentanaVentas extends javax.swing.JDialog {
             Logger.getLogger(VentanaVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
-
     }//GEN-LAST:event_lblTomarOrdenMouseClicked
 
     private List<NuevaOrdenDTO> consultar() {

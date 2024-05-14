@@ -136,7 +136,7 @@ public class HistorialOrdenes extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/IconoComida.png"))); // NOI18N
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel34MouseClicked(evt);
@@ -309,7 +309,14 @@ public class HistorialOrdenes extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel40MouseClicked
 
     private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
-
+        VentanaPrincipal o = null;
+        try {
+            o = new VentanaPrincipal();
+        } catch (FindException ex) {
+            Logger.getLogger(HistorialOrdenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        o.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel34MouseClicked
 
     /**
