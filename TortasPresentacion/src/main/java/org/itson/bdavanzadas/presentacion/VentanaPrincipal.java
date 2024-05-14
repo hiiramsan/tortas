@@ -2015,8 +2015,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } catch (FindException ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
+        dispose(); // Mover la llamada a dispose fuera del bloque try-catch
     }//GEN-LAST:event_jLabel37MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

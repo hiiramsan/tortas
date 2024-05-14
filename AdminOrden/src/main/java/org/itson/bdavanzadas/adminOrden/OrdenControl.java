@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import org.bson.Document;
 import org.itson.bdavanzadas.ObjetoNegocio.OrdenBO;
 import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
+import org.itson.bdavanzadas.persistencia.entidades.Orden;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
 import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
@@ -121,11 +122,11 @@ public class OrdenControl {
     public List<NuevaOrdenDTO> obtenerOrdenes() throws FindException, NegocioException {
         return ordenBO.obtenerOrden();
     }
-    
+
     public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException {
         return ordenBO.obtenerPrecioPorNombre(nombreProducto);
     }
-    
+
     public List<NuevaOrdenDTO> obtenerOrdenesCompletadas() throws NegocioException {
         try {
             List<NuevaOrdenDTO> nuevaOrdenDTOs = ordenBO.obtenerOrdenesCompletadas();
@@ -136,10 +137,19 @@ public class OrdenControl {
         }
     }
 
+    public Orden obtenerOrdenPorNumeroOrden(Integer numOrden) throws NegocioException {
+        try {
+            Orden orden = ordenBO.obtenerOrdenPorNumeroOrden(numOrden);
+            return orden;
+        } catch (NegocioException ne) {
+            throw new NegocioException("Error al obtener las ordenes completadas", ne);
+        }
+    }
+
     public NuevaOrdenDTO cancelarOrden(NuevaOrdenDTO ordenDTO) throws NegocioException {
         try {
             NuevaOrdenDTO ordenCanceladaDTO = ordenBO.cancelarOrden(ordenDTO);
-            
+
             LOG.info("Se canceló la orden con número: " + ordenCanceladaDTO.getNumeroOrden());
 
             return ordenCanceladaDTO;
@@ -147,8 +157,16 @@ public class OrdenControl {
             throw new NegocioException("Error al cancelar la orden", ne);
         }
     }
-    
-      public void canmbiarEstadoCancelada(int numeroOrden) {
+
+    public void ordenCompletada(NuevaOrdenDTO ordenDTO) throws NegocioException {
+        try {
+            ordenBO.ordenCompletada(ordenDTO);
+        } catch (NegocioException ne) {
+            throw new NegocioException("Error al cancelar la orden", ne);
+        }
+    }
+
+    public void canmbiarEstadoCancelada(int numeroOrden) {
         ordenBO.cambiarEstadoCancelada(numeroOrden);
 
     }
@@ -158,8 +176,8 @@ public class OrdenControl {
         ordenBO.cambiarEstadoCompletada(numeroOrden);
 
     }
-    
-    public List<Document> obtenerOrdenesPorFechaAscendente()throws FindException {
+
+    public List<Document> obtenerOrdenesPorFechaAscendente() throws FindException {
         return ordenBO.obtenerOrdenesPorFechaAscendente();
     }
 
@@ -167,7 +185,7 @@ public class OrdenControl {
         return ordenBO.obtenerOrdenesPendientesPorCantidadTortas();
     }
 
-    public List<Document> obtenerOrdenesPendientes() throws FindException{
+    public List<Document> obtenerOrdenesPendientes() throws FindException {
         return ordenBO.obtenerOrdenesPendientes();
     }
 

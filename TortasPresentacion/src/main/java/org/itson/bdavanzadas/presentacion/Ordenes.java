@@ -16,6 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -32,7 +33,14 @@ import javax.swing.SwingUtilities;
 import org.bson.Document;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
 import org.itson.bdavanzadas.adminOrden.IAdminOrden;
+import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
+import org.itson.bdavanzadas.dtos.NuevoProductoDTO;
+import org.itson.bdavanzadas.dtos.TortaDTO;
+import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
+import org.itson.bdavanzadas.persistencia.entidades.Orden;
+import org.itson.bdavanzadas.persistencia.entidades.Producto;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
+import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
@@ -261,7 +269,12 @@ public class Ordenes extends JFrame {
             System.out.println("Botón Cancelar presionado para la orden: " + orden.getInteger("numeroOrden"));
 
             System.out.println("Cancelando orden #" + orden.getInteger("numeroOrden"));
-            adminOrden.cancelarOrden(orden.getInteger("numeroOrden"));
+
+            try {
+                adminOrden.cancelarOrden(transformarOrdenADTO(adminOrden.obtenerOrdenPorNumeroOrden(orden.getInteger("numeroOrden"))));
+            } catch (PersistenciaException ex) {
+                Logger.getLogger(Ordenes.class.getName()).log(Level.SEVERE, null, ex);
+            }
             panelOrdenRef[0].setVisible(false);
             // Limpiar los paneles existentes
             panelOrdenes.removeAll();
@@ -284,7 +297,12 @@ public class Ordenes extends JFrame {
             System.out.println("Botón Completar presionado para la orden: " + orden.getInteger("numeroOrden"));
 
             System.out.println("Completando orden #" + orden.getInteger("numeroOrden"));
-            adminOrden.completarOrden(orden.getInteger("numeroOrden"));
+
+            try {
+                adminOrden.completadaOrden(transformarOrdenADTO(adminOrden.obtenerOrdenPorNumeroOrden(orden.getInteger("numeroOrden"))));
+            } catch (PersistenciaException ex) {
+                Logger.getLogger(Ordenes.class.getName()).log(Level.SEVERE, null, ex);
+            }
             panelOrdenRef[0].setVisible(false);
             // Limpiar los paneles existentes
             panelOrdenes.removeAll();
@@ -324,5 +342,48 @@ public class Ordenes extends JFrame {
             frame.adminOrden = new FacadeAdminOrden();
             frame.setVisible(true);
         });
+    }
+
+    public NuevaOrdenDTO transformarOrdenADTO(Orden orden) throws PersistenciaException {
+        NuevaOrdenDTO ordenObtenidaDTO = new NuevaOrdenDTO();
+        ordenObtenidaDTO.setEstado(orden.getEstado());
+        ordenObtenidaDTO.setFecha(orden.getFecha());
+        List<NuevoProductoDTO> productosDTO = new LinkedList<>();
+        for (Producto producto : orden.getListaProductos()) {
+            NuevoProductoDTO nuevoProductoDTO = new NuevoProductoDTO();
+            nuevoProductoDTO.setCantidad(producto.getCantidad());
+            nuevoProductoDTO.setCategoria(producto.getCategoria());
+            nuevoProductoDTO.setDescripcion(producto.getDescripcion());
+            nuevoProductoDTO.setNombre(producto.getNombre());
+            nuevoProductoDTO.setNotas(producto.getNotas());
+            nuevoProductoDTO.setPrecio(producto.getPrecio());
+
+            if (producto.getIngredientes().isEmpty()) {
+                productosDTO.add(nuevoProductoDTO);
+            } else {
+                TortaDTO tortaDTO = new TortaDTO();
+
+                tortaDTO.setNombre(producto.getNombre());
+                tortaDTO.setCantidad(producto.getCantidad());
+                tortaDTO.setPrecio(producto.getPrecio());
+                tortaDTO.setCantCebolla(producto.getIngredientes().get(0).getCantidad());
+                tortaDTO.setCantTomate(producto.getIngredientes().get(1).getCantidad());
+                tortaDTO.setCantRepollo(producto.getIngredientes().get(2).getCantidad());
+                tortaDTO.setCantMayonesa(producto.getIngredientes().get(3).getCantidad());
+                tortaDTO.setCantMostaza(producto.getIngredientes().get(4).getCantidad());
+                tortaDTO.setCantJalapeno(producto.getIngredientes().get(5).getCantidad());
+                tortaDTO.setCantCarne(producto.getIngredientes().get(6).getCantidad());
+                tortaDTO.setCategoria(producto.getCategoria());
+
+                productosDTO.add(tortaDTO);
+            }
+
+        }
+        ordenObtenidaDTO.setListaProductos(productosDTO);
+        ordenObtenidaDTO.setNombreCliente(orden.getNombreCliente());
+        ordenObtenidaDTO.setNumeroOrden(orden.getNumeroOrden());
+        ordenObtenidaDTO.setTotal(orden.getTotal());
+
+        return ordenObtenidaDTO;
     }
 }

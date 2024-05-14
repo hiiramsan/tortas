@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
 import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
+import org.itson.bdavanzadas.persistencia.entidades.Orden;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
 import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
@@ -19,6 +20,7 @@ import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
  * @author carlo
  */
 public class FacadeAdminOrden implements IAdminOrden {
+
     OrdenControl ordenControl = new OrdenControl();
 
     @Override
@@ -56,7 +58,7 @@ public class FacadeAdminOrden implements IAdminOrden {
     public void especificacionesOrden(NuevaOrdenDTO orden) {
         ordenControl.especificacionesOrden(orden);
     }
-    
+
     @Override
     public Double obtenerPrecioPorNombre(String nombreProducto) {
         try {
@@ -66,8 +68,8 @@ public class FacadeAdminOrden implements IAdminOrden {
         }
         return null;
     }
-    
-        @Override
+
+    @Override
     public List<NuevaOrdenDTO> obtenerOrdenesCompletadas() {
         try {
             List<NuevaOrdenDTO> ordenesDTO = new LinkedList<>();
@@ -85,14 +87,14 @@ public class FacadeAdminOrden implements IAdminOrden {
         try {
             NuevaOrdenDTO ordenCancelada = ordenControl.cancelarOrden(ordenDTO);
             return ordenCancelada;
-            
+
         } catch (NegocioException ex) {
             Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-     @Override
+
+    @Override
     public void cambiarEstadoCancelada(int numeroOrden) {
         ordenControl.cancelarOrden(numeroOrden);
     }
@@ -132,5 +134,22 @@ public class FacadeAdminOrden implements IAdminOrden {
         return null;
     }
 
-}
+    @Override
+    public Orden obtenerOrdenPorNumeroOrden(Integer numOrden) {
+        try {
+            return ordenControl.obtenerOrdenPorNumeroOrden(numOrden);
+        } catch (NegocioException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
+    @Override
+    public void completadaOrden(NuevaOrdenDTO ordenDTO) {
+        try {
+            ordenControl.ordenCompletada(ordenDTO);
+        } catch (NegocioException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

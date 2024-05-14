@@ -7,6 +7,7 @@ package org.itson.bdavanzadas.adminOrden;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import java.util.List;
 import org.bson.Document;
+import org.itson.bdavanzadas.persistencia.entidades.Orden;
 
 /**
  *
@@ -23,31 +24,25 @@ public interface IAdminOrden {
     public void completarOrden(int index);
 
     public void especificacionesOrden(NuevaOrdenDTO orden);
-    
+
     public Double obtenerPrecioPorNombre(String nombreProducto);
-    
-    /**
-     * Cancela una orden mediante una ordenDTO
-     * @param ordenDTO valor de la orden a cancelar
-     */
+
     public NuevaOrdenDTO cancelarOrden(NuevaOrdenDTO ordenDTO);
-    /**
-     * Obtiene todas las ordenes que ya hayan sido completadas
-     * @return regresa las ordenes ya completadas
-     */
+
+    public void completadaOrden(NuevaOrdenDTO ordenDTO);
+
     public List<NuevaOrdenDTO> obtenerOrdenesCompletadas();
-    
+
+    public Orden obtenerOrdenPorNumeroOrden(Integer numeroOrden);
+
     public void cambiarEstadoCancelada(int numeroOrden);
 
     public void cambiarEstadoCompletada(int numeroOrden);
 
-    
-    public List<Document> obtenerOrdenesPorFechaAscendente() ;
-    
+    public List<Document> obtenerOrdenesPorFechaAscendente();
 
-    public List<Document> obtenerOrdenesPendientesPorCantidadTortas()  ;
-    
+    public List<Document> obtenerOrdenesPendientesPorCantidadTortas();
 
-    public List<Document> obtenerOrdenesPendientes() ;
-    
+    public List<Document> obtenerOrdenesPendientes();
+
 }

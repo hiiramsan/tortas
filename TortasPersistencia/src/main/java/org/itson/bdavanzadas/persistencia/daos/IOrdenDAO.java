@@ -22,28 +22,34 @@ public interface IOrdenDAO {
     public List<Orden> obtenerOrdenes() throws FindException;
 
     public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException;
-    
+
     /**
      * Obtiene todas las ordenes que ya han sido completadas
+     *
      * @return regresa una lista de las ordenes completadas
      */
     List<Orden> obtenerOrdenesCompletadas();
-    
+
     /**
      * Obtiene una orden mediante su número de orden
+     *
      * @param numeroOrden numero de la orden
      * @return orden encontrada mediante su numero
+     * @throws org.itson.bdavanzadas.persistencia.exception.PersistenciaException
      */
-    public Orden obtenerOrdenPorNumeroOrden(int numeroOrden) throws PersistenciaException;
-    
+    public Orden obtenerOrdenPorNumeroOrden(Integer numeroOrden) throws PersistenciaException;
+
     /**
-     * Cancela una orden 
+     * Cancela una orden
+     *
      * @param ordenDTO
      * @return
-     * @throws PersistenciaException 
+     * @throws PersistenciaException
      */
     public Orden cancelarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException;
-    
+
+    public void ordenCompletada(NuevaOrdenDTO ordenDTO) throws PersistenciaException;
+
     public void cambiarEstadoCompletada(int numeroOrden);
 
     public void cambiarEstadoCancelada(int numeroOrden);
