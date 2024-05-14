@@ -1261,6 +1261,7 @@ public class FrmInventariar extends javax.swing.JFrame {
         // TODO add your handling code here:
         int seleccion = jTInventario.getSelectedRow();
         txtNombre.setText(jTInventario.getValueAt(seleccion, 0).toString());
+        txtNombre.setEnabled(false);
         txtDescripcion.setText(jTInventario.getValueAt(seleccion, 2).toString());
         txtPrecio.setText(jTInventario.getValueAt(seleccion, 3).toString());
         txtCantidad.setText(jTInventario.getValueAt(seleccion, 1).toString());
@@ -1269,6 +1270,7 @@ public class FrmInventariar extends javax.swing.JFrame {
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
         txtNombre.setText("");
+        txtNombre.setEnabled(true);
         txtCantidad.setText("");
         txtDescripcion.setText("");
         txtPrecio.setText("");
