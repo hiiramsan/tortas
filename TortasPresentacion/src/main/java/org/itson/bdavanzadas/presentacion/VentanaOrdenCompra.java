@@ -49,6 +49,7 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         this.inventario = new FacadeAdminInventario();
         initComponents();
         stockLimitPanel.setVisible(false);
+        errTxt.setVisible(false);
     }
 
     /**
@@ -85,6 +86,7 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         btn2 = new utils.Btn();
         jScrollPane3 = new javax.swing.JScrollPane();
         comentariosTxt = new javax.swing.JTextArea();
+        errTxt = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         visualizarBtn = new utils.Btn();
         agregarBtn = new utils.Btn();
@@ -135,6 +137,11 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         stockLimitTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stockLimitTxtActionPerformed(evt);
+            }
+        });
+        stockLimitTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                stockLimitTxtKeyTyped(evt);
             }
         });
 
@@ -220,6 +227,11 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         btn1.setColorClick(new java.awt.Color(0, 102, 153));
         btn1.setColorOver(new java.awt.Color(51, 153, 255));
         btn1.setRadius(10);
+        btn1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                btn1FocusLost(evt);
+            }
+        });
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1ActionPerformed(evt);
@@ -257,6 +269,10 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         comentariosTxt.setBorder(null);
         jScrollPane3.setViewportView(comentariosTxt);
 
+        errTxt.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
+        errTxt.setForeground(new java.awt.Color(255, 51, 51));
+        errTxt.setText("Orden sin productos");
+
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
@@ -275,12 +291,14 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(totalTxt))
-                            .addGroup(panelRound1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(14, 14, 14)
-                                .addComponent(proveedorCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6)
-                            .addComponent(jScrollPane3))
+                            .addComponent(jScrollPane3)
+                            .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(errTxt)
+                                .addGroup(panelRound1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addGap(14, 14, 14)
+                                    .addComponent(proveedorCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
                         .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,7 +325,9 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(proveedorCB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -315,7 +335,7 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
         jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 430, 500));
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei", 1, 24)); // NOI18N
-        jLabel2.setText("Product Stock Management");
+        jLabel2.setText("Suppliers");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 22, -1, 40));
 
         visualizarBtn.setBackground(new java.awt.Color(102, 153, 255));
@@ -552,7 +572,22 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
 
     private void agregarBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtn2ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_agregarBtn2ActionPerformed
+
+    private void stockLimitTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stockLimitTxtKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_stockLimitTxtKeyTyped
+
+    private void btn1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btn1FocusLost
+        // TODO add your handling code here:
+        errTxt.setText("");
+        errTxt.setVisible(false);
+    }//GEN-LAST:event_btn1FocusLost
 
     /**
      * @param args the command line arguments
@@ -654,8 +689,8 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
 
             adminReportes.generarReporteOrdenDeCompra(listaProductos, comentariosTxt.getText(), proveedorCB.getSelectedItem().toString());
 
-            String filename = "OrdenDeCompra.pdf"; 
-            
+            String filename = "OrdenDeCompra.pdf";
+
             String proveedorMail = proveedorCB.getSelectedItem().toString();
             try {
                 String projectDirectory = System.getProperty("user.dir");
@@ -663,10 +698,13 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
                 File file = new File(filePath);
                 String absolutePath = file.getAbsolutePath();
                 adminMailer.sendEmailWithAttachment("carloshiramsanchez@gmail.com", proveedorMail, "Orden de Compra", cuerpoMensaje.toString(), absolutePath);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 adminMailer.sendPersonalizedEmail("carloshiramsanchez@gmail.com", proveedorMail, "Orden de Compra", cuerpoMensaje.toString());
             }
-            
+
+        } else{
+            errTxt.setText("Orden sin productos");
+            errTxt.setVisible(true);
         }
     }
 
@@ -679,6 +717,7 @@ public class VentanaOrdenCompra extends javax.swing.JFrame {
     private utils.Btn btn2;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextArea comentariosTxt;
+    private javax.swing.JLabel errTxt;
     private javax.swing.JComboBox<String> filtradoCB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
