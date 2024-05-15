@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.bdavanzadas.presentacion;
 
 import java.awt.BorderLayout;
@@ -30,7 +26,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import org.bson.Document;
 import org.itson.bdavanzadas.adminOrden.FacadeAdminOrden;
 import org.itson.bdavanzadas.adminOrden.IAdminOrden;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
@@ -42,21 +37,16 @@ import org.itson.bdavanzadas.persistencia.entidades.Producto;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
 import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
-/**
- *
- * @author crist
- */
 public class Ordenes extends JFrame {
 
     private JPanel panelOrdenes;
-    IAdminOrden adminOrden;
+    public IAdminOrden adminOrden;
 
-    Insets insets = new Insets(10, 10, 10, 10);
+    private final Insets insets = new Insets(10, 10, 10, 10);
 
     public Ordenes() {
         this.adminOrden = new FacadeAdminOrden();
         initComponents();
-        //hola
         setSize(1400, 700);
     }
 
@@ -77,63 +67,25 @@ public class Ordenes extends JFrame {
         contentPane.add(scrollPane, BorderLayout.CENTER);
         setContentPane(contentPane);
 
-        // Botón "Actualizar"
         JButton btnActualizar = new JButton("Actualizar");
         Color azul = new Color(36, 123, 160);
         btnActualizar.setBackground(azul);
         btnActualizar.setForeground(Color.WHITE);
 
-        btnActualizar.addActionListener(e -> {
-            // Limpiar los paneles existentes
-            panelOrdenes.removeAll();
-            panelOrdenes.revalidate();
-            panelOrdenes.repaint();
+        btnActualizar.addActionListener(e -> actualizarOrdenesPendientes());
 
-            // Obtener y mostrar las nuevas órdenes
-            List<Document> ordenesPendientesActualizadas = adminOrden.obtenerOrdenesPendientes();
-            for (Document orden : ordenesPendientesActualizadas) {
-                agregarOrden(orden, insets);
-            }
-        });
-
-        // Botón "Ordenar por prioridad"
         JButton btnOrdenarPorAsc = new JButton("Ordenar por fecha ascendente");
-
         btnOrdenarPorAsc.setBackground(azul);
         btnOrdenarPorAsc.setForeground(Color.WHITE);
 
-        btnOrdenarPorAsc.addActionListener(e -> {
-            // Limpiar los paneles existentes
-            panelOrdenes.removeAll();
-            panelOrdenes.revalidate();
-            panelOrdenes.repaint();
+        btnOrdenarPorAsc.addActionListener(e -> ordenarPorFechaAscendente());
 
-            // Obtener y mostrar las nuevas órdenes
-            List<Document> ordenesPendientesASC = adminOrden.obtenerOrdenesPorFechaAscendente();
-            for (Document orden : ordenesPendientesASC) {
-                agregarOrden(orden, insets);
-            }
-        });
-
-        // Botón "Ordenar por cantidad de tortas"
         JButton btnOrdenarPorCantTortas = new JButton("Ordenar por cantidad de tortas");
         btnOrdenarPorCantTortas.setBackground(azul);
         btnOrdenarPorCantTortas.setForeground(Color.WHITE);
 
-        btnOrdenarPorCantTortas.addActionListener(e -> {
-            // Limpiar los paneles existentes
-            panelOrdenes.removeAll();
-            panelOrdenes.revalidate();
-            panelOrdenes.repaint();
+        btnOrdenarPorCantTortas.addActionListener(e -> ordenarPorCantidadDeTortas());
 
-            // Obtener y mostrar las nuevas órdenes
-            List<Document> ordenesPendientesMayorTortas = adminOrden.obtenerOrdenesPendientesPorCantidadTortas();
-            for (Document orden : ordenesPendientesMayorTortas) {
-                agregarOrden(orden, insets);
-            }
-        });
-
-        // Crear un panel para contener el botón y establecer su layout
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         btnPanel.setBackground(Color.WHITE);
         JLabel lblEspacio = new JLabel("                                               "
@@ -148,176 +100,168 @@ public class Ordenes extends JFrame {
         btnPanel.add(btnOrdenarPorAsc);
         btnPanel.add(btnOrdenarPorCantTortas);
 
-        // Agregar el panel con el botón al norte del JFrame
         contentPane.add(btnPanel, BorderLayout.NORTH);
 
-        pack(); // Ajusta el tamaño de la ventana para que quepa el contenido
+        pack();
+        setLocationRelativeTo(null);
 
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
-
-        List<Document> ordenesPendientes = adminOrden.obtenerOrdenesPendientes();
-        for (Document orden : ordenesPendientes) {
-            agregarOrden(orden, insets);
-        }
+        actualizarOrdenesPendientes();
 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                // Abrir la VentanaPrincipal al cerrar este frame
-                VentanaPrincipal vp = null;
                 try {
-                    vp = new VentanaPrincipal();
+                    VentanaPrincipal vp = new VentanaPrincipal();
+                    vp.setVisible(true);
                 } catch (FindException ex) {
                     Logger.getLogger(FrmInventariar.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                vp.setVisible(true);
             }
         });
-
     }
 
-    public void agregarOrden(Document orden, Insets insets) {
-        JPanel panelOrden = new JPanel(); // 15 es el radio del borde
+    private void actualizarOrdenesPendientes() {
+        panelOrdenes.removeAll();
+        panelOrdenes.revalidate();
+        panelOrdenes.repaint();
 
+        List<NuevaOrdenDTO> ordenesPendientesActualizadas = adminOrden.obtenerOrdenesPendientes();
+        for (NuevaOrdenDTO orden : ordenesPendientesActualizadas) {
+            agregarOrden(orden, insets);
+        }
+    }
+
+    private void ordenarPorFechaAscendente() {
+        panelOrdenes.removeAll();
+        panelOrdenes.revalidate();
+        panelOrdenes.repaint();
+
+        List<NuevaOrdenDTO> ordenesPendientesASC = adminOrden.obtenerOrdenesPorFechaAscendente();
+        for (NuevaOrdenDTO orden : ordenesPendientesASC) {
+            agregarOrden(orden, insets);
+        }
+    }
+
+    private void ordenarPorCantidadDeTortas() {
+        panelOrdenes.removeAll();
+        panelOrdenes.revalidate();
+        panelOrdenes.repaint();
+
+        List<NuevaOrdenDTO> ordenesPendientesMayorTortas = adminOrden.obtenerOrdenesPendientesPorCantidadTortas();
+        for (NuevaOrdenDTO orden : ordenesPendientesMayorTortas) {
+            agregarOrden(orden, insets);
+        }
+    }
+
+    public void agregarOrden(NuevaOrdenDTO orden, Insets insets) {
+        JPanel panelOrden = new JPanel();
         panelOrden.setLayout(new BoxLayout(panelOrden, BoxLayout.Y_AXIS));
         Font font = new Font("Segoe UI Semibold", Font.BOLD, 18);
 
-        JLabel lblNumeroOrden = new JLabel("Orden #" + orden.getInteger("numeroOrden"));
+        JLabel lblNumeroOrden = new JLabel("Orden #" + orden.getNumeroOrden());
         lblNumeroOrden.setFont(font);
         panelOrden.add(lblNumeroOrden);
-        panelOrden.add(Box.createVerticalStrut(5)); // Espacio vertical
+        panelOrden.add(Box.createVerticalStrut(5));
 
-        JLabel lblNombreCliente = new JLabel("Cliente: " + orden.getString("nombreCliente"));
+        JLabel lblNombreCliente = new JLabel("Cliente: " + orden.getNombreCliente());
         panelOrden.add(lblNombreCliente);
 
-        JLabel lblEstado = new JLabel("Estado: " + orden.getString("estado"));
+        JLabel lblEstado = new JLabel("Estado: " + orden.getEstado());
         panelOrden.add(lblEstado);
 
-        // Obtener la fecha como un objeto Date
-        Date fechaOrden = orden.getDate("fecha");
-
-        // Formatear la fecha en el formato deseado, incluyendo AM/PM
+        Date fechaOrden = orden.getFecha();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy hh:mm a", new Locale("es", "ES"));
         String fechaFormateada = sdf.format(fechaOrden);
 
         JLabel lblFecha = new JLabel("Fecha: " + fechaFormateada + "       ");
         panelOrden.add(lblFecha);
 
-        JLabel lblTotal = new JLabel("Total: " + orden.getDouble("total"));
+        JLabel lblTotal = new JLabel("Total: " + orden.getTotal());
         panelOrden.add(lblTotal);
-        panelOrden.add(Box.createVerticalStrut(10)); // Espacio vertical
+        panelOrden.add(Box.createVerticalStrut(10));
 
         JLabel lblProductos = new JLabel("Productos:");
         panelOrden.add(lblProductos);
 
-        List<Document> listaProductos = (List<Document>) orden.get("listaProductos");
-        for (int i = 0; i < listaProductos.size(); i++) {
-            Document producto = listaProductos.get(i);
-            JLabel lblProducto = new JLabel("\t- " + producto.getString("nombre")
-                    + ", Cantidad: " + producto.getInteger("cantidad"));
-            lblProducto.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK)); // Borde inferior
+        List<NuevoProductoDTO> listaProductos = orden.getListaProductos();
+        for (NuevoProductoDTO producto : listaProductos) {
+            JLabel lblProducto = new JLabel("\t- " + producto.getNombre()
+                    + ", Cantidad: " + producto.getCantidad());
+            lblProducto.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
             panelOrden.add(lblProducto);
 
-            List<Document> ingredientes = (List<Document>) producto.get("ingredientes");
-
-            if (producto.getString("categoria").equals("Torta")) {
+            if (producto instanceof TortaDTO) {
+                TortaDTO torta = (TortaDTO) producto;
                 JLabel lblIngredientes = new JLabel("\t\tIngredientes:");
                 panelOrden.add(lblIngredientes);
 
-                for (Document ingrediente : ingredientes) {
-                    Font fontIngrediente = new Font("Segoe UI", Font.PLAIN, 12);
-
-                    // Remover el prefijo "cant" si existe
-                    if (ingrediente.getInteger("cantidad") != 1) {
-                        String nombreIngrediente = ingrediente.getString("nombreIngrediente");
-                        // Remover el prefijo "cant" si existe
-                        if (nombreIngrediente.startsWith("cant")) {
-                            nombreIngrediente = nombreIngrediente.substring(4);
-                            if (ingrediente.getInteger("cantidad") == 0) {
-                                nombreIngrediente = "Sin " + nombreIngrediente;
-                            }
-                        }
-                        if (nombreIngrediente.startsWith("can")) {
-                            nombreIngrediente = nombreIngrediente.substring(3);
-                            if (ingrediente.getInteger("cantidad") == 0) {
-                                nombreIngrediente = "sin " + nombreIngrediente;
-                            }
-                        }
-
-                        JLabel lblIngrediente = new JLabel("\t\t\t    " + nombreIngrediente + " x" + ingrediente.getInteger("cantidad"));
-                        lblIngrediente.setFont(fontIngrediente);
-                        panelOrden.add(lblIngrediente);
-                    }
+                if (torta.getCantCebolla() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Cebolla x" + torta.getCantCebolla());
+                    panelOrden.add(lblIngrediente);
                 }
-
-                // Mostrar la descripción solo si es una torta y la descripción no está vacía
-                if (producto.getString("descripcion") != null && !producto.getString("descripcion").isEmpty()) {
-                    JLabel lblDescripcion = new JLabel("Notas: " + producto.getString("descripcion"));
-                    panelOrden.add(lblDescripcion);
+                if (torta.getCantTomate() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Tomate x" + torta.getCantTomate());
+                    panelOrden.add(lblIngrediente);
+                }
+                if (torta.getCantRepollo() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Repollo x" + torta.getCantRepollo());
+                    panelOrden.add(lblIngrediente);
+                }
+                if (torta.getCantMayonesa() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Mayonesa x" + torta.getCantMayonesa());
+                    panelOrden.add(lblIngrediente);
+                }
+                if (torta.getCantMostaza() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Mostaza x" + torta.getCantMostaza());
+                    panelOrden.add(lblIngrediente);
+                }
+                if (torta.getCantJalapeno() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Jalapeño x" + torta.getCantJalapeno());
+                    panelOrden.add(lblIngrediente);
+                }
+                if (torta.getCantCarne() > 0) {
+                    JLabel lblIngrediente = new JLabel("\t\t\t    Carne x" + torta.getCantCarne());
+                    panelOrden.add(lblIngrediente);
                 }
             }
 
+            if (producto.getDescripcion() != null && !producto.getDescripcion().isEmpty()) {
+                JLabel lblDescripcion = new JLabel("Notas: " + producto.getDescripcion());
+                panelOrden.add(lblDescripcion);
+            }
         }
-        panelOrden.add(Box.createVerticalStrut(10)); // Espacio vertical
-        final JPanel[] panelOrdenRef = {panelOrden};
+
+        panelOrden.add(Box.createVerticalStrut(10));
 
         JButton btnCancelar = new JButton("Cancelar");
         Color rojo = new Color(225, 121, 117);
         btnCancelar.setBackground(rojo);
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.addActionListener(e -> {
-            System.out.println("Botón Cancelar presionado para la orden: " + orden.getInteger("numeroOrden"));
+            adminOrden.cancelarOrden(orden);
+            panelOrden.setVisible(false);
+            actualizarOrdenesPendientes();
 
-            System.out.println("Cancelando orden #" + orden.getInteger("numeroOrden"));
-
-            try {
-                adminOrden.cancelarOrden(transformarOrdenADTO(adminOrden.obtenerOrdenPorNumeroOrden(orden.getInteger("numeroOrden"))));
-            } catch (PersistenciaException ex) {
-                Logger.getLogger(Ordenes.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            panelOrdenRef[0].setVisible(false);
-            // Limpiar los paneles existentes
-            panelOrdenes.removeAll();
-            panelOrdenes.revalidate();
-            panelOrdenes.repaint();
-
-            // Obtener y mostrar las nuevas órdenes
-            List<Document> ordenesPendientesActualizadas = adminOrden.obtenerOrdenesPendientes();
-            for (Document ordenesA : ordenesPendientesActualizadas) {
-                agregarOrden(ordenesA, insets);
-            }
         });
 
         JButton btnCompletar = new JButton("Completar");
         Color azul = new Color(155, 181, 210);
         btnCompletar.setBackground(azul);
         btnCompletar.setForeground(Color.WHITE);
-
         btnCompletar.addActionListener(e -> {
-            System.out.println("Botón Completar presionado para la orden: " + orden.getInteger("numeroOrden"));
-
-            System.out.println("Completando orden #" + orden.getInteger("numeroOrden"));
 
             try {
-                adminOrden.completadaOrden(transformarOrdenADTO(adminOrden.obtenerOrdenPorNumeroOrden(orden.getInteger("numeroOrden"))));
-            } catch (PersistenciaException ex) {
+                adminOrden.ordenCompletada(orden);
+            } catch (NegocioException ex) {
                 Logger.getLogger(Ordenes.class.getName()).log(Level.SEVERE, null, ex);
             }
-            panelOrdenRef[0].setVisible(false);
-            // Limpiar los paneles existentes
-            panelOrdenes.removeAll();
-            panelOrdenes.revalidate();
-            panelOrdenes.repaint();
+            panelOrden.setVisible(false);
+            actualizarOrdenesPendientes();
 
-            // Obtener y mostrar las nuevas órdenes
-            List<Document> ordenesPendientesActualizadas = adminOrden.obtenerOrdenesPendientes();
-            for (Document ordenesA : ordenesPendientesActualizadas) {
-                agregarOrden(ordenesA, insets);
-            }
         });
-        JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0)); // 10 es el espacio entre los botones
 
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
         panelBotones.add(btnCancelar);
         panelBotones.add(btnCompletar);
 
@@ -327,7 +271,7 @@ public class Ordenes extends JFrame {
         gbc.gridx = GridBagConstraints.RELATIVE;
         gbc.gridy = GridBagConstraints.RELATIVE;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = insets; // Aplica los márgenes
+        gbc.insets = insets;
         panelOrdenes.add(panelOrden, gbc);
 
         revalidate();
@@ -336,54 +280,8 @@ public class Ordenes extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // Inicializa adminOrden aquí
             Ordenes frame = new Ordenes();
-
-            frame.adminOrden = new FacadeAdminOrden();
             frame.setVisible(true);
         });
-    }
-
-    public NuevaOrdenDTO transformarOrdenADTO(Orden orden) throws PersistenciaException {
-        NuevaOrdenDTO ordenObtenidaDTO = new NuevaOrdenDTO();
-        ordenObtenidaDTO.setEstado(orden.getEstado());
-        ordenObtenidaDTO.setFecha(orden.getFecha());
-        List<NuevoProductoDTO> productosDTO = new LinkedList<>();
-        for (Producto producto : orden.getListaProductos()) {
-            NuevoProductoDTO nuevoProductoDTO = new NuevoProductoDTO();
-            nuevoProductoDTO.setCantidad(producto.getCantidad());
-            nuevoProductoDTO.setCategoria(producto.getCategoria());
-            nuevoProductoDTO.setDescripcion(producto.getDescripcion());
-            nuevoProductoDTO.setNombre(producto.getNombre());
-            nuevoProductoDTO.setNotas(producto.getNotas());
-            nuevoProductoDTO.setPrecio(producto.getPrecio());
-
-            if (producto.getIngredientes().isEmpty()) {
-                productosDTO.add(nuevoProductoDTO);
-            } else {
-                TortaDTO tortaDTO = new TortaDTO();
-
-                tortaDTO.setNombre(producto.getNombre());
-                tortaDTO.setCantidad(producto.getCantidad());
-                tortaDTO.setPrecio(producto.getPrecio());
-                tortaDTO.setCantCebolla(producto.getIngredientes().get(0).getCantidad());
-                tortaDTO.setCantTomate(producto.getIngredientes().get(1).getCantidad());
-                tortaDTO.setCantRepollo(producto.getIngredientes().get(2).getCantidad());
-                tortaDTO.setCantMayonesa(producto.getIngredientes().get(3).getCantidad());
-                tortaDTO.setCantMostaza(producto.getIngredientes().get(4).getCantidad());
-                tortaDTO.setCantJalapeno(producto.getIngredientes().get(5).getCantidad());
-                tortaDTO.setCantCarne(producto.getIngredientes().get(6).getCantidad());
-                tortaDTO.setCategoria(producto.getCategoria());
-
-                productosDTO.add(tortaDTO);
-            }
-
-        }
-        ordenObtenidaDTO.setListaProductos(productosDTO);
-        ordenObtenidaDTO.setNombreCliente(orden.getNombreCliente());
-        ordenObtenidaDTO.setNumeroOrden(orden.getNumeroOrden());
-        ordenObtenidaDTO.setTotal(orden.getTotal());
-
-        return ordenObtenidaDTO;
     }
 }

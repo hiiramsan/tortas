@@ -54,9 +54,9 @@ public interface IOrdenDAO {
 
     public void cambiarEstadoCancelada(int numeroOrden);
 
-    public List<Document> obtenerOrdenesPorFechaAscendente();
+    public List<Orden> obtenerOrdenesPorFechaAscendente();
 
-    public List<Document> obtenerOrdenesPendientesPorCantidadTortas();
+    public List<Orden> obtenerOrdenesPendientesPorCantidadTortas();
 
-    public List<Document> obtenerOrdenesPendientes();
+    public List<Orden> obtenerOrdenesPendientes();
 }

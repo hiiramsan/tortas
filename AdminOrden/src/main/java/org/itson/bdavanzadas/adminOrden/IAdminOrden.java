@@ -7,6 +7,7 @@ package org.itson.bdavanzadas.adminOrden;
 import org.itson.bdavanzadas.dtos.NuevaOrdenDTO;
 import java.util.List;
 import org.bson.Document;
+import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
 
 /**
@@ -33,16 +34,18 @@ public interface IAdminOrden {
 
     public List<NuevaOrdenDTO> obtenerOrdenesCompletadas();
 
-    public Orden obtenerOrdenPorNumeroOrden(Integer numeroOrden);
+    public NuevaOrdenDTO obtenerOrdenPorNumeroOrden(Integer numeroOrden);
 
     public void cambiarEstadoCancelada(int numeroOrden);
 
     public void cambiarEstadoCompletada(int numeroOrden);
 
-    public List<Document> obtenerOrdenesPorFechaAscendente();
+    public List<NuevaOrdenDTO> obtenerOrdenesPorFechaAscendente();
 
-    public List<Document> obtenerOrdenesPendientesPorCantidadTortas();
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientesPorCantidadTortas();
 
-    public List<Document> obtenerOrdenesPendientes();
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientes();
+    
+     public void ordenCompletada(NuevaOrdenDTO ordenDTO) throws NegocioException;
 
 }

@@ -18,6 +18,7 @@ import org.itson.bdavanzadas.dtos.TortaDTO;
 import org.itson.bdavanzadas.objetosNegocio.excepction.NegocioException;
 import org.itson.bdavanzadas.persistencia.daos.IOrdenDAO;
 import org.itson.bdavanzadas.persistencia.daos.OrdenDAO;
+import org.itson.bdavanzadas.persistencia.entidades.Ingrediente;
 import org.itson.bdavanzadas.persistencia.entidades.Orden;
 import org.itson.bdavanzadas.persistencia.entidades.Producto;
 import org.itson.bdavanzadas.persistencia.exception.FindException;
@@ -136,11 +137,11 @@ public class OrdenBO {
         return ordenDAO.obtenerPrecioPorNombre(nombreProducto);
     }
 
-    public Orden obtenerOrdenPorNumeroOrden(Integer numeroOrden) throws NegocioException {
+    public NuevaOrdenDTO obtenerOrdenPorNumeroOrden(Integer numeroOrden) throws NegocioException {
 
         try {
             Orden orden = ordenDAO.obtenerOrdenPorNumeroOrden(numeroOrden);
-            return orden;
+            return transformarOrdenDTO(orden);
 
         } catch (PersistenciaException pE) {
             throw new NegocioException("Ocurrio un error al obtener la orden", pE);
@@ -329,16 +330,71 @@ public class OrdenBO {
         ordenDAO.cambiarEstadoCancelada(numeroOrden);
     }
 
-    public List<Document> obtenerOrdenesPorFechaAscendente() {
-        return ordenDAO.obtenerOrdenesPorFechaAscendente();
+    public List<NuevaOrdenDTO> obtenerOrdenesPorFechaAscendente() {
+        return transformarListaOrdenADTO(ordenDAO.obtenerOrdenesPorFechaAscendente());
     }
 
-    public List<Document> obtenerOrdenesPendientesPorCantidadTortas() {
-        return ordenDAO.obtenerOrdenesPendientesPorCantidadTortas();
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientesPorCantidadTortas() {
+        return transformarListaOrdenADTO(ordenDAO.obtenerOrdenesPendientesPorCantidadTortas());
     }
 
-    public List<Document> obtenerOrdenesPendientes() {
-        return ordenDAO.obtenerOrdenesPendientes();
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientes() {
+        return transformarListaOrdenADTO(ordenDAO.obtenerOrdenesPendientes());
     }
+
+    private List<NuevaOrdenDTO> transformarListaOrdenADTO(List<Orden> ordenes) {
+        List<NuevaOrdenDTO> ordenesDTO = new ArrayList<>();
+        for (Orden orden : ordenes) {
+            ordenesDTO.add(transformarOrdenDTO(orden));
+        }
+        return ordenesDTO;
+    }
+
+    public NuevaOrdenDTO transformarOrdenDTO(Orden orden) {
+    NuevaOrdenDTO ordenDTO = new NuevaOrdenDTO();
+
+    ordenDTO.setEstado(orden.getEstado());
+    ordenDTO.setFecha(orden.getFecha());
+    ordenDTO.setNombreCliente(orden.getNombreCliente());
+    ordenDTO.setNumeroOrden(orden.getNumeroOrden());
+    ordenDTO.setTotal(orden.getTotal());
+
+    List<NuevoProductoDTO> productosDTO = new ArrayList<>();
+
+    for (Producto producto : orden.getListaProductos()) {
+        NuevoProductoDTO nuevoProductoDTO = new NuevoProductoDTO();
+        nuevoProductoDTO.setCantidad(producto.getCantidad());
+        nuevoProductoDTO.setCategoria(producto.getCategoria());
+        nuevoProductoDTO.setDescripcion(producto.getDescripcion());
+        nuevoProductoDTO.setNombre(producto.getNombre());
+        nuevoProductoDTO.setNotas(producto.getNotas());
+        nuevoProductoDTO.setPrecio(producto.getPrecio());
+
+        List<Ingrediente> ingredientes = producto.getIngredientes();
+        if (ingredientes != null && !ingredientes.isEmpty()) {
+            TortaDTO tortaDTO = new TortaDTO();
+            tortaDTO.setNombre(producto.getNombre());
+            tortaDTO.setCantidad(producto.getCantidad());
+            tortaDTO.setPrecio(producto.getPrecio());
+            tortaDTO.setCantCebolla(ingredientes.get(0).getCantidad());
+            tortaDTO.setCantTomate(ingredientes.get(1).getCantidad());
+            tortaDTO.setCantRepollo(ingredientes.get(2).getCantidad());
+            tortaDTO.setCantMayonesa(ingredientes.get(3).getCantidad());
+            tortaDTO.setCantMostaza(ingredientes.get(4).getCantidad());
+            tortaDTO.setCantJalapeno(ingredientes.get(5).getCantidad());
+            tortaDTO.setCantCarne(ingredientes.get(6).getCantidad());
+            tortaDTO.setCategoria(producto.getCategoria());
+
+            productosDTO.add(tortaDTO);
+        } else {
+            productosDTO.add(nuevoProductoDTO);
+        }
+    }
+
+    ordenDTO.setListaProductos(productosDTO);
+
+    return ordenDTO;
+}
+
 
 }

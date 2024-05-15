@@ -105,7 +105,7 @@ public class FacadeAdminOrden implements IAdminOrden {
     }
 
     @Override
-    public List<Document> obtenerOrdenesPorFechaAscendente() {
+    public List<NuevaOrdenDTO> obtenerOrdenesPorFechaAscendente() {
         try {
             return ordenControl.obtenerOrdenesPorFechaAscendente();
         } catch (FindException ex) {
@@ -115,7 +115,7 @@ public class FacadeAdminOrden implements IAdminOrden {
     }
 
     @Override
-    public List<Document> obtenerOrdenesPendientesPorCantidadTortas() {
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientesPorCantidadTortas() {
         try {
             return ordenControl.obtenerOrdenesPendientesPorCantidadTortas();
         } catch (FindException ex) {
@@ -125,7 +125,7 @@ public class FacadeAdminOrden implements IAdminOrden {
     }
 
     @Override
-    public List<Document> obtenerOrdenesPendientes() {
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientes() {
         try {
             return ordenControl.obtenerOrdenesPendientes();
         } catch (FindException ex) {
@@ -135,7 +135,7 @@ public class FacadeAdminOrden implements IAdminOrden {
     }
 
     @Override
-    public Orden obtenerOrdenPorNumeroOrden(Integer numOrden) {
+    public NuevaOrdenDTO obtenerOrdenPorNumeroOrden(Integer numOrden) {
         try {
             return ordenControl.obtenerOrdenPorNumeroOrden(numOrden);
         } catch (NegocioException ex) {
@@ -146,6 +146,15 @@ public class FacadeAdminOrden implements IAdminOrden {
 
     @Override
     public void completadaOrden(NuevaOrdenDTO ordenDTO) {
+        try {
+            ordenControl.ordenCompletada(ordenDTO);
+        } catch (NegocioException ex) {
+            Logger.getLogger(FacadeAdminOrden.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void ordenCompletada(NuevaOrdenDTO ordenDTO) throws NegocioException {
         try {
             ordenControl.ordenCompletada(ordenDTO);
         } catch (NegocioException ex) {

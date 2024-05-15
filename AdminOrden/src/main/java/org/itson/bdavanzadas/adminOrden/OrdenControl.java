@@ -137,9 +137,9 @@ public class OrdenControl {
         }
     }
 
-    public Orden obtenerOrdenPorNumeroOrden(Integer numOrden) throws NegocioException {
+    public NuevaOrdenDTO obtenerOrdenPorNumeroOrden(Integer numOrden) throws NegocioException {
         try {
-            Orden orden = ordenBO.obtenerOrdenPorNumeroOrden(numOrden);
+            NuevaOrdenDTO orden = ordenBO.obtenerOrdenPorNumeroOrden(numOrden);
             return orden;
         } catch (NegocioException ne) {
             throw new NegocioException("Error al obtener las ordenes completadas", ne);
@@ -177,15 +177,15 @@ public class OrdenControl {
 
     }
 
-    public List<Document> obtenerOrdenesPorFechaAscendente() throws FindException {
+    public List<NuevaOrdenDTO> obtenerOrdenesPorFechaAscendente() throws FindException {
         return ordenBO.obtenerOrdenesPorFechaAscendente();
     }
 
-    public List<Document> obtenerOrdenesPendientesPorCantidadTortas() throws FindException {
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientesPorCantidadTortas() throws FindException {
         return ordenBO.obtenerOrdenesPendientesPorCantidadTortas();
     }
 
-    public List<Document> obtenerOrdenesPendientes() throws FindException {
+    public List<NuevaOrdenDTO> obtenerOrdenesPendientes() throws FindException {
         return ordenBO.obtenerOrdenesPendientes();
     }
 

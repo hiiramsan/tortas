@@ -225,6 +225,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void agregarProducto(NuevoProductoDTO producto) {
         listaProductos.add(producto);
         cargarDatosTabla(tablaOrden, listaProductos);
+        actualizarPrecios();
     }
 
     public static VentanaPrincipal getInstance() throws FindException {
@@ -1966,6 +1967,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ordenes o = new Ordenes();
         o.adminOrden = new FacadeAdminOrden();
+        o.setLocationRelativeTo(null);
         o.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel36MouseClicked
@@ -2120,6 +2122,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             };
             modelo.addRow(filas);
         }
+        
     }
 
     public int calcularTotal(List<NuevoProductoDTO> listaProductos) {
