@@ -39,9 +39,10 @@ public class VentasDAO implements IVentasDAO {
     }
 
     /**
-     * Regresa todas la ventas
+     * Obtiene todas las ventas almacenadas en la base de datos.
      *
-     * @return valor total de las ventas
+     * @return una lista de todas las ventas almacenadas
+     * @throws PersistenciaException si ocurre algún error al buscar las ventas
      */
     @Override
     public List<Venta> obtenerVentas() throws PersistenciaException {
@@ -59,6 +60,14 @@ public class VentasDAO implements IVentasDAO {
 
     }
 
+    /**
+     * Registra una nueva venta en la base de datos.
+     *
+     * @param nuevaVentaDTO los detalles de la nueva venta a registrar
+     * @return la venta registrada
+     * @throws PersistenciaException si ocurre algún error durante la
+     * persistencia de la venta
+     */
     @Override
     public Venta registrarVenta(NuevaVentaDTO nuevaVentaDTO) throws PersistenciaException {
 
@@ -89,6 +98,15 @@ public class VentasDAO implements IVentasDAO {
 
     }
 
+    /**
+     * Actualiza la información de una orden mediante su identificador.
+     *
+     * @param id el identificador único de la orden que se desea actualizar
+     * @param orden la orden con la información actualizada que se desea guardar
+     * @return la orden actualizada
+     * @throws PersistenciaException si ocurre algún error durante la
+     * actualización de la orden
+     */
     public Orden actualizarOrdenId(ObjectId id, Orden orden) throws PersistenciaException {
         MongoDatabase base = conexion.obtenerBaseDatos();
         MongoCollection<Orden> coleccionOrdenes = base.getCollection("ordenes", Orden.class);
@@ -110,8 +128,8 @@ public class VentasDAO implements IVentasDAO {
     }
 
     /**
-     * Regresa el numero total de ventas mas uno
-     * @return regresa el total de ventas mas uno
+     * Regresa el numero total de ventas
+     * @return regresa el total de ventas
      */
     public int numeroVenta(){
         MongoDatabase base = conexion.obtenerBaseDatos();

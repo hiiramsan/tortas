@@ -6,7 +6,7 @@ package org.itson.bdavanzadas.persistencia.entidades;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public class Ingrediente {
     private String nombreIngrediente;

@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public class Producto {
  

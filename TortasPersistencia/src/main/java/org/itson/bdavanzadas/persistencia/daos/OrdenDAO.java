@@ -44,10 +44,20 @@ public class OrdenDAO implements IOrdenDAO {
     public String nombreColeccion = "ordenes";
     static final Logger logger = Logger.getLogger(OrdenDAO.class.getName());
 
+    /**
+     * Método constructor de OrdenDAO
+     * @param conexion 
+     */
     public OrdenDAO(IConexion conexion) {
         this.conexion = conexion;
     }
 
+    /**
+     * Obtiene todas las órdenes almacenadas en el sistema.
+     *
+     * @return una lista de todas las órdenes almacenadas
+     * @throws FindException si ocurre algún error al buscar las órdenes
+     */
     @Override
     public List<Orden> obtenerOrdenes() throws FindException {
         try {
@@ -65,6 +75,14 @@ public class OrdenDAO implements IOrdenDAO {
         }
     }
 
+    /**
+     * Registra una nueva orden en el sistema.
+     *
+     * @param ordenDTO los detalles de la nueva orden a registrar
+     * @return la orden registrada
+     * @throws PersistenciaException si ocurre algún error durante la
+     * persistencia de la orden
+     */
     @Override
     public Orden registrarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException {
         try {
@@ -119,6 +137,15 @@ public class OrdenDAO implements IOrdenDAO {
         }
     }
 
+     /**
+     * Obtiene el precio de un producto por su nombre.
+     *
+     * @param nombreProducto el nombre del producto del cual se desea obtener el
+     * precio
+     * @return el precio del producto
+     * @throws FindException si ocurre algún error al buscar el precio del
+     * producto
+     */
     @Override
     public Double obtenerPrecioPorNombre(String nombreProducto) throws FindException {
         try {
@@ -139,6 +166,11 @@ public class OrdenDAO implements IOrdenDAO {
         }
     }
 
+    /**
+     * Obtiene el numero de ordenes existentes
+     * @return regresa el número de ordenes
+     * @throws PersistenciaException si ocurre un error al buscar las ordenes
+     */
     public int NumeroOrdenes() throws PersistenciaException {
         MongoDatabase base = conexion.obtenerBaseDatos();
         MongoCollection<Orden> coleccion = base.getCollection(nombreColeccion, Orden.class);
@@ -148,6 +180,11 @@ public class OrdenDAO implements IOrdenDAO {
         return cantidad;
     }
 
+    /**
+     * Obtiene todas las órdenes que ya han sido completadas.
+     *
+     * @return una lista de las órdenes completadas
+     */
     @Override
     public List<Orden> obtenerOrdenesCompletadas() {
         MongoDatabase base = conexion.obtenerBaseDatos();
@@ -164,6 +201,14 @@ public class OrdenDAO implements IOrdenDAO {
 
     }
 
+    /**
+     * Obtiene una orden mediante su número de orden.
+     *
+     * @param numeroOrden el número de la orden que se desea obtener
+     * @return la orden encontrada
+     * @throws PersistenciaException si ocurre algún error durante la búsqueda
+     * de la orden
+     */
     @Override
     public Orden obtenerOrdenPorNumeroOrden(Integer numeroOrden) throws PersistenciaException {
         MongoDatabase base = conexion.obtenerBaseDatos();
@@ -176,6 +221,14 @@ public class OrdenDAO implements IOrdenDAO {
         return ordenEncontrada;
     }
 
+    /**
+     * Cancela una orden existente en el sistema.
+     *
+     * @param ordenDTO los detalles de la orden que se desea cancelar
+     * @return la orden cancelada
+     * @throws PersistenciaException si ocurre algún error durante la
+     * cancelación de la orden
+     */
     @Override
     public Orden cancelarOrden(NuevaOrdenDTO ordenDTO) throws PersistenciaException {
         MongoDatabase base = conexion.obtenerBaseDatos();
@@ -208,6 +261,13 @@ public class OrdenDAO implements IOrdenDAO {
         }
     }
 
+    /**
+     * Cancela un producto mediante el nombre del producto y la cantidad
+     * @param nombreBebida nombre de la bebida a cancelar
+     * @param cantidad cantidad del producto a cancelar
+     * @return
+     * @throws PersistenciaException 
+     */
     public boolean cancelarProducto(String nombreBebida, int cantidad) throws PersistenciaException {
         try {
             MongoDatabase base = conexion.obtenerBaseDatos();
@@ -238,6 +298,13 @@ public class OrdenDAO implements IOrdenDAO {
 
     }
 
+    
+    /**
+     * Cambia el estado de una orden a completada mediante su número de orden.
+     *
+     * @param numeroOrden el número de la orden que se desea marcar como
+     * completada
+     */
     @Override
     public void cambiarEstadoCompletada(int numeroOrden) {
         MongoDatabase base = conexion.obtenerBaseDatos();
@@ -249,6 +316,12 @@ public class OrdenDAO implements IOrdenDAO {
 
     }
 
+    /**
+     * Cambia el estado de una orden a cancelada mediante su número de orden.
+     *
+     * @param numeroOrden el número de la orden que se desea marcar como
+     * cancelada
+     */
     @Override
     public void cambiarEstadoCancelada(int numeroOrden) {
         MongoDatabase base = conexion.obtenerBaseDatos();
@@ -259,6 +332,11 @@ public class OrdenDAO implements IOrdenDAO {
                 new Document("$set", new Document("estado", Estado.CANCELADA.toString())));
     }
 
+    /**
+     * Obtiene todas las órdenes pendientes almacenadas en el sistema.
+     *
+     * @return una lista de órdenes pendientes
+     */
     @Override
     public List<Orden> obtenerOrdenesPendientes() {
         List<Orden> ordenesPendientes = new ArrayList<>();
@@ -312,6 +390,12 @@ public class OrdenDAO implements IOrdenDAO {
         return ordenesPendientes;
     }
 
+     /**
+     * Obtiene todas las órdenes pendientes ordenadas por la cantidad de tortas.
+     *
+     * @return una lista de órdenes pendientes ordenadas por la cantidad de
+     * tortas
+     */
     @Override
     public List<Orden> obtenerOrdenesPendientesPorCantidadTortas() {
         List<Orden> ordenesPendientes = obtenerOrdenesPendientes();
@@ -342,6 +426,12 @@ public class OrdenDAO implements IOrdenDAO {
         return ordenesPendientes;
     }
 
+    /**
+     * Obtiene todas las órdenes almacenadas en el sistema, ordenadas por fecha
+     * de manera ascendente.
+     *
+     * @return una lista de órdenes ordenadas por fecha ascendente
+     */
     @Override
     public List<Orden> obtenerOrdenesPorFechaAscendente() {
         List<Orden> ordenes = new ArrayList<>();
@@ -402,6 +492,14 @@ public class OrdenDAO implements IOrdenDAO {
         return ordenes;
     }
 
+    /**
+     * Marca una orden como completada en el sistema.
+     *
+     * @param ordenDTO los detalles de la orden que se desea marcar como
+     * completada
+     * @throws PersistenciaException si ocurre algún error durante la
+     * actualización del estado de la orden
+     */
     @Override
     public void ordenCompletada(NuevaOrdenDTO ordenDTO) throws PersistenciaException {
         cambiarEstadoCompletada(ordenDTO.getNumeroOrden());

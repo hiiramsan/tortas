@@ -16,7 +16,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public class Conexion implements IConexion {
 
@@ -26,6 +26,10 @@ public class Conexion implements IConexion {
     public Conexion() {
     }
 
+    /**
+     * Obtiene la base de datos con la que se va trabajar en MongoDB
+     * @return regresa una base de datos de Mongo
+     */
     @Override
     public MongoDatabase obtenerBaseDatos() {
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),

@@ -22,7 +22,7 @@ import org.itson.bdavanzadas.persistencia.exception.PersistenciaException;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public class InventarioDAO implements IInventarioDAO {
 
@@ -30,10 +30,19 @@ public class InventarioDAO implements IInventarioDAO {
     public String nombreColeccion = "productos";
     static final Logger logger = Logger.getLogger(InventarioDAO.class.getName());
 
+    /**
+     * Constructor
+     * @param conexion 
+     */
     public InventarioDAO(IConexion conexion) {
         this.conexion = conexion;
     }
 
+    /**
+     * Obtiene el inventario de las bebidas
+     * @return lista de Productos de tipo bebida
+     * @throws FindException si no se encuentra se lanza una excepción
+     */
     @Override
     public List<Producto> obtenerInventario() throws FindException {
         try {
@@ -51,6 +60,12 @@ public class InventarioDAO implements IInventarioDAO {
         }
     }
 
+    /**
+     * Actualiza el inventario de las bebidas
+     * @param nombreBebida nombre de la bebida
+     * @param cantidad cantidad de la bebida    
+     * @throws PersistenciaException en caso de ocurrir un error de persistencia
+     */
     @Override
     public void actualizarInventario(String nombreBebida, int cantidad) throws PersistenciaException {
         try {
@@ -81,6 +96,14 @@ public class InventarioDAO implements IInventarioDAO {
         }
     }
 
+    /**
+     * Obtiene el inventario con rangos
+     * @param soloStockLimit
+     * @param stockLimit limite del stock
+     * @param filtrarPorStockAlto valor si se filtra por stock alto o no
+     * @return regresa una lista de Productos
+     * @throws FindException si no encuentra el inventairo
+     */
     @Override
     public List<Producto> obtenerInventario(boolean soloStockLimit, int stockLimit, boolean filtrarPorStockAlto) throws FindException {
         try {

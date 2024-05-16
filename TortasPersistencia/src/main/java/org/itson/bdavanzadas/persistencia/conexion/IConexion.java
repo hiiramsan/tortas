@@ -8,9 +8,13 @@ import com.mongodb.client.MongoDatabase;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public interface IConexion {
 
+    /**
+     * Obtiene la base de datos con la que se va a trabajar en MongoDB
+     * @return valor de la base de datos
+     */
     public MongoDatabase obtenerBaseDatos();
 }

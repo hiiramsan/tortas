@@ -10,7 +10,7 @@ import org.itson.bdavanzadas.dtos.MetodoPago;
 
 /**
  *
- * @author Abe
+ * @author Abel
  */
 public class Venta {
 
